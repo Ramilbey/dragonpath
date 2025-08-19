@@ -1,0 +1,119 @@
+/* src/components/Header/Header.css */
+.header {
+    background: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .logo i {
+    font-size: 2rem;
+    color: #1a365d;
+    margin-right: 10px;
+  }
+  
+  .logo h1 {
+    font-size: 1.8rem;
+    color: #1a365d;
+    margin: 0;
+    line-height: 1;
+  }
+  
+  .logo span {
+    color: #e53e3e;
+  }
+  
+  .logo-subtitle {
+    font-size: 0.8rem;
+    color: #718096;
+    font-style: italic;
+    margin-top: 2px;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #2d3748;
+    font-weight: 500;
+    margin-left: 30px;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #e53e3e;
+  }
+  
+  .nav-links a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #e53e3e;
+    border-radius: 2px;
+  }
+  
+  .burger {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background: #2d3748;
+    margin: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      position: absolute;
+      right: 0;
+      height: 92vh;
+      top: 80px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in;
+      box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-links a {
+      margin: 25px 0;
+    }
+    
+    .nav-active {
+      transform: translateX(0%);
+    }
+    
+    .burger {
+      display: block;
+    }
+  }

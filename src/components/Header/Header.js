@@ -2,15 +2,17 @@
 import React from 'react';
 import './Header.css';
 
+
 const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
   return (
     <header className="header">
       <div className="container">
         <nav className="nav">
-          <div className="logo">
-            <i className="fas fa-graduation-cap"></i>
+                  <div className="logo">
+            <img src="/images/dragon.jpg" className='dragonImage'></img>
+            {/* <i className="fas fa-graduation-cap"></i> */}
             <h1>Dragon<span>Path</span></h1>
-            <div className="logo-subtitle">YueGa & Kurae</div>
+            <div className="logo-subtitle"> учеба в китае</div>
           </div>
           
           <div className={`nav-links ${menuOpen ? 'nav-active' : ''}`}>

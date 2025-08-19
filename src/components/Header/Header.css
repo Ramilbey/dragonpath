@@ -22,21 +22,26 @@
     align-items: flex-start;
   }
   
-  .logo i {
+  /* .logo img {
     font-size: 2rem;
-    color: #1a365d;
+    color: #ad1c1c;
     margin-right: 10px;
+  } */
+  .dragonImage{
+    width: 10rem;
+    height: 3rem;
+    
   }
   
   .logo h1 {
     font-size: 1.8rem;
-    color: #1a365d;
+    color: #ff0000;
     margin: 0;
     line-height: 1;
   }
   
   .logo span {
-    color: #e53e3e;
+    color: #ff0000;
   }
   
   .logo-subtitle {

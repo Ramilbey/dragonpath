@@ -9,7 +9,7 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
       <div className="container">
         <nav className="nav">
                   <div className="logo">
-            <img src="/images/logo/dragon.jpg" className='dragonImage'></img>
+            <img src="/images/logo/dragon.jpg" alt='dragon path log' className='dragonImage'></img>
             {/* <i className="fas fa-graduation-cap"></i> */}
             <h1>Dragon<span>Path</span></h1>
             <div className="logo-subtitle"> учеба в китае</div>

@@ -1,0 +1,78 @@
+/* src/components/Contact/Contact.css */
+.contact {
+    padding: 80px 0;
+    background: white;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+  
+  .info-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: var(--primary);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  .info-item h3 {
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+  }
+  
+  .info-item p {
+    margin: 2px 0;
+    color: var(--text);
+  }
+  
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+  
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  
+  .contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+  
+  @media (max-width: 992px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }

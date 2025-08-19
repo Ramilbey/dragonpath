@@ -1,0 +1,83 @@
+/* src/components/Universities/Universities.css */
+.universities {
+    padding: 80px 0;
+    background: #f7fafc;
+  }
+  
+  .universities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .university-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .university-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .uni-logo {
+    height: 100px;
+    background: linear-gradient(135deg, #1a365d, #2a69ac);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+  
+  .uni-content {
+    padding: 20px;
+  }
+  
+  .uni-content h3 {
+    color: #1a365d;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .uni-location {
+    color: #718096;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .uni-location i {
+    margin-right: 5px;
+    color: #e53e3e;
+  }
+  
+  .uni-ranking {
+    color: #e53e3e;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .uni-programs {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .btn-outline {
+    background: transparent;
+    border: 2px solid #1a365d;
+    color: #1a365d;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+  }
+  
+  .btn-outline:hover {
+    background: #1a365d;
+    color: white;
+  }

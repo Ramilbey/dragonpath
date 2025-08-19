@@ -15,7 +15,7 @@ const Footer = ({ scrollToSection }) => {
             <p>Your trusted partner for studying in China. We provide comprehensive support services to help students from Uzbekistan achieve their academic dreams.</p>
             <div className="social-links">
               <a href="#"><i className="fab fa-facebook-f"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
+              <a href="https://www.instagram.com/dragon.path/?hl=en"><i className="fab fa-instagram"></i></a>
               <a href="#"><i className="fab fa-telegram"></i></a>
               <a href="#"><i className="fab fa-youtube"></i></a>
               <a href="#"><i className="fab fa-linkedin-in"></i></a>

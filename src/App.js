@@ -6,7 +6,6 @@ import Services from "./components/Services/Services";
 import Universities from "./components/Universities/Universities";
 import About from "./components/About/About";
 import Testimonials from "./components/Testimonials/Testimonials";
-import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import { LanguageProvider } from "./context/LanguageContext";
 import "./App.css";

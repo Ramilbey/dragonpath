@@ -1,8 +1,11 @@
 // src/components/Header/Header.js
 import React from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import './Header.css';
 
 const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
+  const { language, setLanguage } = useLanguage();
+
   return (
     <header className="header">
       <div className="container">
@@ -20,6 +23,28 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
             <a href="#about" className={activeSection === 'about' ? 'active' : ''} onClick={() => scrollToSection('about')}>About</a>
             <a href="#testimonials" className={activeSection === 'testimonials' ? 'active' : ''} onClick={() => scrollToSection('testimonials')}>Testimonials</a>
             <a href="#contact" className={activeSection === 'contact' ? 'active' : ''} onClick={() => scrollToSection('contact')}>Contact</a>
+            
+            {/* Language Switcher */}
+            <div className="language-switcher">
+              <button 
+                className={language === 'english' ? 'active' : ''} 
+                onClick={() => setLanguage('english')}
+              >
+                EN
+              </button>
+              <button 
+                className={language === 'russian' ? 'active' : ''} 
+                onClick={() => setLanguage('russian')}
+              >
+                RU
+              </button>
+              <button 
+                className={language === 'uzbek' ? 'active' : ''} 
+                onClick={() => setLanguage('uzbek')}
+              >
+                UZ
+              </button>
+            </div>
           </div>
           
           <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>

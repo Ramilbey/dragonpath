@@ -1,5 +1,6 @@
 // src/components/Hero/Hero.js
 import React from 'react';
+
 import './Hero.css';
 
 const Hero = ({ scrollToSection }) => {

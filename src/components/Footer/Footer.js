@@ -86,9 +86,7 @@ const Footer = ({ scrollToSection }) => {
                 </a>
               </li>
               <li>
-                <a href="#contact" onClick={() => scrollToSection("contact")}>
-                  Contact
-                </a>
+               
               </li>
             </ul>
           </div>

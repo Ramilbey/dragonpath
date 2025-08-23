@@ -22,7 +22,7 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
             <a href="#universities" className={activeSection === 'universities' ? 'active' : ''} onClick={() => scrollToSection('universities')}>Universities</a>
             <a href="#about" className={activeSection === 'about' ? 'active' : ''} onClick={() => scrollToSection('about')}>About</a>
             <a href="#testimonials" className={activeSection === 'testimonials' ? 'active' : ''} onClick={() => scrollToSection('testimonials')}>Testimonials</a>
-            <a href="#contact" className={activeSection === 'contact' ? 'active' : ''} onClick={() => scrollToSection('contact')}>Contact</a>
+
             
             {/* Language Switcher */}
             <div className="language-switcher">

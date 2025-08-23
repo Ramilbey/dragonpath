@@ -1,131 +1,101 @@
 // src/components/Contact/Contact.js
-import React, { useState } from 'react';
+import React from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import './Contact.css';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: ''
-  });
+  const { language } = useLanguage();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const translations = {
+    english: {
+      title: "Contact Us",
+      subtitle: "Start your educational journey with us",
+      chinaNotice: "Important Notice for China-Based Students",
+      chinaNoticeText: "Since we are based in China where some international platforms are restricted, we recommend using WhatsApp or Telegram for the fastest response.",
+      responseTime: "Response Time: 24-48 hours",
+      socialMedia: "Get in Touch",
+      followUs: "We're most active on:",
+      whatsapp: "WhatsApp",
+      telegram: "Telegram",
+      instagram: "Instagram",
+      emailUs: "Email Us",
+    },
+    russian: {
+      title: "Свяжитесь с нами",
+      subtitle: "Начните свой образовательный путь с нами",
+      chinaNotice: "Важное уведомление для студентов в Китае",
+      chinaNoticeText: "Так как мы находимся в Китае, где некоторые платформы ограничены, рекомендуем использовать WhatsApp или Telegram для быстрого ответа.",
+      responseTime: "Время ответа: 24-48 часов",
+      socialMedia: "Связаться с нами",
+      followUs: "Мы наиболее активны в:",
+      whatsapp: "WhatsApp",
+      telegram: "Telegram",
+      instagram: "Instagram",
+      emailUs: "Эл. почта",
+    },
+    uzbek: {
+      title: "Bog'laning",
+      subtitle: "O'quv safariingizni biz bilan boshlang",
+      chinaNotice: "Xitoydagi talabalar uchun muhim eslatma",
+      chinaNoticeText: "Biz Xitoyda joylashganmiz, ba'zi platformalar cheklangan, shuning uchun WhatsApp yoki Telegramdan foydalanishni tavsiya qilamiz.",
+      responseTime: "Javob vaqti: 24-48 soat",
+      socialMedia: "Biz bilan bog'laning",
+      followUs: "Eng faolimiz shu yerda:",
+      whatsapp: "WhatsApp",
+      telegram: "Telegram",
+      instagram: "Instagram",
+      emailUs: "Email",
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Thank you for your message! We will contact you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: ''
-    });
+  const t = translations[language] || translations.english;
+
+  const openWhatsApp = () => {
+    window.open('https://wa.me/998901234567', '_blank');
+  };
+  const openTelegram = () => {
+    window.open('https://t.me/dragonpath', '_blank');
+  };
+  const openInstagram = () => {
+    window.open('https://instagram.com/dragonpath', '_blank');
+  };
+  const sendEmail = () => {
+    window.location.href = 'mailto:info@dragonpath.com';
   };
 
   return (
     <section id="contact" className="contact">
       <div className="container">
         <div className="section-title">
-          <h2>Contact Us</h2>
-          <p>Get in touch to start your educational journey</p>
+          <h2>{t.title}</h2>
+          <p>{t.subtitle}</p>
         </div>
-        <div className="contact-grid">
-          <div className="contact-info">
-            <div className="info-item">
-              <div className="info-icon">
-                <i className="fas fa-map-marker-alt"></i>
-              </div>
-              <div>
-                <h3>Our Office</h3>
-                <p>123 Education Street, Tashkent, Uzbekistan</p>
-              </div>
-            </div>
-            <div className="info-item">
-              <div className="info-icon">
-                <i className="fas fa-phone"></i>
-              </div>
-              <div>
-                <h3>Phone</h3>
-                <p>+998 71 123 4567</p>
-                <p>+998 90 123 4567 (WhatsApp)</p>
-              </div>
-            </div>
-            <div className="info-item">
-              <div className="info-icon">
-                <i className="fas fa-envelope"></i>
-              </div>
-              <div>
-                <h3>Email</h3>
-                <p>info@dragonpath.com</p>
-                <p>applications@dragonpath.com</p>
-              </div>
-            </div>
-            <div className="info-item">
-              <div className="info-icon">
-                <i className="fas fa-clock"></i>
-              </div>
-              <div>
-                <h3>Working Hours</h3>
-                <p>Monday-Friday: 9am - 6pm</p>
-                <p>Saturday: 10am - 4pm</p>
-              </div>
-            </div>
+
+        <div className="contact-notice">
+          <div className="notice-content">
+            <h3>📢 {t.chinaNotice}</h3>
+            <p>{t.chinaNoticeText}</p>
+            <p className="response-time"><strong>⏰ {t.responseTime}</strong></p>
           </div>
-          <div className="contact-form">
-            <form onSubmit={handleSubmit}>
-              <input 
-                type="text" 
-                name="name"
-                placeholder="Your Name" 
-                value={formData.name}
-                onChange={handleChange}
-                required 
-              />
-              <input 
-                type="email" 
-                name="email"
-                placeholder="Your Email" 
-                value={formData.email}
-                onChange={handleChange}
-                required 
-              />
-              <input 
-                type="tel" 
-                name="phone"
-                placeholder="Your Phone" 
-                value={formData.phone}
-                onChange={handleChange}
-              />
-              <select 
-                name="service"
-                value={formData.service}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>Select Service</option>
-                <option value="University Admission">University Admission</option>
-                <option value="Visa Assistance">Visa Assistance</option>
-                <option value="Language Program">Language Program</option>
-                <option value="Scholarship Guidance">Scholarship Guidance</option>
-                <option value="Other Inquiry">Other Inquiry</option>
-              </select>
-              <textarea 
-                name="message"
-                placeholder="Your Message" 
-                value={formData.message}
-                onChange={handleChange}
-                required
-              ></textarea>
-              <button type="submit" className="btn">Send Message</button>
-            </form>
+        </div>
+
+        <div className="social-connect">
+          <h3>{t.socialMedia}</h3>
+          <p className="follow-text">{t.followUs}</p>
+
+          <div className="social-buttons">
+            <button className="social-btn whatsapp" onClick={openWhatsApp}>
+              <i className="fab fa-whatsapp"></i> {t.whatsapp}
+            </button>
+            <button className="social-btn telegram" onClick={openTelegram}>
+              <i className="fab fa-telegram"></i> {t.telegram}
+            </button>
+            <button className="social-btn instagram" onClick={openInstagram}>
+              <i className="fab fa-instagram"></i> {t.instagram}
+            </button>
+            <button className="social-btn email" onClick={sendEmail}>
+              <i className="fas fa-envelope"></i> {t.emailUs}
+            </button>
           </div>
         </div>
       </div>

@@ -106,7 +106,7 @@ const Footer = ({ scrollToSection }) => {
           </div>
 
           {/* Newsletter */}
-          <div className="footer-column">
+          {/* <div className="footer-column">
             <h3>Newsletter</h3>
             <p>
               Subscribe for updates on university deadlines, scholarships, and
@@ -118,14 +118,13 @@ const Footer = ({ scrollToSection }) => {
                 Subscribe
               </button>
             </form>
-          </div>
+          </div> */}
 
         </div>
 
         <div className="copyright">
           <p>
-            &copy; 2023 DragonPath Education. All rights reserved. | YueGa &
-            Kurae
+            &copy; 2023 DragonPath Education. All rights reserved. 
           </p>
         </div>
       </div>

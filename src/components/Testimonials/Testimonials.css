@@ -1,88 +1,75 @@
 /* src/components/Testimonials/Testimonials.css */
 .testimonials {
-    background: linear-gradient(to right, var(--primary), var(--primary-dark));
+    background: #0f172a;
     color: white;
     padding: 80px 0;
-  }
-  
-  .testimonials .section-title h2 {
-    color: white;
-  }
-  
-  .testimonial-grid {
+}
+
+.testimonials .section-title h2 {
+    color: #f8fafc;
+}
+
+.testimonial-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  
-  .testimonial-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease;
-  }
-  
-  .testimonial-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .testimonial-text {
-    font-style: italic;
-    margin-bottom: 20px;
-    line-height: 1.8;
-    position: relative;
-  }
-  
-  .testimonial-text::before {
-    content: "";
-    font-size: 4rem;
-    color: var(--accent-light);
-    position: absolute;
-    top: -20px;
-    left: -10px;
-    opacity: 0.3;
-    font-family: Georgia, serif;
-  }
-  
-  .rating {
-    margin-bottom: 20px;
-  }
-  
-  .rating i {
-    color: #e2e8f0;
-    margin-right: 2px;
-  }
-  
-  .rating i.filled {
-    color: #f6ad55;
-  }
-  
-  .testimonial-author {
+    gap: 24px;
+}
+
+.testimonial-card {
+    background: #1e293b;
+    padding: 32px;
+    border-radius: 4px;
+    border: 1px solid #334155;
+}
+
+.testimonial-text {
+    margin-bottom: 24px;
+    line-height: 1.7;
+    color: #cbd5e1;
+    font-size: 1rem;
+}
+
+.rating {
+    margin-bottom: 24px;
+}
+
+.rating i {
+    color: #475569;
+    margin-right: 1px;
+}
+
+.rating i.filled {
+    color: #fbbf24;
+}
+
+.testimonial-author {
     display: flex;
     align-items: center;
-  }
-  
-  .author-image {
-    width: 50px;
-    height: 50px;
+}
+
+.author-image {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background-color: white;
-    margin-right: 15px;
+    background: #374151;
+    margin-right: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
-    font-weight: bold;
-  }
-  
-  .author-info h4 {
-    margin-bottom: 5px;
-    color: white;
-  }
-  
-  .author-info p {
-    color: #e2e8f0;
-    margin: 0;
+    color: #d1d5db;
+    font-weight: 500;
     font-size: 0.9rem;
-  }
+}
+
+.author-info h4 {
+    margin-bottom: 4px;
+    color: #f1f5f9;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.author-info p {
+    color: #64748b;
+    margin: 0;
+    font-size: 0.85rem;
+}

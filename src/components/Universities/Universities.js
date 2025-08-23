@@ -103,7 +103,7 @@ const Universities = () => {
       location: "Xuzhou, Jiangsu",
       ranking: "Partner University",
       programs: "One Year Preparatory Program",
-      logo: "🏛️",
+      logo: "/images/logo/Jiangsu_Normal_University_Logo.png",
       details: {
         tuition: "15000 CNY/Year",
         accommodation: "1500 CNY/Year (Quad) | 3000 CNY/Year (Double) | 6000 CNY/Year (Single)",
@@ -132,7 +132,7 @@ const Universities = () => {
       location: "Haikou City, Hainan Province",
       ranking: "Medical University",
       programs: "Clinical Medicine, Traditional Chinese Medicine, Nursing, Social Medicine and Health Administration (Taught in English)",
-      logo: "🏥",
+      logo: "/images/logo/hainan.jpg",
       details: {
         tuition: "20500 CNY/Year",
         accommodation: "2100 CNY/Year (4 beds) | 2800 CNY/Year (3 beds)",
@@ -161,7 +161,7 @@ const Universities = () => {
       location: "Wuhan City, Hubei Province",
       ranking: "University",
       programs: "Foundation Program",
-      logo: "🎓",
+      logo: "/images/logo/Hubei_University_logo.png",
       details: {
         tuition: "10000 CNY/Year (Includes Tuition & Accommodation)",
         insurance: "800 CNY/Year",
@@ -190,7 +190,7 @@ const Universities = () => {
       location: "Hezhou City, Guangxi Province",
       ranking: "University",
       programs: "International Economics and Trade, Cross-border E-commerce, Business English, Software Engineering, Communication Engineering, Artificial Intelligence (Bachelor's, English Taught)",
-      logo: "🌐",
+      logo: "/images/logo/hezhou-university.png",
       details: {
         tuition: "11000 CNY/Year (Liberal Arts) | 13000 CNY/Year (Science/Engineering)",
         accommodation: "2000-3000 CNY/Month (4-6 students)",
@@ -222,7 +222,7 @@ const Universities = () => {
       location: "Huaian City, Jiangsu Province",
       ranking: "College",
       programs: "Pharmacy, Food Smart Processing Technology, E-commerce, Culinery Art and Nutrition (3-Year Diploma, English Taught)",
-      logo: "🔬",
+      logo: "/images/logo/jiangsu.jpg",
       details: {
         tuition: "Scholarship: FREE | Original: 4700-6200 CNY/Year",
         accommodation: "1200 CNY/Year (2 beds room)",
@@ -258,7 +258,7 @@ const Universities = () => {
       location: "Hezhou City, Guangxi Province",
       ranking: "University",
       programs: "Chinese Language Program (One Semester/One Year)",
-      logo: "📚",
+      logo: "/images/logo/hezhou.jpg",
       details: {
         tuition: "5000 CNY/Semester | 10000 CNY/Year",
         accommodation: "2000-3000 CNY/Month (4-6 students)",
@@ -286,7 +286,7 @@ const Universities = () => {
       location: "Guangzhou, Guangdong",
       ranking: "College",
       programs: "One Year Chinese Language Program",
-      logo: "💬",
+      logo: "/images/logo/guangzhou int.jpg",
       details: {
         tuition: "13800 CNY/Year",
         accommodation: "5000 CNY/Year (Double Room)",
@@ -314,7 +314,7 @@ const Universities = () => {
       location: "Chengdu City, Sichuan Province",
       ranking: "University",
       programs: "Software Engineering, Trade and Economics (Bachelor's, English Taught)",
-      logo: "🐼",
+      logo: "/images/logo/sichuan.webp",
       details: {
         feesAfterScholarship: "6200 CNY/Year (Tuition & Accommodation)",
         insurance: "800 CNY/Year",
@@ -345,7 +345,17 @@ const Universities = () => {
           {universities.map((uni, index) => (
             <div key={index} className="university-card">
               <div className="uni-logo">
-                <span>{uni.logo}</span>
+                <img 
+                  src={uni.logo} 
+                  alt={`${uni.name} logo`}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'block';
+                  }}
+                />
+                <div className="logo-fallback" style={{display: 'none'}}>
+                  {uni.name.charAt(0)}
+                </div>
               </div>
               <div className="uni-content">
                 <h3>{uni.name}</h3>

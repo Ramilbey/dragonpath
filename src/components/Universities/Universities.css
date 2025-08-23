@@ -31,6 +31,28 @@
     justify-content: center;
     font-size: 2.5rem;
   }
+
+  .uni-logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: white;
+    border-radius: 8px;
+    padding: 5px;
+  }
+
+  .logo-fallback {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
   
   .uni-content {
     padding: 20px;
@@ -163,4 +185,3 @@
   .uni-modal-close:hover {
     background: #f1f5f9;
   }
-    

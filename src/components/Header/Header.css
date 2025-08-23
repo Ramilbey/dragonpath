@@ -22,15 +22,9 @@
     align-items: flex-start;
   }
   
-  /* .logo img {
-    font-size: 2rem;
-    color: #ad1c1c;
-    margin-right: 10px;
-  } */
-  .dragonImage{
+  .dragonImage {
     width: 10rem;
     height: 3rem;
-    
   }
   
   .logo h1 {
@@ -54,6 +48,7 @@
   .nav-links {
     display: flex;
     list-style: none;
+    align-items: center;
   }
   
   .nav-links a {
@@ -79,6 +74,36 @@
     height: 3px;
     background: #e53e3e;
     border-radius: 2px;
+  }
+  
+  /* Language Switcher Styles */
+  .language-switcher {
+    display: flex;
+    margin-left: 30px;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+  }
+  
+  .language-switcher button {
+    background: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4a5568;
+  }
+  
+  .language-switcher button:hover {
+    background: #f7fafc;
+  }
+  
+  .language-switcher button.active {
+    background: #ff0000;
+    color: white;
   }
   
   .burger {
@@ -108,10 +133,16 @@
       transform: translateX(100%);
       transition: transform 0.5s ease-in;
       box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
     }
     
     .nav-links a {
-      margin: 25px 0;
+      margin: 20px 0;
+    }
+    
+    .language-switcher {
+      margin: 20px 0;
+      align-self: center;
     }
     
     .nav-active {
@@ -122,46 +153,19 @@
       display: block;
     }
   }
-  /* Add these styles to your existing Header.css */
-.language-switcher {
-    display: flex;
-    margin-left: 20px;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    overflow: hidden;
-  }
   
-  .language-switcher button {
-    background: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-  
-  .language-switcher button:hover {
-    background: #f7fafc;
-  }
-  
-  .language-switcher button.active {
-    background: var(--primary);
-    color: white;
-  }
-  
-  /* Mobile responsive */
-  @media (max-width: 768px) {
-    .language-switcher {
-      margin: 15px 0;
-      align-self: center;
+  @media (max-width: 480px) {
+    .dragonImage {
+      width: 8rem;
+      height: 2.5rem;
+    }
+    
+    .logo h1 {
+      font-size: 1.5rem;
+    }
+    
+    .language-switcher button {
+      padding: 6px 12px;
+      font-size: 0.8rem;
     }
   }
-  
-  /* Add styles for your logo image if needed */
-  .dragonImage {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    margin-right: 10px;
-  } 

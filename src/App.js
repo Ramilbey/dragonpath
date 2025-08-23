@@ -37,7 +37,6 @@ function App() {
         <Universities />
         <About />
         <Testimonials />
-        {/* <Contact /> */}
         <Footer scrollToSection={scrollToSection} />
       </div>
     </LanguageProvider>

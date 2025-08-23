@@ -9,6 +9,7 @@ import Testimonials from './components/Testimonials/Testimonials';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import './App.css';
+import { SimpleLanguageProvider } from './context/SimpleLanguageContext';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -24,21 +25,23 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header 
-        scrollToSection={scrollToSection} 
-        activeSection={activeSection}
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-      />
-      <Hero scrollToSection={scrollToSection} />
-      <Services />
-      <Universities />
-      <About />
-      <Testimonials />
-      <Contact />
-      <Footer scrollToSection={scrollToSection} />
-    </div>
+    <SimpleLanguageProvider>
+      <div className="App">
+        <Header 
+          scrollToSection={scrollToSection} 
+          activeSection={activeSection}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+        <Hero scrollToSection={scrollToSection} />
+        <Services />
+        <Universities />
+        <About />
+        <Testimonials />
+        <Contact />
+        <Footer scrollToSection={scrollToSection} />
+      </div>
+    </SimpleLanguageProvider>
   );
 }
 

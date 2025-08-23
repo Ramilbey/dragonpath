@@ -22,7 +22,7 @@
   
   .image-scroll {
     display: flex;
-    animation: scrollLeft 55s linear infinite;
+    animation: scrollLeft 50s linear infinite;
     flex-shrink: 0;
   }
   

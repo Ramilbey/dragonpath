@@ -1,34 +1,34 @@
 // src/App.js
-import React, { useState } from 'react';
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import Services from './components/Services/Services';
-import Universities from './components/Universities/Universities';
-import About from './components/About/About';
-import Testimonials from './components/Testimonials/Testimonials';
-import Contact from './components/Contact/Contact';
-import Footer from './components/Footer/Footer';
-import './App.css';
-import { SimpleLanguageProvider } from './context/SimpleLanguageContext';
+import React, { useState } from "react";
+import Header from "./components/Header/Header";
+import Hero from "./components/Hero/Hero";
+import Services from "./components/Services/Services";
+import Universities from "./components/Universities/Universities";
+import About from "./components/About/About";
+import Testimonials from "./components/Testimonials/Testimonials";
+import Contact from "./components/Contact/Contact";
+import Footer from "./components/Footer/Footer";
+import { LanguageProvider } from "./context/LanguageContext";
+import "./App.css";
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setMenuOpen(false);
   };
 
   return (
-    <SimpleLanguageProvider>
+    <LanguageProvider>
       <div className="App">
-        <Header 
-          scrollToSection={scrollToSection} 
+        <Header
+          scrollToSection={scrollToSection}
           activeSection={activeSection}
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
@@ -41,7 +41,7 @@ function App() {
         <Contact />
         <Footer scrollToSection={scrollToSection} />
       </div>
-    </SimpleLanguageProvider>
+    </LanguageProvider>
   );
 }
 

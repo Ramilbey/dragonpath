@@ -1,4 +1,3 @@
-// src/context/SimpleLanguageContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 const SimpleLanguageContext = createContext();

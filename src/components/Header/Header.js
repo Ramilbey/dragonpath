@@ -1,18 +1,19 @@
 // src/components/Header/Header.js
 import React from 'react';
+import { useSimpleLanguage } from '../../context/SimpleLanguageContext';
 import './Header.css';
 
-
 const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
+  const { language, setLanguage } = useSimpleLanguage();
+
   return (
     <header className="header">
       <div className="container">
         <nav className="nav">
-                  <div className="logo">
-            <img src="/images/logo/dragon.jpg" alt='dragon path log' className='dragonImage'></img>
-            {/* <i className="fas fa-graduation-cap"></i> */}
+          <div className="logo">
+            <img src="/images/logo/dragon.jpg" alt='dragon path logo' className='dragonImage' />
             <h1>Dragon<span>Path</span></h1>
-            <div className="logo-subtitle"> учеба в китае</div>
+            <div className="logo-subtitle">учеба в китае</div>
           </div>
           
           <div className={`nav-links ${menuOpen ? 'nav-active' : ''}`}>
@@ -22,6 +23,28 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
             <a href="#about" className={activeSection === 'about' ? 'active' : ''} onClick={() => scrollToSection('about')}>About</a>
             <a href="#testimonials" className={activeSection === 'testimonials' ? 'active' : ''} onClick={() => scrollToSection('testimonials')}>Testimonials</a>
             <a href="#contact" className={activeSection === 'contact' ? 'active' : ''} onClick={() => scrollToSection('contact')}>Contact</a>
+            
+            {/* Language Switcher */}
+            <div className="language-switcher">
+              <button 
+                className={language === 'english' ? 'active' : ''} 
+                onClick={() => setLanguage('english')}
+              >
+                EN
+              </button>
+              <button 
+                className={language === 'russian' ? 'active' : ''} 
+                onClick={() => setLanguage('russian')}
+              >
+                RU
+              </button>
+              <button 
+                className={language === 'uzbek' ? 'active' : ''} 
+                onClick={() => setLanguage('uzbek')}
+              >
+                UZ
+              </button>
+            </div>
           </div>
           
           <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>

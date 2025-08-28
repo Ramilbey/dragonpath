@@ -201,7 +201,7 @@ const Footer = ({ scrollToSection }) => {
                   href="tel:+1234567890"
                   onClick={() => handleFooterLinkClick("Phone Contact")}
                 >
-                  +123 456 7890
+                  +89130225955119
                 </a>
               </li>
               <li>

@@ -5,7 +5,8 @@ import { useAnalytics } from '../../hooks/useAnalytics';
 import './Hero.css';
 
 const Hero = ({ scrollToSection }) => {
-  const { language } = useLanguage(); // Added parentheses here
+  const { language } = useLanguage();
+  const { trackButtonClick } = useAnalytics();
   
   const universityImages = [
     '/images/univerpics/uni1.jpg',
@@ -19,14 +20,11 @@ const Hero = ({ scrollToSection }) => {
     '/images/univerpics/uni9.jpg',
     '/images/univerpics/uni10.jpg'
   ];
-  //hook
-  const Hero = ({ scrollToSection }) => {
-    const { trackButtonClick } = useAnalytics();
-  
-    const handleClick = (sectionId) => {
-      trackButtonClick(`Hero CTA to ${sectionId}`);
-      scrollToSection(sectionId);
-    };
+
+  const handleClick = (sectionId) => {
+    trackButtonClick(`Hero CTA to ${sectionId}`);
+    scrollToSection(sectionId);
+  };
 
   // Simple translation example - add this
   const title = language === 'english' 
@@ -76,7 +74,7 @@ const Hero = ({ scrollToSection }) => {
         <div className="hero-content">
           <h2>{title}</h2>
           <p>{subtitle}</p>
-          <button className="btn" onClick={() => scrollToSection('universities')}>
+          <button className="btn" onClick={() => handleClick('universities')}>
             {buttonText}
           </button>
         </div>

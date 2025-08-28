@@ -76,13 +76,14 @@ const Footer = ({ scrollToSection }) => {
                 <i className="fab fa-whatsapp"></i>
               </a>
               <a
-                href="#"
+                href="#!"
                 onClick={(e) => {
-                  e.preventDefault(); // prevent opening "wechat.com"
+                  e.preventDefault();
                   navigator.clipboard.writeText("qutlimuratov5119");
                   alert("WeChat ID copied: qutlimuratov5119");
                   handleSocialLinkClick("WeChat");
                 }}
+                role="button"
               >
                 <i className="fab fa-weixin"></i>
               </a>

@@ -1,6 +1,7 @@
 // src/components/Hero/Hero.js
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import './Hero.css';
 
 const Hero = ({ scrollToSection }) => {
@@ -18,6 +19,14 @@ const Hero = ({ scrollToSection }) => {
     '/images/univerpics/uni9.jpg',
     '/images/univerpics/uni10.jpg'
   ];
+  //hook
+  const Hero = ({ scrollToSection }) => {
+    const { trackButtonClick } = useAnalytics();
+  
+    const handleClick = (sectionId) => {
+      trackButtonClick(`Hero CTA to ${sectionId}`);
+      scrollToSection(sectionId);
+    };
 
   // Simple translation example - add this
   const title = language === 'english' 

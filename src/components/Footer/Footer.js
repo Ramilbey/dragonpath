@@ -1,8 +1,24 @@
 // src/components/Footer/Footer.js
 import React from "react";
+import { useAnalytics } from '../../hooks/useAnalytics';
 import "./Footer.css";
 
 const Footer = ({ scrollToSection }) => {
+  const { trackEvent } = useAnalytics();
+
+  const handleSocialLinkClick = (platform) => {
+    trackEvent('social_media_click', 'Engagement', `Clicked ${platform} link`);
+  };
+
+  const handleFooterLinkClick = (linkName) => {
+    trackEvent('footer_link_click', 'Navigation', `Clicked footer link: ${linkName}`);
+  };
+
+  const handleScrollToSection = (sectionId, sectionName) => {
+    trackEvent('footer_navigation', 'Navigation', `Navigated to: ${sectionName}`);
+    scrollToSection(sectionId);
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -24,6 +40,7 @@ const Footer = ({ scrollToSection }) => {
                 href="https://www.facebook.com/dragon.path"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialLinkClick('Facebook')}
               >
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -31,6 +48,7 @@ const Footer = ({ scrollToSection }) => {
                 href="https://www.instagram.com/dragon.path/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialLinkClick('Instagram')}
               >
                 <i className="fab fa-instagram"></i>
               </a>
@@ -38,6 +56,7 @@ const Footer = ({ scrollToSection }) => {
                 href="https://t.me/pilgrimage_Muslim"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialLinkClick('Telegram')}
               >
                 <i className="fab fa-telegram"></i>
               </a>
@@ -45,6 +64,7 @@ const Footer = ({ scrollToSection }) => {
                 href="https://wa.me/your-number"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialLinkClick('WhatsApp')}
               >
                 <i className="fab fa-whatsapp"></i>
               </a>
@@ -52,6 +72,7 @@ const Footer = ({ scrollToSection }) => {
                 href="https://wechat.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialLinkClick('WeChat')}
               >
                 <i className="fab fa-weixin"></i>
               </a>
@@ -63,30 +84,27 @@ const Footer = ({ scrollToSection }) => {
             <h3>Quick Links</h3>
             <ul className="footer-links">
               <li>
-                <a href="#home" onClick={() => scrollToSection("home")}>
+                <a href="#home" onClick={() => handleScrollToSection("home", "Home")}>
                   Home
                 </a>
               </li>
               <li>
-                <a href="#services" onClick={() => scrollToSection("services")}>
+                <a href="#services" onClick={() => handleScrollToSection("services", "Services")}>
                   Services
                 </a>
               </li>
               <li>
                 <a
                   href="#universities"
-                  onClick={() => scrollToSection("universities")}
+                  onClick={() => handleScrollToSection("universities", "Universities")}
                 >
                   Universities
                 </a>
               </li>
               <li>
-                <a href="#about" onClick={() => scrollToSection("about")}>
+                <a href="#about" onClick={() => handleScrollToSection("about", "About Us")}>
                   About Us
                 </a>
-              </li>
-              <li>
-               
               </li>
             </ul>
           </div>
@@ -95,28 +113,62 @@ const Footer = ({ scrollToSection }) => {
           <div className="footer-column">
             <h3>Services</h3>
             <ul className="footer-links">
-              <li><a href="/">University Selection</a></li>
-              <li><a href="/">Application Assistance</a></li>
-              <li><a href="/">Visa Support</a></li>
-              <li><a href="/">Scholarship Guidance</a></li>
-              <li><a href="/">Accommodation Assistance</a></li>
+              <li>
+                <a href="/" onClick={() => handleFooterLinkClick("University Selection")}>
+                  University Selection
+                </a>
+              </li>
+              <li>
+                <a href="/" onClick={() => handleFooterLinkClick("Application Assistance")}>
+                  Application Assistance
+                </a>
+              </li>
+              <li>
+                <a href="/" onClick={() => handleFooterLinkClick("Visa Support")}>
+                  Visa Support
+                </a>
+              </li>
+              <li>
+                <a href="/" onClick={() => handleFooterLinkClick("Scholarship Guidance")}>
+                  Scholarship Guidance
+                </a>
+              </li>
+              <li>
+                <a href="/" onClick={() => handleFooterLinkClick("Accommodation Assistance")}>
+                  Accommodation Assistance
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Newsletter */}
-          {/* <div className="footer-column">
-            <h3>Newsletter</h3>
-            <p>
-              Subscribe for updates on university deadlines, scholarships, and
-              educational events.
-            </p>
-            <form className="footer-form">
-              <input type="email" placeholder="Your Email" />
-              <button type="submit" className="btn">
-                Subscribe
-              </button>
-            </form>
-          </div> */}
+          {/* Contact Information */}
+          <div className="footer-column">
+            <h3>Contact Us</h3>
+            <ul className="footer-contact">
+              <li>
+                <i className="fas fa-envelope"></i>
+                <a 
+                  href="mailto:info@dragonpath.com"
+                  onClick={() => handleFooterLinkClick("Email Contact")}
+                >
+                  info@dragonpath.com
+                </a>
+              </li>
+              <li>
+                <i className="fas fa-phone"></i>
+                <a 
+                  href="tel:+1234567890"
+                  onClick={() => handleFooterLinkClick("Phone Contact")}
+                >
+                  +123 456 7890
+                </a>
+              </li>
+              <li>
+                <i className="fas fa-map-marker-alt"></i>
+                <span>Beijing, China</span>
+              </li>
+            </ul>
+          </div>
 
         </div>
 

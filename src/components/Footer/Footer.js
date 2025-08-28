@@ -1,21 +1,29 @@
 // src/components/Footer/Footer.js
 import React from "react";
-import { useAnalytics } from '../../hooks/useAnalytics';
+import { useAnalytics } from "../../hooks/useAnalytics";
 import "./Footer.css";
 
 const Footer = ({ scrollToSection }) => {
   const { trackEvent } = useAnalytics();
 
   const handleSocialLinkClick = (platform) => {
-    trackEvent('social_media_click', 'Engagement', `Clicked ${platform} link`);
+    trackEvent("social_media_click", "Engagement", `Clicked ${platform} link`);
   };
 
   const handleFooterLinkClick = (linkName) => {
-    trackEvent('footer_link_click', 'Navigation', `Clicked footer link: ${linkName}`);
+    trackEvent(
+      "footer_link_click",
+      "Navigation",
+      `Clicked footer link: ${linkName}`
+    );
   };
 
   const handleScrollToSection = (sectionId, sectionName) => {
-    trackEvent('footer_navigation', 'Navigation', `Navigated to: ${sectionName}`);
+    trackEvent(
+      "footer_navigation",
+      "Navigation",
+      `Navigated to: ${sectionName}`
+    );
     scrollToSection(sectionId);
   };
 
@@ -23,7 +31,6 @@ const Footer = ({ scrollToSection }) => {
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
-
           {/* Logo and Social Links */}
           <div className="footer-column">
             <div className="logo">
@@ -37,10 +44,10 @@ const Footer = ({ scrollToSection }) => {
             </p>
             <div className="social-links">
               <a
-                href="https://www.facebook.com/dragon.path"
+                href="https://www.facebook.com/ramil.qutlimuratov"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => handleSocialLinkClick('Facebook')}
+                onClick={() => handleSocialLinkClick("Facebook")}
               >
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -48,31 +55,34 @@ const Footer = ({ scrollToSection }) => {
                 href="https://www.instagram.com/dragon.path/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => handleSocialLinkClick('Instagram')}
+                onClick={() => handleSocialLinkClick("Instagram")}
               >
                 <i className="fab fa-instagram"></i>
               </a>
               <a
-                href="https://t.me/pilgrimage_Muslim"
+                href="https://t.me/@suhrob_sedali"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => handleSocialLinkClick('Telegram')}
+                onClick={() => handleSocialLinkClick("Telegram")}
               >
                 <i className="fab fa-telegram"></i>
               </a>
               <a
-                href="https://wa.me/your-number"
+                href="https://wa.me/60105071503"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => handleSocialLinkClick('WhatsApp')}
+                onClick={() => handleSocialLinkClick("WhatsApp")}
               >
                 <i className="fab fa-whatsapp"></i>
               </a>
               <a
-                href="https://wechat.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => handleSocialLinkClick('WeChat')}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault(); // prevent opening "wechat.com"
+                  navigator.clipboard.writeText("qutlimuratov5119");
+                  alert("WeChat ID copied: qutlimuratov5119");
+                  handleSocialLinkClick("WeChat");
+                }}
               >
                 <i className="fab fa-weixin"></i>
               </a>
@@ -84,25 +94,36 @@ const Footer = ({ scrollToSection }) => {
             <h3>Quick Links</h3>
             <ul className="footer-links">
               <li>
-                <a href="#home" onClick={() => handleScrollToSection("home", "Home")}>
+                <a
+                  href="#home"
+                  onClick={() => handleScrollToSection("home", "Home")}
+                >
                   Home
                 </a>
               </li>
               <li>
-                <a href="#services" onClick={() => handleScrollToSection("services", "Services")}>
+                <a
+                  href="#services"
+                  onClick={() => handleScrollToSection("services", "Services")}
+                >
                   Services
                 </a>
               </li>
               <li>
                 <a
                   href="#universities"
-                  onClick={() => handleScrollToSection("universities", "Universities")}
+                  onClick={() =>
+                    handleScrollToSection("universities", "Universities")
+                  }
                 >
                   Universities
                 </a>
               </li>
               <li>
-                <a href="#about" onClick={() => handleScrollToSection("about", "About Us")}>
+                <a
+                  href="#about"
+                  onClick={() => handleScrollToSection("about", "About Us")}
+                >
                   About Us
                 </a>
               </li>
@@ -114,27 +135,46 @@ const Footer = ({ scrollToSection }) => {
             <h3>Services</h3>
             <ul className="footer-links">
               <li>
-                <a href="/" onClick={() => handleFooterLinkClick("University Selection")}>
+                <a
+                  href="/"
+                  onClick={() => handleFooterLinkClick("University Selection")}
+                >
                   University Selection
                 </a>
               </li>
               <li>
-                <a href="/" onClick={() => handleFooterLinkClick("Application Assistance")}>
+                <a
+                  href="/"
+                  onClick={() =>
+                    handleFooterLinkClick("Application Assistance")
+                  }
+                >
                   Application Assistance
                 </a>
               </li>
               <li>
-                <a href="/" onClick={() => handleFooterLinkClick("Visa Support")}>
+                <a
+                  href="/"
+                  onClick={() => handleFooterLinkClick("Visa Support")}
+                >
                   Visa Support
                 </a>
               </li>
               <li>
-                <a href="/" onClick={() => handleFooterLinkClick("Scholarship Guidance")}>
+                <a
+                  href="/"
+                  onClick={() => handleFooterLinkClick("Scholarship Guidance")}
+                >
                   Scholarship Guidance
                 </a>
               </li>
               <li>
-                <a href="/" onClick={() => handleFooterLinkClick("Accommodation Assistance")}>
+                <a
+                  href="/"
+                  onClick={() =>
+                    handleFooterLinkClick("Accommodation Assistance")
+                  }
+                >
                   Accommodation Assistance
                 </a>
               </li>
@@ -147,7 +187,7 @@ const Footer = ({ scrollToSection }) => {
             <ul className="footer-contact">
               <li>
                 <i className="fas fa-envelope"></i>
-                <a 
+                <a
                   href="mailto:info@dragonpath.com"
                   onClick={() => handleFooterLinkClick("Email Contact")}
                 >
@@ -156,7 +196,7 @@ const Footer = ({ scrollToSection }) => {
               </li>
               <li>
                 <i className="fas fa-phone"></i>
-                <a 
+                <a
                   href="tel:+1234567890"
                   onClick={() => handleFooterLinkClick("Phone Contact")}
                 >
@@ -169,13 +209,10 @@ const Footer = ({ scrollToSection }) => {
               </li>
             </ul>
           </div>
-
         </div>
 
         <div className="copyright">
-          <p>
-            &copy; 2023 DragonPath Education. All rights reserved. 
-          </p>
+          <p>&copy; 2023 DragonPath Education. All rights reserved.</p>
         </div>
       </div>
     </footer>

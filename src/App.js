@@ -8,17 +8,26 @@ import About from "./components/About/About";
 import Testimonials from "./components/Testimonials/Testimonials";
 import Footer from "./components/Footer/Footer";
 import { LanguageProvider } from "./context/LanguageContext";
+import Loading from "./components/Loading"; // <-- import the loading screen
 import "./App.css";
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true); // <-- add loading state
+
+  // Fake loading timeout (e.g., 3 seconds)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Initialize Google Analytics on component mount
   useEffect(() => {
-    // Track initial pageview
-    if (typeof window.gtag !== 'undefined') {
-      window.gtag('config', 'G-HF0CSGWKN2', {
+    if (typeof window.gtag !== "undefined") {
+      window.gtag("config", "G-HF0CSGWKN2", {
         page_path: window.location.pathname,
       });
     }
@@ -29,41 +38,47 @@ function App() {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      
-      // Track section navigation event
-      if (typeof window.gtag !== 'undefined') {
-        window.gtag('event', 'section_navigate', {
-          event_category: 'Navigation',
+
+      if (typeof window.gtag !== "undefined") {
+        window.gtag("event", "section_navigate", {
+          event_category: "Navigation",
           event_label: `Scrolled to: ${sectionId}`,
-          value: 1
+          value: 1,
         });
       }
     }
     setMenuOpen(false);
   };
 
-  // Track when sections become visible (optional but useful)
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'services', 'universities', 'about', 'testimonials'];
+      const sections = [
+        "home",
+        "services",
+        "universities",
+        "about",
+        "testimonials",
+      ];
       const scrollPosition = window.scrollY + 100;
-      
-      sections.forEach(section => {
+
+      sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
           const position = element.offsetTop;
           const height = element.offsetHeight;
-          
-          if (scrollPosition >= position && scrollPosition < position + height) {
+
+          if (
+            scrollPosition >= position &&
+            scrollPosition < position + height
+          ) {
             if (activeSection !== section) {
               setActiveSection(section);
-              
-              // Track section view
-              if (typeof window.gtag !== 'undefined') {
-                window.gtag('event', 'section_view', {
-                  event_category: 'Engagement',
+
+              if (typeof window.gtag !== "undefined") {
+                window.gtag("event", "section_view", {
+                  event_category: "Engagement",
                   event_label: `Viewing: ${section}`,
-                  value: 1
+                  value: 1,
                 });
               }
             }
@@ -72,25 +87,31 @@ function App() {
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection]);
 
   return (
     <LanguageProvider>
       <div className="App">
-        <Header
-          scrollToSection={scrollToSection}
-          activeSection={activeSection}
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen}
-        />
-        <Hero scrollToSection={scrollToSection} />
-        <Services />
-        <Universities />
-        <About />
-        <Testimonials />
-        <Footer scrollToSection={scrollToSection} />
+        {loading ? (
+          <Loading /> // <-- show dragon loading screen
+        ) : (
+          <>
+            <Header
+              scrollToSection={scrollToSection}
+              activeSection={activeSection}
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
+            />
+            <Hero scrollToSection={scrollToSection} />
+            <Services />
+            <Universities />
+            <About />
+            <Testimonials />
+            <Footer scrollToSection={scrollToSection} />
+          </>
+        )}
       </div>
     </LanguageProvider>
   );

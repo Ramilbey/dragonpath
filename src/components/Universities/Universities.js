@@ -346,7 +346,7 @@ const Universities = () => {
       location: "Guilin City, Guangxi Province",
       ranking: "University",
       programs: "Chinese Language Program",
-      logo: "/images/logo/guilin.png",
+      logo: "/images/logo/Guilin-University-of-Electronic-Technology.png",
       colorTheme: "crimson",
       details: {
         tuition: "7800 CNY/Year",

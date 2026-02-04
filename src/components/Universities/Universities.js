@@ -340,6 +340,33 @@ const Universities = () => {
         deadline: "Depends on Seats",
         intake: "September 2025"
       }
+    },
+    {
+      name: "Guilin University of Electronic Technology",
+      location: "Guilin City, Guangxi Province",
+      ranking: "University",
+      programs: "Chinese Language Program",
+      logo: "/images/logo/guilin.png",
+      colorTheme: "crimson",
+      details: {
+        tuition: "7800 CNY/Year",
+        accommodation: "2000 CNY/Year",
+        insurance: "800 CNY/Year",
+        visa: "400 CNY/Year",
+        medicalCheckup: "400 CNY",
+        documents: [
+          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
+          language === 'english' ? "Photo" : language === 'russian' ? "Фото" : "Rasm",
+          language === 'english' ? "Highest Educational Transcript and Certificate" : language === 'russian' ? "Академическая справка и диплом" : "Oliy ma'lumot to'g'risidagi hujjat va attestat",
+          language === 'english' ? "Medical Check up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
+          language === 'english' ? "English Proficiency Certificate" : language === 'russian' ? "Сертификат знания английского" : "Ingliz tili sertifikati",
+          language === 'english' ? "Non-Criminal Record" : language === 'russian' ? "Справка о несудимости" : "Jinoiy yozuv yo'qligi to'g'risida guvohnoma",
+          language === 'english' ? "Application Form" : language === 'russian' ? "Форма заявления" : "Ariza formasi"
+        ],
+        ageLimit: "18–30 years old",
+        deadline: "August 20, 2025",
+        intake: "September 2025"
+      }
     }
   ];
 

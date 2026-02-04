@@ -246,7 +246,7 @@ const Footer = ({ scrollToSection }) => {
               <li>
                 <i className="fas fa-envelope"></i>
                 <a
-                  href="mailto:info@dragonpath.com"
+                  href="mailto:suhrobqutlimuratov108@gmail.com"
                   onClick={() => handleFooterLinkClick("Email Contact")}
                 >
                   info@dragonpath.com
@@ -258,12 +258,12 @@ const Footer = ({ scrollToSection }) => {
                   href="tel:+89130225955119"
                   onClick={() => handleFooterLinkClick("Phone Contact")}
                 >
-                  +89130225955119
+                  +8613025955119 & +998871905119
                 </a>
               </li>
               <li>
                 <i className="fas fa-map-marker-alt"></i>
-                <span>Beijing, China</span>
+                <span>Toshkent shaxri Mirobod tumani biznes markazi</span>
               </li>
             </ul>
           </div>

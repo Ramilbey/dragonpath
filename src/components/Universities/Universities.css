@@ -1,187 +1,738 @@
 /* src/components/Universities/Universities.css */
+
+/* ========================================
+   UNIVERSITIES SECTION - Premium Dragon Theme
+   With unique color themes for each university
+   ======================================== */
+
 .universities {
-    padding: 80px 0;
-    background: #f7fafc;
+  padding: 100px 0;
+  background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-light) 100%);
+  position: relative;
+}
+
+/* Universities Grid */
+.universities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+/* University Card Base */
+.university-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.university-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.university-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.university-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* University Logo Base */
+.uni-logo {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.uni-logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.university-card:hover .uni-logo::before {
+  left: 100%;
+}
+
+.uni-logo img {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.university-card:hover .uni-logo img {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.logo-fallback {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: var(--text-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 2rem;
+  text-transform: uppercase;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* University Content */
+.uni-content {
+  padding: 24px;
+}
+
+.uni-content h3 {
+  margin-bottom: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.uni-location {
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.uni-location i {
+  margin-right: 8px;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.uni-ranking {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.uni-programs {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* University Button */
+.btn-outline {
+  background: transparent;
+  padding: 10px 24px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   COLOR THEMES FOR EACH UNIVERSITY
+   ======================================== */
+
+/* CRIMSON - Jiangsu Normal University */
+.uni-crimson .uni-logo {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+}
+
+.uni-crimson::after {
+  background: linear-gradient(90deg, #dc2626, #991b1b);
+}
+
+.uni-crimson:hover .uni-content h3 {
+  color: #dc2626;
+}
+
+.uni-crimson .uni-ranking {
+  background: linear-gradient(135deg, #fecaca, #fca5a5);
+  color: #991b1b;
+}
+
+.uni-crimson .uni-location i {
+  color: #dc2626;
+}
+
+.uni-crimson .btn-outline {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.uni-crimson .btn-outline:hover {
+  background: #dc2626;
+  color: white;
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+}
+
+/* OCEAN - Hainan Medical University */
+.uni-ocean .uni-logo {
+  background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+}
+
+.uni-ocean::after {
+  background: linear-gradient(90deg, #0891b2, #0e7490);
+}
+
+.uni-ocean:hover .uni-content h3 {
+  color: #0891b2;
+}
+
+.uni-ocean .uni-ranking {
+  background: linear-gradient(135deg, #cffafe, #a5f3fc);
+  color: #0e7490;
+}
+
+.uni-ocean .uni-location i {
+  color: #0891b2;
+}
+
+.uni-ocean .btn-outline {
+  border-color: #0891b2;
+  color: #0891b2;
+}
+
+.uni-ocean .btn-outline:hover {
+  background: #0891b2;
+  color: white;
+  box-shadow: 0 8px 25px rgba(8, 145, 178, 0.3);
+}
+
+/* NAVY - Hubei University */
+.uni-navy .uni-logo {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+}
+
+.uni-navy::after {
+  background: linear-gradient(90deg, #1e40af, #1e3a8a);
+}
+
+.uni-navy:hover .uni-content h3 {
+  color: #1e40af;
+}
+
+.uni-navy .uni-ranking {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  color: #1e3a8a;
+}
+
+.uni-navy .uni-location i {
+  color: #1e40af;
+}
+
+.uni-navy .btn-outline {
+  border-color: #1e40af;
+  color: #1e40af;
+}
+
+.uni-navy .btn-outline:hover {
+  background: #1e40af;
+  color: white;
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
+}
+
+/* EMERALD - Hezhou University */
+.uni-emerald .uni-logo {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.uni-emerald::after {
+  background: linear-gradient(90deg, #059669, #047857);
+}
+
+.uni-emerald:hover .uni-content h3 {
+  color: #059669;
+}
+
+.uni-emerald .uni-ranking {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #047857;
+}
+
+.uni-emerald .uni-location i {
+  color: #059669;
+}
+
+.uni-emerald .btn-outline {
+  border-color: #059669;
+  color: #059669;
+}
+
+.uni-emerald .btn-outline:hover {
+  background: #059669;
+  color: white;
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
+}
+
+/* VIOLET - Jiangsu Food & Pharmaceutical */
+.uni-violet .uni-logo {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+}
+
+.uni-violet::after {
+  background: linear-gradient(90deg, #7c3aed, #6d28d9);
+}
+
+.uni-violet:hover .uni-content h3 {
+  color: #7c3aed;
+}
+
+.uni-violet .uni-ranking {
+  background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+  color: #6d28d9;
+}
+
+.uni-violet .uni-location i {
+  color: #7c3aed;
+}
+
+.uni-violet .btn-outline {
+  border-color: #7c3aed;
+  color: #7c3aed;
+}
+
+.uni-violet .btn-outline:hover {
+  background: #7c3aed;
+  color: white;
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+}
+
+/* AMBER - Hezhou Language Program */
+.uni-amber .uni-logo {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+.uni-amber::after {
+  background: linear-gradient(90deg, #d97706, #b45309);
+}
+
+.uni-amber:hover .uni-content h3 {
+  color: #d97706;
+}
+
+.uni-amber .uni-ranking {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #b45309;
+}
+
+.uni-amber .uni-location i {
+  color: #d97706;
+}
+
+.uni-amber .btn-outline {
+  border-color: #d97706;
+  color: #d97706;
+}
+
+.uni-amber .btn-outline:hover {
+  background: #d97706;
+  color: white;
+  box-shadow: 0 8px 25px rgba(217, 119, 6, 0.3);
+}
+
+/* ROSE - Guangzhou International */
+.uni-rose .uni-logo {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+}
+
+.uni-rose::after {
+  background: linear-gradient(90deg, #e11d48, #be123c);
+}
+
+.uni-rose:hover .uni-content h3 {
+  color: #e11d48;
+}
+
+.uni-rose .uni-ranking {
+  background: linear-gradient(135deg, #ffe4e6, #fecdd3);
+  color: #be123c;
+}
+
+.uni-rose .uni-location i {
+  color: #e11d48;
+}
+
+.uni-rose .btn-outline {
+  border-color: #e11d48;
+  color: #e11d48;
+}
+
+.uni-rose .btn-outline:hover {
+  background: #e11d48;
+  color: white;
+  box-shadow: 0 8px 25px rgba(225, 29, 72, 0.3);
+}
+
+/* INDIGO - Sichuan Tourism */
+.uni-indigo .uni-logo {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+}
+
+.uni-indigo::after {
+  background: linear-gradient(90deg, #4f46e5, #4338ca);
+}
+
+.uni-indigo:hover .uni-content h3 {
+  color: #4f46e5;
+}
+
+.uni-indigo .uni-ranking {
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  color: #4338ca;
+}
+
+.uni-indigo .uni-location i {
+  color: #4f46e5;
+}
+
+.uni-indigo .btn-outline {
+  border-color: #4f46e5;
+  color: #4f46e5;
+}
+
+.uni-indigo .btn-outline:hover {
+  background: #4f46e5;
+  color: white;
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+}
+
+/* ========================================
+   STAGGERED ANIMATIONS
+   ======================================== */
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
   }
-  
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.university-card {
+  animation: slideInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.university-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.university-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.university-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.university-card:nth-child(4) {
+  animation-delay: 0.25s;
+}
+
+.university-card:nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+.university-card:nth-child(6) {
+  animation-delay: 0.35s;
+}
+
+.university-card:nth-child(7) {
+  animation-delay: 0.4s;
+}
+
+.university-card:nth-child(8) {
+  animation-delay: 0.45s;
+}
+
+/* ========================================
+   MODAL STYLES
+   ======================================== */
+
+.uni-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 46, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.uni-modal-content {
+  background: var(--bg-white);
+  padding: 36px;
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 680px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header */
+.uni-modal-content>h2 {
+  color: var(--dark);
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  padding-right: 50px;
+  border-bottom: 3px solid var(--primary);
+  padding-bottom: 16px;
+}
+
+.uni-modal-content>p {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.uni-modal-content>p strong {
+  color: var(--dark);
+}
+
+/* Close Button */
+.uni-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 2.2rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.uni-modal-close:hover {
+  background: rgba(196, 30, 58, 0.1);
+  color: var(--primary);
+  transform: rotate(90deg);
+}
+
+/* Modal Details */
+.uni-details {
+  margin-top: 24px;
+}
+
+.uni-details h3 {
+  margin-top: 24px;
+  margin-bottom: 14px;
+  color: var(--primary);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.uni-details h3::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+.uni-details ul {
+  margin: 12px 0;
+  padding-left: 0;
+  color: var(--text-primary);
+  list-style: none;
+}
+
+.uni-details li {
+  margin-bottom: 10px;
+  padding: 12px 16px;
+  background: rgba(196, 30, 58, 0.04);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  border-left: 3px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.uni-details li:hover {
+  background: rgba(196, 30, 58, 0.08);
+  transform: translateX(5px);
+}
+
+.uni-details li strong {
+  color: var(--dark);
+  display: inline-block;
+  min-width: 140px;
+}
+
+.uni-details p {
+  margin-bottom: 8px;
+}
+
+/* Scrollbar Styling */
+.uni-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.uni-modal-content::-webkit-scrollbar-track {
+  background: var(--bg-light);
+  border-radius: 3px;
+}
+
+.uni-modal-content::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 3px;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+@media (max-width: 1200px) {
   .universities-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
   }
-  
-  .university-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .university-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .uni-logo {
-    height: 100px;
-    background: linear-gradient(135deg, #1a365d, #2a69ac);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .universities {
+    padding: 80px 0;
   }
 
-  .uni-logo img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    background: white;
-    border-radius: 8px;
-    padding: 5px;
+  .universities-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+    gap: 20px;
   }
 
-  .logo-fallback {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-  
   .uni-content {
     padding: 20px;
   }
-  
-  .uni-content h3 {
-    color: #1a365d;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-  }
-  
-  .uni-location {
-    color: #718096;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .uni-location i {
-    margin-right: 5px;
-    color: #e53e3e;
-  }
-  
-  .uni-ranking {
-    color: #e53e3e;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .uni-programs {
-    color: #4a5568;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-  }
-  
-  .btn-outline {
-    background: transparent;
-    border: 2px solid #1a365d;
-    color: #1a365d;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-  }
-  
-  .btn-outline:hover {
-    background: #1a365d;
-    color: white;
-  }
-  
 
-  /* Modal overlay */
-.uni-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  /* Modal box */
   .uni-modal-content {
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    animation: fadeInUp 0.3s ease;
+    padding: 24px;
+    max-height: 90vh;
+    border-radius: var(--radius-md);
   }
-  
-  /* Close button */
-  .uni-modal-close {
-    float: right;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #333;
+
+  .uni-modal-content>h2 {
+    font-size: 1.3rem;
   }
-  
-  /* Animation */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
+  .uni-details li strong {
+    display: block;
+    min-width: auto;
+    margin-bottom: 4px;
   }
-  .uni-details {
-    margin-top: 15px;
+}
+
+@media (max-width: 480px) {
+  .universities {
+    padding: 60px 0;
   }
-  
-  .uni-details h3 {
-    margin-top: 15px;
-    color: #1a365d;
+
+  .uni-logo {
+    height: 110px;
   }
-  
-  .uni-details ul {
-    margin: 10px 0;
-    padding-left: 20px;
-    color: #2d3748;
+
+  .uni-logo img {
+    width: 65px;
+    height: 65px;
   }
-  
-  .uni-details li {
-    margin-bottom: 6px;
+
+  .uni-content h3 {
+    font-size: 1.05rem;
   }
-  
+
+  .uni-modal {
+    padding: 10px;
+  }
+
   .uni-modal-content {
-    max-height: 80vh;
-    overflow-y: auto;
+    padding: 20px;
   }
-  .uni-modal-close {
-    float: right;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #333;
-    padding: 4px 10px;
-    border-radius: 50%;
-    transition: background 0.3s ease;
-  }
-  
-  .uni-modal-close:hover {
-    background: #f1f5f9;
-  }
+}

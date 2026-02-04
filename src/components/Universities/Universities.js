@@ -97,6 +97,7 @@ const Universities = () => {
 
   const t = translations[language] || translations.english;
 
+  // Universities with color themes based on their logos
   const universities = [
     {
       name: "Jiangsu Normal University",
@@ -104,6 +105,7 @@ const Universities = () => {
       ranking: "Partner University",
       programs: "One Year Preparatory Program",
       logo: "/images/logo/Jiangsu_Normal_University_Logo.png",
+      colorTheme: "crimson", // Red university logo
       details: {
         tuition: "15000 CNY/Year",
         accommodation: "1500 CNY/Year (Quad) | 3000 CNY/Year (Double) | 6000 CNY/Year (Single)",
@@ -133,6 +135,7 @@ const Universities = () => {
       ranking: "Medical University",
       programs: "Clinical Medicine, Traditional Chinese Medicine, Nursing, Social Medicine and Health Administration (Taught in English)",
       logo: "/images/logo/hainan.jpg",
+      colorTheme: "ocean", // Medical blue/teal
       details: {
         tuition: "20500 CNY/Year",
         accommodation: "2100 CNY/Year (4 beds) | 2800 CNY/Year (3 beds)",
@@ -162,6 +165,7 @@ const Universities = () => {
       ranking: "University",
       programs: "Foundation Program",
       logo: "/images/logo/Hubei_University_logo.png",
+      colorTheme: "navy", // Navy blue logo
       details: {
         tuition: "10000 CNY/Year (Includes Tuition & Accommodation)",
         insurance: "800 CNY/Year",
@@ -191,6 +195,7 @@ const Universities = () => {
       ranking: "University",
       programs: "International Economics and Trade, Cross-border E-commerce, Business English, Software Engineering, Communication Engineering, Artificial Intelligence (Bachelor's, English Taught)",
       logo: "/images/logo/hezhou-university.png",
+      colorTheme: "emerald", // Green logo
       details: {
         tuition: "11000 CNY/Year (Liberal Arts) | 13000 CNY/Year (Science/Engineering)",
         accommodation: "2000-3000 CNY/Month (4-6 students)",
@@ -223,6 +228,7 @@ const Universities = () => {
       ranking: "College",
       programs: "Pharmacy, Food Smart Processing Technology, E-commerce, Culinery Art and Nutrition (3-Year Diploma, English Taught)",
       logo: "/images/logo/jiangsu.jpg",
+      colorTheme: "violet", // Purple/violet
       details: {
         tuition: "Scholarship: FREE | Original: 4700-6200 CNY/Year",
         accommodation: "1200 CNY/Year (2 beds room)",
@@ -259,6 +265,7 @@ const Universities = () => {
       ranking: "University",
       programs: "Chinese Language Program (One Semester/One Year)",
       logo: "/images/logo/hezhou.jpg",
+      colorTheme: "amber", // Gold/amber
       details: {
         tuition: "5000 CNY/Semester | 10000 CNY/Year",
         accommodation: "2000-3000 CNY/Month (4-6 students)",
@@ -287,6 +294,7 @@ const Universities = () => {
       ranking: "College",
       programs: "One Year Chinese Language Program",
       logo: "/images/logo/guangzhou int.jpg",
+      colorTheme: "rose", // Pink/rose
       details: {
         tuition: "13800 CNY/Year",
         accommodation: "5000 CNY/Year (Double Room)",
@@ -315,6 +323,7 @@ const Universities = () => {
       ranking: "University",
       programs: "Software Engineering, Trade and Economics (Bachelor's, English Taught)",
       logo: "/images/logo/sichuan.webp",
+      colorTheme: "indigo", // Deep indigo
       details: {
         feesAfterScholarship: "6200 CNY/Year (Tuition & Accommodation)",
         insurance: "800 CNY/Year",
@@ -343,17 +352,17 @@ const Universities = () => {
         </div>
         <div className="universities-grid">
           {universities.map((uni, index) => (
-            <div key={index} className="university-card">
+            <div key={index} className={`university-card uni-${uni.colorTheme}`}>
               <div className="uni-logo">
-                <img 
-                  src={uni.logo} 
+                <img
+                  src={uni.logo}
                   alt={`${uni.name} logo`}
                   onError={(e) => {
                     e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'block';
+                    e.target.nextSibling.style.display = 'flex';
                   }}
                 />
-                <div className="logo-fallback" style={{display: 'none'}}>
+                <div className="logo-fallback" style={{ display: 'none' }}>
                   {uni.name.charAt(0)}
                 </div>
               </div>
@@ -378,8 +387,8 @@ const Universities = () => {
 
       {/* Modal */}
       {selectedUni && (
-        <div className="uni-modal">
-          <div className="uni-modal-content">
+        <div className="uni-modal" onClick={() => setSelectedUni(null)}>
+          <div className="uni-modal-content" onClick={(e) => e.stopPropagation()}>
             <span
               className="uni-modal-close"
               onClick={() => setSelectedUni(null)}

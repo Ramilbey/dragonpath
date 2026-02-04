@@ -71,7 +71,7 @@ const Services = () => {
         {
           icon: 'fas fa-home',
           title: 'Помощь с Жильем',
-          description: 'Мы помогаем найти безопасные и комфортабельные варианты жилья near your университета, будь то общежития на кампусе или квартиры вне кампуса.'
+          description: 'Мы помогаем найти безопасные и комфортабельные варианты жилья рядом с вашим университетом, будь то общежития на кампусе или квартиры вне кампуса.'
         },
         {
           icon: 'fas fa-language',
@@ -129,7 +129,11 @@ const Services = () => {
         </div>
         <div className="services-grid">
           {currentLang.services.map((service, index) => (
-            <div key={index} className="service-card">
+            <div
+              key={index}
+              className="service-card"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="service-img">
                 <i className={service.icon}></i>
               </div>

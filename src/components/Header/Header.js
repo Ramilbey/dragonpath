@@ -40,6 +40,12 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen, isScrol
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <nav className="nav">
+          <div
+            className={`nav-overlay ${menuOpen ? 'active' : ''}`}
+            onClick={() => setMenuOpen(false)}
+            aria-hidden="true"
+          ></div>
+
           <div className="logo">
             <img src="/images/logo/dragon.jpg" alt='DragonPath logo' className='dragonImage' />
             <div className="logo-text">

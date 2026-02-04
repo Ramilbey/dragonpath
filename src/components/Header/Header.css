@@ -8,18 +8,77 @@
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 4px 30px rgba(196, 30, 58, 0.08);
   position: fixed;
   width: 100%;
   top: 0;
+  left: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(196, 30, 58, 0.1);
-  transition: all var(--transition-normal);
+  /* Smooth transition for every property */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
 }
 
+/* THE SCROLLED STATE - The "Half Circle / Pill" Look */
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+
+  top: 10px;
+  /* Floats it down slightly */
+  width: 95%;
+  /* Shrinks width for the pill look */
+  left: 3%;
+  /* Centers it */
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 30px rgba(196, 30, 58, 0.15);
+  border: 1px solid rgba(196, 30, 58, 0.2);
+
+  /* This creates the half-circle / rounded ends effect */
+  border-radius: 50px;
+
+  /* Subtle "Pop" Animation */
+  animation: headerPop 0.4s ease-out;
+  box-shadow: 0 20px 30px rgba(196, 30, 58, 0.15);
+
+
+}
+
+/* Animation for the scroll transition */
+@keyframes headerPop {
+  0% {
+    transform: translateY(-10px) scale(0.98);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Adjust the Nav container inside the scrolled header */
+.header.scrolled .nav {
+  min-height: 65px;
+  /* Shorter header when scrolled */
+  padding: 0 30px;
+  /* More side padding for the pill shape */
+}
+
+/* Ensure Logo and Links scale down slightly when scrolled */
+.header.scrolled .dragonImage {
+  transform: scale(0.85);
+}
+
+.header.scrolled .logo h1 {
+  font-size: 1.4rem;
+}
+
+/* Mobile Adjustment for Scrolled Header */
+@media (max-width: 768px) {
+  .header.scrolled {
+    width: 95%;
+    left: 2.5%;
+  }
 }
 
 /* Navigation Container */

@@ -15,6 +15,21 @@ function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true); // <-- add loading state
+  const [isScrolled, setIsScrolled] = useState(false); // 1. ADD THIS STATE
+
+  // 2. ADD THIS SCROLL LISTENER
+  useEffect(() => {
+    const checkScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", checkScroll);
+    return () => window.removeEventListener("scroll", checkScroll);
+  }, []);
 
   // Fake loading timeout (e.g., 3 seconds)
   useEffect(() => {
@@ -103,6 +118,7 @@ function App() {
               activeSection={activeSection}
               menuOpen={menuOpen}
               setMenuOpen={setMenuOpen}
+              isScrolled={isScrolled}
             />
             <Hero scrollToSection={scrollToSection} />
             <Services />

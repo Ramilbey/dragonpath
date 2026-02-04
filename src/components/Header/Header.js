@@ -3,7 +3,7 @@ import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import './Header.css';
 
-const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
+const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen, isScrolled }) => {
   const { language, setLanguage } = useLanguage();
 
   // Navigation translations
@@ -37,7 +37,7 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
   const t = translations[language] || translations.english;
 
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <nav className="nav">
           <div className="logo">
@@ -47,39 +47,39 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
               <div className="logo-subtitle">{t.subtitle}</div>
             </div>
           </div>
-          
+
           <div className={`nav-links ${menuOpen ? 'nav-active' : ''}`}>
-            <a 
-              href="#home" 
-              className={activeSection === 'home' ? 'active' : ''} 
+            <a
+              href="#home"
+              className={activeSection === 'home' ? 'active' : ''}
               onClick={() => scrollToSection('home')}
             >
               {t.home}
             </a>
-            <a 
-              href="#services" 
-              className={activeSection === 'services' ? 'active' : ''} 
+            <a
+              href="#services"
+              className={activeSection === 'services' ? 'active' : ''}
               onClick={() => scrollToSection('services')}
             >
               {t.services}
             </a>
-            <a 
-              href="#universities" 
-              className={activeSection === 'universities' ? 'active' : ''} 
+            <a
+              href="#universities"
+              className={activeSection === 'universities' ? 'active' : ''}
               onClick={() => scrollToSection('universities')}
             >
               {t.universities}
             </a>
-            <a 
-              href="#about" 
-              className={activeSection === 'about' ? 'active' : ''} 
+            <a
+              href="#about"
+              className={activeSection === 'about' ? 'active' : ''}
               onClick={() => scrollToSection('about')}
             >
               {t.about}
             </a>
-            <a 
-              href="#testimonials" 
-              className={activeSection === 'testimonials' ? 'active' : ''} 
+            <a
+              href="#testimonials"
+              className={activeSection === 'testimonials' ? 'active' : ''}
               onClick={() => scrollToSection('testimonials')}
             >
               {t.testimonials}
@@ -87,22 +87,22 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
 
             {/* Language Switcher */}
             <div className="language-switcher">
-              <button 
-                className={language === 'english' ? 'active' : ''} 
+              <button
+                className={language === 'english' ? 'active' : ''}
                 onClick={() => setLanguage('english')}
                 aria-label="Switch to English"
               >
                 EN
               </button>
-              <button 
-                className={language === 'russian' ? 'active' : ''} 
+              <button
+                className={language === 'russian' ? 'active' : ''}
                 onClick={() => setLanguage('russian')}
                 aria-label="Переключить на русский"
               >
                 RU
               </button>
-              <button 
-                className={language === 'uzbek' ? 'active' : ''} 
+              <button
+                className={language === 'uzbek' ? 'active' : ''}
                 onClick={() => setLanguage('uzbek')}
                 aria-label="O'zbek tiliga o'tish"
               >
@@ -110,9 +110,9 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen }) => {
               </button>
             </div>
           </div>
-          
-          <div 
-            className={`burger ${menuOpen ? 'active' : ''}`} 
+
+          <div
+            className={`burger ${menuOpen ? 'active' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >

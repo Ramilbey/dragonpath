@@ -114,7 +114,7 @@ const Footer = ({ scrollToSection }) => {
                 <i className="fab fa-instagram"></i>
               </a>
               <a
-                href="https://t.me/@suhrob_sedali"
+                href="https://t.me/dragon_path_uz"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => handleSocialLinkClick("Telegram")}

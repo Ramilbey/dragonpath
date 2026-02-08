@@ -1,33 +1,32 @@
 /* src/components/Universities/Universities.css */
 
 /* ========================================
-   UNIVERSITIES SECTION - Modern Premium Design
+   UNIVERSITIES SECTION - List View Transformation
    ======================================== */
 
 .universities {
-  padding: 80px 0 120px;
-  background-color: #f8f9fa;
-  /* Light grey/off-white background */
+  padding: 80px 0;
+  background-color: #f0f2f5;
   position: relative;
 }
 
 .universities .container {
-  max-width: 1280px;
+  max-width: 1000px;
+  /* Narrower container for list view focus */
   margin: 0 auto;
   padding: 0 24px;
 }
 
 .universities .section-title {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .universities .section-title h2 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 800;
   color: #1a1a2e;
-  margin-bottom: 16px;
-  letter-spacing: -0.5px;
+  margin-bottom: 12px;
 }
 
 .universities .section-title p {
@@ -35,409 +34,382 @@
   color: #64748b;
   max-width: 600px;
   margin: 0 auto;
-  line-height: 1.6;
 }
 
 /* ========================================
-   GRID LAYOUT
+   GRID -> LIST TRANSFORMATION
    ======================================== */
 
 .universities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* ========================================
-   UNIVERSITY CARD
+   UNIVERSITY CARD (Horizontal)
    ======================================== */
 
 .university-card {
-  background: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
-  flex-direction: column;
-  position: relative;
-  cursor: pointer;
+  /* Horizontal Layout */
+  flex-direction: row;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  /* Subtle initial shadow */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border: 1px solid rgba(0, 0, 0, 0.04);
+  height: 200px;
+  /* Fixed height for consistency */
+  position: relative;
 }
 
 .university-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px) scale(1.005);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  /* Deep shadow on hover */
+  z-index: 10;
 }
 
-/* CARD HEADER */
+/* CARD HEADER (Left Side Color Block) */
 .uni-card-header {
-  height: 140px;
-  background: #f1f5f9;
-  position: relative;
+  width: 240px;
+  /* Fixed width for logo area */
+  height: auto;
+  /* Take full height */
+  flex-shrink: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
+  justify-content: center;
+  position: relative;
+  /* Gradients moved to theme classes below */
 }
 
-/* Dynamic Gradients for Header Background based on theme */
+/* Theme Gradients */
 .uni-crimson .uni-card-header {
-  background: linear-gradient(135deg, #fff1f2 0%, #fee2e2 100%);
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  border-right: 4px solid #dc2626;
 }
 
 .uni-ocean .uni-card-header {
   background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+  border-right: 4px solid #0891b2;
 }
 
 .uni-navy .uni-card-header {
   background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-right: 4px solid #1e40af;
 }
 
 .uni-emerald .uni-card-header {
   background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-right: 4px solid #059669;
 }
 
 .uni-violet .uni-card-header {
   background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  border-right: 4px solid #7c3aed;
 }
 
 .uni-amber .uni-card-header {
   background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-right: 4px solid #d97706;
 }
 
 .uni-rose .uni-card-header {
   background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  border-right: 4px solid #e11d48;
 }
 
 .uni-indigo .uni-card-header {
   background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  border-right: 4px solid #4f46e5;
 }
 
-/* LOGO CONTAINER */
+/* Logo Container */
 .uni-logo-container {
-  width: 90px;
-  height: 90px;
-  background: #ffffff;
+  width: 100px;
+  height: 100px;
+  background: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  padding: 10px;
+  transition: transform 0.4s ease;
 }
 
 .university-card:hover .uni-logo-container {
-  transform: scale(1.1);
+  transform: scale(1.05) rotate(2deg);
 }
 
 .uni-logo-container img {
-  width: 60%;
-  height: 60%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
-.logo-fallback {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--primary);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-/* RANKING BADGE */
+/* BADGE (Repositioned) */
 .uni-ranking-badge {
   position: absolute;
   top: 16px;
-  right: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
   text-transform: uppercase;
-  color: #475569;
   letter-spacing: 0.5px;
-  backdrop-filter: blur(4px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: #334155;
+  z-index: 5;
 }
 
-/* CARD BODY */
+/* CARD BODY (Right Side Content) */
 .uni-card-body {
-  padding: 24px;
-  flex-grow: 1;
+  flex: 1;
+  /* Take remaining space */
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
 
 .uni-name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0 0 8px 0;
-  line-height: 1.4;
-  /* Limit to 2 lines */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  height: 3.5em;
-  /* fixed height for alignment */
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
 }
 
 .uni-location {
   display: flex;
   align-items: center;
-  color: #64748b;
+  gap: 6px;
   font-size: 0.9rem;
+  color: #64748b;
   margin-bottom: 16px;
-}
-
-.uni-location i {
-  margin-right: 6px;
-  color: #94a3b8;
+  font-weight: 500;
 }
 
 .uni-divider {
-  height: 1px;
-  background: #f1f5f9;
-  margin: 0 0 16px 0;
-  width: 100%;
+  display: none;
+  /* Hide divider in list view */
 }
 
 .uni-programs-preview {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #475569;
-  line-height: 1.6;
-  margin-bottom: 24px;
-  flex-grow: 1;
-
-  /* Limit to 3 lines */
+  line-height: 1.5;
+  margin-bottom: 0;
+  max-width: 85%;
+  /* Leave room for button area if needed */
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
+  /* Limit to 2 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* ACTION BUTTON */
+/* ACTION BUTTON (Absolute Positioned on Large Screens) */
 .uni-btn-more {
+  margin-top: auto;
+  /* Push to bottom if flex column */
   background: transparent;
   border: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 0;
-  color: #2563eb;
-  /* Primary Blue usually works well */
+  font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: gap 0.2s ease;
-  width: fit-content;
+  padding: 8px 0;
+  transition: all 0.2s ease;
+
+  /* Position bottom right */
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
 }
 
-/* Theme-specific button colors */
-.uni-crimson .uni-btn-more {
+/* Interactive Button Styling */
+.uni-btn-more {
+  color: #64748b;
+}
+
+/* Default gray */
+.university-card:hover .uni-btn-more {
+  color: #0f172a;
+  text-decoration: none;
+}
+
+/* Darker on hover */
+
+/* Theme colors for button hover/icon */
+.uni-crimson .uni-btn-more i {
   color: #dc2626;
 }
 
-.uni-ocean .uni-btn-more {
+.uni-ocean .uni-btn-more i {
   color: #0891b2;
 }
 
-.uni-navy .uni-btn-more {
+.uni-navy .uni-btn-more i {
   color: #1e40af;
 }
 
-.uni-emerald .uni-btn-more {
+.uni-emerald .uni-btn-more i {
   color: #059669;
 }
 
-.uni-violet .uni-btn-more {
+.uni-violet .uni-btn-more i {
   color: #7c3aed;
 }
 
-.uni-amber .uni-btn-more {
+.uni-amber .uni-btn-more i {
   color: #d97706;
 }
 
-.uni-rose .uni-btn-more {
+.uni-rose .uni-btn-more i {
   color: #e11d48;
 }
 
-.uni-indigo .uni-btn-more {
+.uni-indigo .uni-btn-more i {
   color: #4f46e5;
 }
 
 .uni-btn-more:hover {
-  gap: 12px;
-  text-decoration: underline;
+  transform: translateX(-4px);
+  /* Move left slightly */
 }
 
 /* ========================================
-   MODAL STYLES (Refined)
+   MODAL (Unchanged but ensured compatibility)
    ======================================== */
-
 .uni-modal {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(8px);
-  z-index: 9999;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  animation: modalFadeIn 0.3s ease;
-}
-
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 .uni-modal-content {
-  background: #ffffff;
+  background: white;
   width: 100%;
-  max-width: 700px;
-  max-height: 90vh;
-  border-radius: 20px;
-  padding: 40px;
-  position: relative;
+  max-width: 600px;
+  max-height: 85vh;
+  border-radius: 12px;
+  padding: 32px;
   overflow-y: auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes modalSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
 .uni-modal-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 36px;
-  height: 36px;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
   background: #f1f5f9;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
   color: #64748b;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 }
 
 .uni-modal-close:hover {
   background: #e2e8f0;
-  color: #1e293b;
-  transform: rotate(90deg);
+  color: #000;
 }
 
-.uni-modal-content h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #1e293b;
-  margin-bottom: 24px;
-  padding-right: 40px;
-  line-height: 1.2;
-}
+/* ========================================
+   RESPONSIVE
+   ======================================== */
 
-.uni-modal-content p {
-  line-height: 1.6;
-  color: #475569;
-  margin-bottom: 12px;
-}
-
-.uni-modal-content strong {
-  color: #0f172a;
-  font-weight: 600;
-}
-
-.uni-details {
-  margin-top: 32px;
-  border-top: 1px solid #e2e8f0;
-  padding-top: 32px;
-}
-
-.uni-details h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 24px 0 16px 0;
-  display: flex;
-  align-items: center;
-}
-
-/* Detail Section Headers based on theme color would be nice, but simple dark is cleaner */
-
-.uni-details ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 12px;
-}
-
-.uni-details li {
-  background: #f8fafc;
-  padding: 16px;
-  border-radius: 8px;
-  border-left: 4px solid #cbd5e1;
-  font-size: 0.95rem;
-  color: #334155;
-  transition: transform 0.2s ease;
-}
-
-.uni-details li:hover {
-  transform: translateX(4px);
-  background: #f1f5f9;
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .universities-grid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    margin: 0 auto;
+  .university-card {
+    flex-direction: column;
+    /* Stack vertically on mobile */
+    height: auto;
   }
 
   .uni-card-header {
+    width: 100%;
     height: 120px;
+    border-right: none;
+    border-bottom: 4px solid transparent;
+    /* Replicate the border color logic if needed, or just skip it */
+  }
+
+  /* Apply border bottom colors */
+  .uni-crimson .uni-card-header {
+    border-bottom-color: #dc2626;
+  }
+
+  .uni-ocean .uni-card-header {
+    border-bottom-color: #0891b2;
+  }
+
+  .uni-navy .uni-card-header {
+    border-bottom-color: #1e40af;
+  }
+
+  .uni-emerald .uni-card-header {
+    border-bottom-color: #059669;
+  }
+
+  .uni-violet .uni-card-header {
+    border-bottom-color: #7c3aed;
+  }
+
+  .uni-amber .uni-card-header {
+    border-bottom-color: #d97706;
+  }
+
+  .uni-rose .uni-card-header {
+    border-bottom-color: #e11d48;
+  }
+
+  .uni-indigo .uni-card-header {
+    border-bottom-color: #4f46e5;
   }
 
   .uni-logo-container {
     width: 80px;
     height: 80px;
+    transform: translateY(10px);
+    /* Push down slightly */
   }
 
-  .uni-modal-content {
-    padding: 24px;
+  .uni-card-body {
+    padding: 24px 20px;
   }
 
-  .uni-modal-content h2 {
-    font-size: 1.5rem;
+  .uni-ranking-badge {
+    top: 12px;
+    left: auto;
+    right: 12px;
+  }
+
+  .uni-btn-more {
+    position: static;
+    /* Natural flow on mobile */
+    margin-top: 20px;
   }
 }

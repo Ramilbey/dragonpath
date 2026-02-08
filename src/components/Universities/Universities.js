@@ -379,32 +379,39 @@ const Universities = () => {
         </div>
         <div className="universities-grid">
           {universities.map((uni, index) => (
-            <div key={index} className={`university-card uni-${uni.colorTheme}`}>
-              <div className="uni-logo">
-                <img
-                  src={uni.logo}
-                  alt={`${uni.name} logo`}
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
-                <div className="logo-fallback" style={{ display: 'none' }}>
-                  {uni.name.charAt(0)}
+            <div key={index} className={`university-card uni-${uni.colorTheme}`} onClick={() => setSelectedUni(uni)}>
+              <div className="uni-card-header">
+                <div className="uni-logo-container">
+                  <img
+                    src={uni.logo}
+                    alt={`${uni.name} logo`}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  <div className="logo-fallback" style={{ display: 'none' }}>
+                    {uni.name.charAt(0)}
+                  </div>
                 </div>
+                <span className="uni-ranking-badge">{uni.ranking}</span>
               </div>
-              <div className="uni-content">
-                <h3>{uni.name}</h3>
-                <p className="uni-location">
-                  <i className="fas fa-map-marker-alt"></i> {uni.location}
-                </p>
-                <p className="uni-ranking">{uni.ranking}</p>
-                <p className="uni-programs">{uni.programs}</p>
+              <div className="uni-card-body">
+                <h3 className="uni-name">{uni.name}</h3>
+                <div className="uni-location">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>{uni.location}</span>
+                </div>
+                <div className="uni-divider"></div>
+                <p className="uni-programs-preview">{uni.programs}</p>
                 <button
-                  className="btn-outline"
-                  onClick={() => setSelectedUni(uni)}
+                  className="uni-btn-more"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedUni(uni);
+                  }}
                 >
-                  {t.learnMore}
+                  {t.learnMore} <i className="fas fa-arrow-right"></i>
                 </button>
               </div>
             </div>

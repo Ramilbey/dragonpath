@@ -7,7 +7,7 @@
 .about {
   padding: 100px 0;
   /* Use semantic variables for background */
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  background: var(--bg-primary);
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;

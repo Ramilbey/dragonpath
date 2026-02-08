@@ -31,21 +31,25 @@
 
   /* --- LIGHT MODE (Default) --- */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-tertiary: #f1f5f9;
+  --bg-secondary: #eef2f6;
+  /* Slightly darker cool gray for better section separation */
+  --bg-tertiary: #e2e8f0;
   --bg-card: #ffffff;
   --bg-glass: rgba(255, 255, 255, 0.8);
 
   /* Mappings for legacy/component specific */
-  --bg-light: #f8f9fa;
+  --bg-light: #f0f4f8;
   --bg-white: #ffffff;
-  --bg-cream: #fffbeb;
+  --bg-cream: #fff7ed;
+  /* Warmer cream */
 
-  --text-primary: #1a1a2e;
+  --text-primary: #1e293b;
+  /* Slate 800 - softer than pure black */
   --text-secondary: #64748b;
   --text-inverse: #ffffff;
 
-  --border-color: rgba(0, 0, 0, 0.08);
+  --border-color: rgba(0, 0, 0, 0.1);
+  /* Slightly stronger border */
   --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
@@ -65,9 +69,9 @@
   --bg-glass: rgba(15, 23, 42, 0.8);
 
   /* Mappings for legacy/component specific - In dark mode, these become dark too */
-  --bg-light: #1e293b;
+  --bg-light: #0f172a;
   --bg-white: #1e293b;
-  --bg-cream: #334155;
+  --bg-cream: #1e293b;
 
   --text-primary: #f8fafc;
   /* Slate 50 */

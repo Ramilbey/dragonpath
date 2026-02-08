@@ -51,7 +51,7 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen, isScrol
           <div className="logo">
             <img src="/images/logo/dragon.jpg" alt='DragonPath logo' className='dragonImage' />
             <div className="logo-text">
-              <h1>Dragon<span>Path</span></h1>
+              <h1><span className="dragon-text">Dragon</span><span className="path-text">Path</span></h1>
               <div className="logo-subtitle">{t.subtitle}</div>
             </div>
           </div>

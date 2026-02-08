@@ -117,19 +117,28 @@
 .logo h1 {
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--primary);
   margin: 0;
   line-height: 1.1;
   letter-spacing: -0.5px;
-  /* Keep the gradient text or fallback to primary color */
-  background: linear-gradient(135deg, var(--primary) 0%, #ff4d4d 100%);
+}
+
+/* New: Specifically style the "Dragon" part to have the gradient */
+.logo .dragon-text {
+  font-weight: 800;
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: var(--primary);
+  /* Fallback */
 }
 
-.logo span {
-  -webkit-text-fill-color: var(--text-primary);
+/* New: Specifically style the "Path" part to be adaptive (white/dark) */
+.logo .path-text {
+  color: var(--text-primary);
+  /* Ensure it doesn't inherit transparent fill */
+  -webkit-text-fill-color: initial;
+  background: none;
 }
 
 .logo-subtitle {
@@ -153,7 +162,8 @@
 
 .nav-links a {
   text-decoration: none;
-  color: var(--text-primary);
+  color: var(--text-primary) !important;
+  /* Force override just in case */
   font-weight: 500;
   font-size: 0.95rem;
   padding: 10px 18px;
@@ -176,7 +186,7 @@
 }
 
 .nav-links a:hover {
-  color: var(--primary);
+  color: var(--primary) !important;
   background: rgba(196, 30, 58, 0.05);
   /* Keep subtle red tint on hover */
 }
@@ -190,7 +200,7 @@
 }
 
 .nav-links a.active {
-  color: var(--primary);
+  color: var(--primary) !important;
   background: rgba(196, 30, 58, 0.08);
   /* Keep subtle red tint for active */
 }
@@ -427,7 +437,7 @@
     margin: 0;
     /* Remove margin, use gap on container */
     border-radius: 12px;
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
     letter-spacing: 0;
     border: 1px solid transparent;
     /* Prevent layout shift on hover */
@@ -462,7 +472,7 @@
   /* Active & Hover States */
   .nav-links a:active,
   .nav-links a.active {
-    color: var(--primary);
+    color: var(--primary) !important;
     background: rgba(196, 30, 58, 0.06);
     border-color: rgba(196, 30, 58, 0.1);
     transform: none;

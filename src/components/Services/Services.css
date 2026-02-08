@@ -2,14 +2,15 @@
 
 /* ========================================
    SERVICES SECTION - Dragon Theme
-   Consistent red/gold color scheme with animations
    ======================================== */
 
 .services {
   padding: 100px 0;
-  background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-cream) 100%);
+  /* Use variable for adaptive background */
+  background: var(--bg-primary);
   position: relative;
   overflow: hidden;
+  transition: background 0.3s ease;
 }
 
 /* Decorative background elements */
@@ -24,6 +25,10 @@
   border-radius: 50%;
   pointer-events: none;
   animation: floatBubble 8s ease-in-out infinite;
+}
+
+[data-theme='dark'] .services::before {
+  background: radial-gradient(circle, rgba(196, 30, 58, 0.15) 0%, transparent 70%);
 }
 
 .services::after {
@@ -62,12 +67,15 @@
 
 /* Service Card */
 .service-card {
-  background: var(--bg-white);
+  background: var(--bg-card);
+  /* Fixed: Use variable */
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(196, 30, 58, 0.08);
+  box-shadow: var(--shadow-md);
+  /* Fixed: Use variable */
   text-align: center;
-  border: 2px solid transparent;
+  border: 1px solid var(--border-color);
+  /* Fixed: Use variable */
   position: relative;
 
   /* Animation */
@@ -89,7 +97,7 @@
   }
 }
 
-/* Top accent bar */
+/* top accent bar */
 .service-card::before {
   content: '';
   position: absolute;
@@ -106,7 +114,7 @@
 /* Hover Effects */
 .service-card:hover {
   transform: translateY(-15px) scale(1.02);
-  box-shadow: 0 25px 60px rgba(196, 30, 58, 0.18);
+  box-shadow: var(--shadow-lg);
   border-color: rgba(196, 30, 58, 0.15);
 }
 
@@ -125,6 +133,10 @@
   font-size: 2.8rem;
   position: relative;
   overflow: hidden;
+}
+
+[data-theme='dark'] .service-img {
+  background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
 }
 
 /* Icon glow effect */
@@ -182,7 +194,8 @@
 }
 
 .service-content h3 {
-  color: #1a1a2e;
+  color: var(--text-primary);
+  /* Fixed: Use variable */
   margin-bottom: 14px;
   font-size: 1.25rem;
   font-weight: 700;
@@ -190,18 +203,20 @@
 }
 
 .service-card:hover .service-content h3 {
-  color: #c41e3a;
+  color: var(--primary);
 }
 
 .service-content p {
-  color: #666;
+  color: var(--text-secondary);
+  /* Fixed: Use variable */
   line-height: 1.7;
   font-size: 0.95rem;
   transition: color 0.3s ease;
 }
 
 .service-card:hover .service-content p {
-  color: #444;
+  color: var(--text-primary);
+  /* Slightly darker/lighter on hover for contrast */
 }
 
 /* ========================================
@@ -211,10 +226,6 @@
 @media (max-width: 1200px) {
   .services-grid {
     gap: 24px;
-  }
-
-  .service-content {
-    padding: 24px 20px 28px;
   }
 }
 

@@ -5,11 +5,41 @@
    THEME VARIABLES
    ======================================== */
 :root {
-  /* LIGHT MODE (Default) */
+  /* --- COLORS --- */
+  --primary: #c41e3a;
+  /* Dragon Red */
+  --primary-dark: #9a1830;
+  --accent: #d4a574;
+  /* Gold */
+  --accent-light: #fbbf24;
+
+  /* Constant Colors (Do not change with theme) */
+  --text-white: #ffffff;
+  --dark: #1a1a2e;
+
+  /* --- GRADIENTS --- */
+  --gradient-primary: linear-gradient(135deg, #c41e3a 0%, #9a1830 100%);
+  --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #0f172a 100%);
+
+  /* --- UTILITIES --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+
+  /* --- LIGHT MODE (Default) --- */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
   --bg-tertiary: #f1f5f9;
   --bg-card: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.8);
+
+  /* Mappings for legacy/component specific */
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --bg-cream: #fffbeb;
 
   --text-primary: #1a1a2e;
   --text-secondary: #64748b;
@@ -20,13 +50,11 @@
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 
-  --primary: #c41e3a;
-  /* Dragon Red */
   --header-bg: rgba(255, 255, 255, 0.95);
 }
 
 [data-theme='dark'] {
-  /* DARK MODE */
+  /* --- DARK MODE --- */
   --bg-primary: #0f172a;
   /* Slate 900 */
   --bg-secondary: #1e293b;
@@ -34,11 +62,17 @@
   --bg-tertiary: #334155;
   /* Slate 700 */
   --bg-card: #1e293b;
+  --bg-glass: rgba(15, 23, 42, 0.8);
+
+  /* Mappings for legacy/component specific - In dark mode, these become dark too */
+  --bg-light: #1e293b;
+  --bg-white: #1e293b;
+  --bg-cream: #334155;
 
   --text-primary: #f8fafc;
   /* Slate 50 */
-  --text-secondary: #cbd5e1;
-  /* Slate 300 */
+  --text-secondary: #aeaeae;
+  /* Slate 300 - lighter for better contrast */
   --text-inverse: #0f172a;
 
   --border-color: rgba(255, 255, 255, 0.1);

@@ -1,45 +1,44 @@
 // src/App.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
-import Services from "./components/Services/Services";
-import Universities from "./components/Universities/Universities";
-import About from "./components/About/About";
-import Testimonials from "./components/Testimonials/Testimonials";
-import Footer from "./components/Footer/Footer";
 import { LanguageProvider } from "./context/LanguageContext";
-import Loading from "./components/Loading"; // <-- import the loading screen
+import { ThemeProvider } from "./context/ThemeContext";
+import Loading from "./components/Loading"; // Dragon loading screen
 import "./App.css";
+
+// Lazy load non-critical components
+const Services = lazy(() => import("./components/Services/Services"));
+const Universities = lazy(() => import("./components/Universities/Universities"));
+const About = lazy(() => import("./components/About/About"));
+const Testimonials = lazy(() => import("./components/Testimonials/Testimonials"));
+const Footer = lazy(() => import("./components/Footer/Footer"));
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [loading, setLoading] = useState(true); // <-- add loading state
-  const [isScrolled, setIsScrolled] = useState(false); // 1. ADD THIS STATE
+  const [loading, setLoading] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // 2. ADD THIS SCROLL LISTENER
+  // Scroll listener for header style
   useEffect(() => {
     const checkScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", checkScroll);
     return () => window.removeEventListener("scroll", checkScroll);
   }, []);
 
-  // Fake loading timeout (e.g., 3 seconds)
+  // Fake loading timeout
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2500); // Reduced slightly for better perceived performance
     return () => clearTimeout(timer);
   }, []);
 
-  // Initialize Google Analytics on component mount
+  // Initialize Google Analytics
   useEffect(() => {
     if (typeof window.gtag !== "undefined") {
       window.gtag("config", "G-HF0CSGWKN2", {
@@ -65,6 +64,7 @@ function App() {
     setMenuOpen(false);
   };
 
+  // Active section tracker
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
@@ -88,14 +88,6 @@ function App() {
           ) {
             if (activeSection !== section) {
               setActiveSection(section);
-
-              if (typeof window.gtag !== "undefined") {
-                window.gtag("event", "section_view", {
-                  event_category: "Engagement",
-                  event_label: `Viewing: ${section}`,
-                  value: 1,
-                });
-              }
             }
           }
         }
@@ -108,27 +100,32 @@ function App() {
 
   return (
     <LanguageProvider>
-      <div className="App">
-        {loading ? (
-          <Loading /> // <-- show dragon loading screen
-        ) : (
-          <>
-            <Header
-              scrollToSection={scrollToSection}
-              activeSection={activeSection}
-              menuOpen={menuOpen}
-              setMenuOpen={setMenuOpen}
-              isScrolled={isScrolled}
-            />
-            <Hero scrollToSection={scrollToSection} />
-            <Services />
-            <Universities />
-            <About />
-            <Testimonials />
-            <Footer scrollToSection={scrollToSection} />
-          </>
-        )}
-      </div>
+      <ThemeProvider>
+        <div className="App">
+          {loading ? (
+            <Loading />
+          ) : (
+            <>
+              <Header
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                menuOpen={menuOpen}
+                setMenuOpen={setMenuOpen}
+                isScrolled={isScrolled}
+              />
+              <Hero scrollToSection={scrollToSection} />
+
+              <Suspense fallback={<div className="section-loader">Loading...</div>}>
+                <Services />
+                <Universities />
+                <About />
+                <Testimonials />
+                <Footer scrollToSection={scrollToSection} />
+              </Suspense>
+            </>
+          )}
+        </div>
+      </ThemeProvider>
     </LanguageProvider>
   );
 }

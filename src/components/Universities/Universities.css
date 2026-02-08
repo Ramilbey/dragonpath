@@ -6,13 +6,13 @@
 
 .universities {
   padding: 80px 0;
-  background-color: #f0f2f5;
+  background-color: var(--bg-secondary);
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .universities .container {
   max-width: 1000px;
-  /* Narrower container for list view focus */
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -25,19 +25,19 @@
 .universities .section-title h2 {
   font-size: 2.8rem;
   font-weight: 800;
-  color: #1a1a2e;
+  color: var(--text-primary);
   margin-bottom: 12px;
 }
 
 .universities .section-title p {
   font-size: 1.1rem;
-  color: #64748b;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
 
 /* ========================================
-   GRID -> LIST TRANSFORMATION
+   UNIVERSITY CARD (Horizontal)
    ======================================== */
 
 .universities-grid {
@@ -46,39 +46,31 @@
   gap: 20px;
 }
 
-/* ========================================
-   UNIVERSITY CARD (Horizontal)
-   ======================================== */
-
 .university-card {
   display: flex;
-  /* Horizontal Layout */
   flex-direction: row;
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  /* Subtle initial shadow */
+  box-shadow: var(--shadow-sm);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-color);
   height: 200px;
-  /* Fixed height for consistency */
   position: relative;
 }
 
 .university-card:hover {
   transform: translateY(-4px) scale(1.005);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-  /* Deep shadow on hover */
+  box-shadow: var(--shadow-lg);
   z-index: 10;
+  border-color: rgba(255, 255, 255, 0.05);
+  /* Subtle border change in dark mode */
 }
 
 /* CARD HEADER (Left Side Color Block) */
 .uni-card-header {
   width: 240px;
-  /* Fixed width for logo area */
   height: auto;
-  /* Take full height */
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -128,6 +120,39 @@
   border-right: 4px solid #4f46e5;
 }
 
+/* In Dark Mode, darken the header backgrounds slightly to avoid eye strain */
+[data-theme='dark'] .uni-crimson .uni-card-header {
+  background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
+}
+
+[data-theme='dark'] .uni-ocean .uni-card-header {
+  background: linear-gradient(135deg, #083344 0%, #164e63 100%);
+}
+
+[data-theme='dark'] .uni-navy .uni-card-header {
+  background: linear-gradient(135deg, #172554 0%, #1e3a8a 100%);
+}
+
+[data-theme='dark'] .uni-emerald .uni-card-header {
+  background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+}
+
+[data-theme='dark'] .uni-violet .uni-card-header {
+  background: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
+}
+
+[data-theme='dark'] .uni-amber .uni-card-header {
+  background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+}
+
+[data-theme='dark'] .uni-rose .uni-card-header {
+  background: linear-gradient(135deg, #4c0519 0%, #881337 100%);
+}
+
+[data-theme='dark'] .uni-indigo .uni-card-header {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+}
+
 /* Logo Container */
 .uni-logo-container {
   width: 100px;
@@ -142,6 +167,10 @@
   transition: transform 0.4s ease;
 }
 
+[data-theme='dark'] .uni-logo-container {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
 .university-card:hover .uni-logo-container {
   transform: scale(1.05) rotate(2deg);
 }
@@ -152,7 +181,7 @@
   object-fit: contain;
 }
 
-/* BADGE (Repositioned) */
+/* BADGE */
 .uni-ranking-badge {
   position: absolute;
   top: 16px;
@@ -169,10 +198,15 @@
   z-index: 5;
 }
 
+[data-theme='dark'] .uni-ranking-badge {
+  background: rgba(30, 41, 59, 0.95);
+  color: #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 /* CARD BODY (Right Side Content) */
 .uni-card-body {
   flex: 1;
-  /* Take remaining space */
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
@@ -183,7 +217,7 @@
 .uni-name {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #1a1a2e;
+  color: var(--text-primary);
   margin: 0 0 6px 0;
   line-height: 1.2;
 }
@@ -193,34 +227,30 @@
   align-items: center;
   gap: 6px;
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--text-secondary);
   margin-bottom: 16px;
   font-weight: 500;
 }
 
 .uni-divider {
   display: none;
-  /* Hide divider in list view */
 }
 
 .uni-programs-preview {
   font-size: 0.95rem;
-  color: #475569;
+  color: var(--text-secondary);
   line-height: 1.5;
   margin-bottom: 0;
   max-width: 85%;
-  /* Leave room for button area if needed */
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  /* Limit to 2 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* ACTION BUTTON (Absolute Positioned on Large Screens) */
+/* ACTION BUTTON */
 .uni-btn-more {
   margin-top: auto;
-  /* Push to bottom if flex column */
   background: transparent;
   border: none;
   font-weight: 700;
@@ -231,25 +261,19 @@
   gap: 8px;
   padding: 8px 0;
   transition: all 0.2s ease;
-
-  /* Position bottom right */
   position: absolute;
   bottom: 24px;
   right: 32px;
+  color: var(--text-secondary);
 }
 
-/* Interactive Button Styling */
-.uni-btn-more {
-  color: #64748b;
-}
-
-/* Default gray */
 .university-card:hover .uni-btn-more {
-  color: #0f172a;
   text-decoration: none;
 }
 
-/* Darker on hover */
+[data-theme='dark'] .university-card:hover .uni-btn-more {
+  color: var(--text-primary);
+}
 
 /* Theme colors for button hover/icon */
 .uni-crimson .uni-btn-more i {
@@ -284,13 +308,45 @@
   color: #4f46e5;
 }
 
+/* In dark mode, lighten these accents slightly for visibility */
+[data-theme='dark'] .uni-crimson .uni-btn-more i {
+  color: #f87171;
+}
+
+[data-theme='dark'] .uni-ocean .uni-btn-more i {
+  color: #22d3ee;
+}
+
+[data-theme='dark'] .uni-navy .uni-btn-more i {
+  color: #60a5fa;
+}
+
+[data-theme='dark'] .uni-emerald .uni-btn-more i {
+  color: #34d399;
+}
+
+[data-theme='dark'] .uni-violet .uni-btn-more i {
+  color: #a78bfa;
+}
+
+[data-theme='dark'] .uni-amber .uni-btn-more i {
+  color: #fbbf24;
+}
+
+[data-theme='dark'] .uni-rose .uni-btn-more i {
+  color: #fb7185;
+}
+
+[data-theme='dark'] .uni-indigo .uni-btn-more i {
+  color: #818cf8;
+}
+
 .uni-btn-more:hover {
   transform: translateX(-4px);
-  /* Move left slightly */
 }
 
 /* ========================================
-   MODAL (Unchanged but ensured compatibility)
+   MODAL
    ======================================== */
 .uni-modal {
   position: fixed;
@@ -304,8 +360,12 @@
   padding: 20px;
 }
 
+[data-theme='dark'] .uni-modal {
+  background: rgba(0, 0, 0, 0.8);
+}
+
 .uni-modal-content {
-  background: white;
+  background: var(--bg-card);
   width: 100%;
   max-width: 600px;
   max-height: 85vh;
@@ -314,6 +374,29 @@
   overflow-y: auto;
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  color: var(--text-primary);
+}
+
+.uni-modal-content h2 {
+  color: var(--text-primary);
+}
+
+.uni-modal-content p,
+.uni-modal-content li {
+  color: var(--text-secondary);
+}
+
+.uni-modal-content strong {
+  color: var(--text-primary);
+}
+
+.uni-details li {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+[data-theme='dark'] .uni-details li {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .uni-modal-close {
@@ -324,18 +407,18 @@
   cursor: pointer;
   width: 32px;
   height: 32px;
-  background: #f1f5f9;
+  background: var(--bg-tertiary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  color: var(--text-secondary);
   transition: all 0.2s;
 }
 
 .uni-modal-close:hover {
-  background: #e2e8f0;
-  color: #000;
+  background: var(--primary);
+  color: white;
 }
 
 /* ========================================
@@ -345,7 +428,6 @@
 @media (max-width: 768px) {
   .university-card {
     flex-direction: column;
-    /* Stack vertically on mobile */
     height: auto;
   }
 
@@ -354,10 +436,9 @@
     height: 120px;
     border-right: none;
     border-bottom: 4px solid transparent;
-    /* Replicate the border color logic if needed, or just skip it */
   }
 
-  /* Apply border bottom colors */
+  /* Keep border bottom colors consistent in dark mode */
   .uni-crimson .uni-card-header {
     border-bottom-color: #dc2626;
   }
@@ -390,11 +471,20 @@
     border-bottom-color: #4f46e5;
   }
 
+  [data-theme='dark'] .uni-crimson .uni-card-header {
+    border-bottom-color: #7f1d1d;
+  }
+
+  [data-theme='dark'] .uni-ocean .uni-card-header {
+    border-bottom-color: #164e63;
+  }
+
+  /* ... add others if strict color matching needed, but primary works fine */
+
   .uni-logo-container {
     width: 80px;
     height: 80px;
     transform: translateY(10px);
-    /* Push down slightly */
   }
 
   .uni-card-body {
@@ -409,7 +499,6 @@
 
   .uni-btn-more {
     position: static;
-    /* Natural flow on mobile */
     margin-top: 20px;
   }
 }

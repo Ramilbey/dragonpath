@@ -5,7 +5,7 @@
    ======================================== */
 
 .header {
-  background: var(--glass-bg);
+  background: var(--header-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   position: fixed;
@@ -13,7 +13,7 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  border-bottom: 1px solid rgba(196, 30, 58, 0.1);
+  border-bottom: 1px solid var(--border-color);
   /* Smooth transition for every property */
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0;
@@ -21,26 +21,21 @@
 
 /* THE SCROLLED STATE - The "Half Circle / Pill" Look */
 .header.scrolled {
-
-
   top: 10px;
   /* Floats it down slightly */
   width: 95%;
   /* Shrinks width for the pill look */
   left: 3%;
   /* Centers it */
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 10px 30px rgba(196, 30, 58, 0.15);
-  border: 1px solid rgba(196, 30, 58, 0.2);
+  background: var(--header-bg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
 
   /* This creates the half-circle / rounded ends effect */
   border-radius: 50px;
 
   /* Subtle "Pop" Animation */
   animation: headerPop 0.4s ease-out;
-  box-shadow: 0 20px 20px rgba(196, 30, 58, 0.15);
-
-
 }
 
 /* Animation for the scroll transition */
@@ -105,8 +100,9 @@
   width: 60px;
   height: 50px;
   object-fit: contain;
-  border-radius: var(--radius-sm);
-  transition: transform var(--transition-normal);
+  border-radius: 4px;
+  /* Using explicit px as var not fully defined everywhere yet */
+  transition: transform 0.3s ease;
 }
 
 .logo:hover .dragonImage {
@@ -125,14 +121,15 @@
   margin: 0;
   line-height: 1.1;
   letter-spacing: -0.5px;
-  background: var(--gradient-primary);
+  /* Keep the gradient text or fallback to primary color */
+  background: linear-gradient(135deg, var(--primary) 0%, #ff4d4d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .logo span {
-  -webkit-text-fill-color: var(--dark);
+  -webkit-text-fill-color: var(--text-primary);
 }
 
 .logo-subtitle {
@@ -160,8 +157,8 @@
   font-weight: 500;
   font-size: 0.95rem;
   padding: 10px 18px;
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-normal);
+  border-radius: 20px;
+  transition: all 0.3s ease;
   position: relative;
 }
 
@@ -172,8 +169,8 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--gradient-primary);
-  transition: all var(--transition-normal);
+  background: var(--primary);
+  transition: all 0.3s ease;
   transform: translateX(-50%);
   border-radius: 2px;
 }
@@ -181,6 +178,11 @@
 .nav-links a:hover {
   color: var(--primary);
   background: rgba(196, 30, 58, 0.05);
+  /* Keep subtle red tint on hover */
+}
+
+[data-theme='dark'] .nav-links a:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .nav-links a:hover::before {
@@ -190,6 +192,11 @@
 .nav-links a.active {
   color: var(--primary);
   background: rgba(196, 30, 58, 0.08);
+  /* Keep subtle red tint for active */
+}
+
+[data-theme='dark'] .nav-links a.active {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-links a.active::before {
@@ -197,17 +204,51 @@
 }
 
 /* ========================================
-   LANGUAGE SWITCHER
+   HEADER ACTIONS (Theme + Lang)
    ======================================== */
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 16px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-tertiary);
+  transform: rotate(15deg);
+  color: var(--primary);
+}
+
+/* Language Switcher container */
 .language-switcher {
   display: flex;
-  margin-left: 16px;
-  background: var(--bg-light);
-  border-radius: var(--radius-xl);
+  background: var(--bg-secondary);
+  border-radius: 24px;
   padding: 4px;
   gap: 4px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] .language-switcher {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .language-switcher button {
@@ -215,11 +256,11 @@
   border: none;
   padding: 8px 14px;
   cursor: pointer;
-  transition: all var(--transition-normal);
+  transition: all 0.3s ease;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-secondary);
-  border-radius: var(--radius-lg);
+  border-radius: 20px;
   min-width: 44px;
 }
 
@@ -228,9 +269,13 @@
   background: rgba(196, 30, 58, 0.05);
 }
 
+[data-theme='dark'] .language-switcher button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .language-switcher button.active {
-  background: var(--gradient-primary);
-  color: var(--text-white);
+  background: var(--primary);
+  color: white;
   box-shadow: 0 2px 8px rgba(196, 30, 58, 0.3);
 }
 
@@ -242,22 +287,23 @@
   display: none;
   cursor: pointer;
   padding: 8px;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-normal);
+  border-radius: 8px;
+  transition: all 0.3s ease;
   z-index: 1001;
 }
 
 .burger:hover {
-  background: rgba(196, 30, 58, 0.05);
+  background: var(--bg-tertiary);
 }
 
 .burger div {
   width: 24px;
   height: 2.5px;
-  background: var(--dark);
+  background: var(--text-primary);
+  /* Use text color so it adapts to theme */
   margin: 5px 0;
   border-radius: 2px;
-  transition: all var(--transition-normal);
+  transition: all 0.3s ease;
   transform-origin: center;
 }
 
@@ -288,8 +334,9 @@
     font-size: 0.9rem;
   }
 
-  .language-switcher {
+  .header-actions {
     margin-left: 12px;
+    gap: 8px;
   }
 
   .language-switcher button {
@@ -336,7 +383,8 @@
     width: 80%;
     /* Slightly narrower */
     max-width: 300px;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--bg-primary);
+    /* Adaptive background */
     /* Little less transparent for readability */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -352,7 +400,7 @@
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
     z-index: 1002;
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid var(--border-color);
     gap: 8px;
     /* Consistent gap between items */
   }
@@ -379,7 +427,7 @@
     margin: 0;
     /* Remove margin, use gap on container */
     border-radius: 12px;
-    color: var(--dark);
+    color: var(--text-primary);
     letter-spacing: 0;
     border: 1px solid transparent;
     /* Prevent layout shift on hover */
@@ -421,56 +469,54 @@
     /* simple active state */
   }
 
+  [data-theme='dark'] .nav-links a:active,
+  [data-theme='dark'] .nav-links a.active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
   .nav-links a::before {
     display: none;
   }
 
-  /* -- Language Switcher (Moved to Top) -- */
-  .language-switcher {
+  /* -- Header Actions in Mobile Menu -- */
+  .header-actions {
+    margin-left: 0;
+    width: 100%;
+    flex-direction: column-reverse;
+    /* Put theme toggle below lang switcher or vice versa */
+    gap: 16px;
+    margin-bottom: 24px;
+    /* Move to top order */
     order: -1;
-    /* Move to the top of the flex container */
     opacity: 0;
     transform: translateY(10px);
     transition: 0.4s ease-out;
     transition-delay: 0.1s;
-    /* Animate first */
-    margin-top: 0;
-    margin-bottom: 24px;
-    /* Space between lang switcher and links */
+  }
+
+  .nav-links.nav-active .header-actions {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .theme-toggle {
+    width: 100%;
+    /* Full width button */
+    border-radius: 12px;
+    background: var(--bg-secondary);
+  }
+
+  /* -- Language Switcher (Moved to Top) -- */
+  .language-switcher {
     width: 100%;
     justify-content: center;
-    background: rgba(240, 240, 240, 0.6);
+    background: var(--bg-secondary);
     padding: 6px;
     border-radius: 16px;
     border: none;
     display: flex;
     gap: 4px;
-  }
-
-  .nav-links.nav-active .language-switcher {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Staggered Delay for Links (Shifted for lang switcher first) */
-  .nav-links.nav-active a:nth-child(1) {
-    transition-delay: 0.2s;
-  }
-
-  .nav-links.nav-active a:nth-child(2) {
-    transition-delay: 0.25s;
-  }
-
-  .nav-links.nav-active a:nth-child(3) {
-    transition-delay: 0.3s;
-  }
-
-  .nav-links.nav-active a:nth-child(4) {
-    transition-delay: 0.35s;
-  }
-
-  .nav-links.nav-active a:nth-child(5) {
-    transition-delay: 0.4s;
   }
 
   .language-switcher button {

@@ -1,10 +1,12 @@
 // src/components/Header/Header.js
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import { useTheme } from '../../context/ThemeContext';
 import './Header.css';
 
 const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen, isScrolled }) => {
   const { language, setLanguage } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
 
   // Navigation translations
   const translations = {
@@ -91,29 +93,39 @@ const Header = ({ scrollToSection, activeSection, menuOpen, setMenuOpen, isScrol
               {t.testimonials}
             </a>
 
-            {/* Language Switcher */}
-            <div className="language-switcher">
+            {/* Theme Toggle & Language Switcher */}
+            <div className="header-actions">
               <button
-                className={language === 'english' ? 'active' : ''}
-                onClick={() => setLanguage('english')}
-                aria-label="Switch to English"
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label="Toggle Dark Mode"
               >
-                EN
+                {theme === 'light' ? <i className="fas fa-moon"></i> : <i className="fas fa-sun"></i>}
               </button>
-              <button
-                className={language === 'russian' ? 'active' : ''}
-                onClick={() => setLanguage('russian')}
-                aria-label="Переключить на русский"
-              >
-                RU
-              </button>
-              <button
-                className={language === 'uzbek' ? 'active' : ''}
-                onClick={() => setLanguage('uzbek')}
-                aria-label="O'zbek tiliga o'tish"
-              >
-                UZ
-              </button>
+
+              <div className="language-switcher">
+                <button
+                  className={language === 'english' ? 'active' : ''}
+                  onClick={() => setLanguage('english')}
+                  aria-label="Switch to English"
+                >
+                  EN
+                </button>
+                <button
+                  className={language === 'russian' ? 'active' : ''}
+                  onClick={() => setLanguage('russian')}
+                  aria-label="Переключить на русский"
+                >
+                  RU
+                </button>
+                <button
+                  className={language === 'uzbek' ? 'active' : ''}
+                  onClick={() => setLanguage('uzbek')}
+                  aria-label="O'zbek tiliga o'tish"
+                >
+                  UZ
+                </button>
+              </div>
             </div>
           </div>
 

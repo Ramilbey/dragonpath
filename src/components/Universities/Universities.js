@@ -379,12 +379,27 @@ const Universities = () => {
         </div>
         <div className="universities-grid">
           {universities.map((uni, index) => (
-            <div key={index} className={`university-card uni-${uni.colorTheme}`} onClick={() => setSelectedUni(uni)}>
+            <div
+              key={index}
+              className={`university-card uni-${uni.colorTheme}`}
+              onClick={() => setSelectedUni(uni)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault(); // Prevent scrolling for Space
+                  setSelectedUni(uni);
+                }
+              }}
+            >
               <div className="uni-card-header">
                 <div className="uni-logo-container">
                   <img
                     src={uni.logo}
                     alt={`${uni.name} logo`}
+                    loading="lazy"
+                    width={100}
+                    height={100}
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'flex';
@@ -423,12 +438,14 @@ const Universities = () => {
       {selectedUni && (
         <div className="uni-modal" onClick={() => setSelectedUni(null)}>
           <div className="uni-modal-content" onClick={(e) => e.stopPropagation()}>
-            <span
+            <button
               className="uni-modal-close"
               onClick={() => setSelectedUni(null)}
+              type="button"
+              aria-label="Close modal"
             >
               &times;
-            </span>
+            </button>
             <h2>{selectedUni.name}</h2>
             <p>
               <strong>{t.modal.location}</strong> {selectedUni.location}

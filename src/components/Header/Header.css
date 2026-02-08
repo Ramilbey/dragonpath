@@ -38,6 +38,11 @@
   animation: headerPop 0.4s ease-out;
 }
 
+[data-theme='dark'] .header.scrolled {
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+  /* White shadow for dark mode */
+}
+
 /* Animation for the scroll transition */
 @keyframes headerPop {
   0% {

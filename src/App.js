@@ -5,6 +5,7 @@ import Hero from "./components/Hero/Hero";
 import { LanguageProvider } from "./context/LanguageContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import Loading from "./components/Loading"; // Dragon loading screen
+import { useScrollReveal } from "./hooks/useScrollReveal";
 import "./App.css";
 
 // Lazy load non-critical components
@@ -19,11 +20,17 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Scroll listener for header style
+  // Activate scroll reveal animations
+  useScrollReveal();
+
+  // Scroll listener for header style and back-to-top
   useEffect(() => {
     const checkScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 50);
+      setShowScrollTop(scrollY > 500);
     };
 
     window.addEventListener("scroll", checkScroll);
@@ -62,6 +69,10 @@ function App() {
       }
     }
     setMenuOpen(false);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Active section tracker
@@ -122,6 +133,15 @@ function App() {
                 <Testimonials />
                 <Footer scrollToSection={scrollToSection} />
               </Suspense>
+
+              {/* Scroll To Top Button */}
+              <button
+                className={`scroll-to-top ${showScrollTop ? 'visible' : ''}`}
+                onClick={scrollToTop}
+                aria-label="Scroll to top"
+              >
+                <i className="fas fa-arrow-up"></i>
+              </button>
             </>
           )}
         </div>

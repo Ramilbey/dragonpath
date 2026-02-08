@@ -5,6 +5,7 @@ import Hero from "./components/Hero/Hero";
 import { LanguageProvider } from "./context/LanguageContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import Loading from "./components/Loading"; // Dragon loading screen
+import ScrollProgress from "./components/UI/ScrollProgress";
 import { useScrollReveal } from "./hooks/useScrollReveal";
 import "./App.css";
 
@@ -117,6 +118,7 @@ function App() {
             <Loading />
           ) : (
             <>
+              <ScrollProgress />
               <Header
                 scrollToSection={scrollToSection}
                 activeSection={activeSection}

@@ -33,40 +33,40 @@ const Hero = ({ scrollToSection }) => {
 
   const translations = {
     english: {
-      tag: "🐉 Trusted by 500+ Students",
+      tag: "🐉 Trusted by 100+ Students",
       title: "Your Gateway to\nWorld-Class\nEducation in China",
       subtitle: "We guide students from Uzbekistan & Central Asia to top Chinese universities — from application to arrival.",
       cta: "Start with Telegram Bot",
       ctaSecondary: "Explore Universities",
       stats: [
-        { number: "500+", label: "Students Placed" },
-        { number: "15+", label: "Partner Universities" },
+        { number: "100+", label: "Students Placed" },
+        { number: "25+", label: "Partner Universities" },
         { number: "98%", label: "Success Rate" },
         { number: "7+", label: "Years Experience" },
       ]
     },
     russian: {
-      tag: "🐉 Доверяют 500+ студентов",
+      tag: "🐉 Доверяют 100+ студентов",
       title: "Ваш путь к\nмировому\nобразованию в Китае",
       subtitle: "Мы сопровождаем студентов из Узбекистана и Центральной Азии в лучшие китайские университеты — от заявки до приезда.",
       cta: "Написать в Telegram",
       ctaSecondary: "Университеты",
       stats: [
-        { number: "500+", label: "Студентов" },
-        { number: "15+", label: "Университетов" },
+        { number: "100+", label: "Студентов" },
+        { number: "25+", label: "Университетов" },
         { number: "98%", label: "Успешность" },
         { number: "7+", label: "Лет опыта" },
       ]
     },
     uzbek: {
-      tag: "🐉 500+ talabaning ishonchi",
+      tag: "🐉 100+ talabaning ishonchi",
       title: "Xitoyda jahon\nta'limiga\nkirish eshigi",
       subtitle: "Biz O'zbekiston va Markaziy Osiyodan talabalarni yetakchi Xitoy universitetlariga yo'llashda ko'maklashamiz.",
       cta: "Telegram botni boshlash",
       ctaSecondary: "Universitetlar",
       stats: [
-        { number: "500+", label: "Talabalar" },
-        { number: "15+", label: "Universitetlar" },
+        { number: "100+", label: "Talabalar" },
+        { number: "25+", label: "Universitetlar" },
         { number: "98%", label: "Muvaffaqiyat" },
         { number: "7+", label: "Yil tajriba" },
       ]

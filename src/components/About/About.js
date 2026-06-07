@@ -73,11 +73,11 @@ const About = () => {
 
             <div className="stats-grid">
               <div className="stat">
-                <h4>500+</h4>
+                <h4>100+</h4>
                 <p>{t.stats.students}</p>
               </div>
               <div className="stat">
-                <h4>10+</h4>
+                <h4>25+</h4>
                 <p>{t.stats.universities}</p>
               </div>
               <div className="stat">

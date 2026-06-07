@@ -96,10 +96,7 @@ const Hero = ({ scrollToSection }) => {
       {/* Content */}
       <div className="container hero-container">
         <div className="hero-content">
-          {/* Tag */}
-          <div className="hero-tag" key={language}>
-            {t.tag}
-          </div>
+
 
           {/* Title */}
           <h1 className="hero-title">

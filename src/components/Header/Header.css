@@ -328,7 +328,9 @@
   .header-actions {
     order: -1;
     margin-left: 0;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     gap: 12px;
     margin-bottom: 20px;
@@ -345,17 +347,18 @@
   }
 
   .theme-toggle {
-    width: 100%;
-    border-radius: 14px;
+    width: 44px;
     height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
     background: var(--bg-secondary);
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .language-switcher {
-    width: 100%;
+    flex: 1;
     padding: 4px;
-    border-radius: 16px;
+    border-radius: 100px;
   }
 
   .language-switcher button {

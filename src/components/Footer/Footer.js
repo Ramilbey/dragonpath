@@ -246,10 +246,10 @@ const Footer = ({ scrollToSection }) => {
               <li>
                 <i className="fas fa-envelope"></i>
                 <a
-                  href="mailto:suhrobqutlimuratov108@gmail.com"
+                  href="mailto:info@dragonpath.uz"
                   onClick={() => handleFooterLinkClick("Email Contact")}
                 >
-                  info@dragonpath.com
+                  info@dragonpath.uz
                 </a>
               </li>
               <li>

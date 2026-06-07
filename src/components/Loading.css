@@ -1,8 +1,4 @@
-/* src/components/Loading.css */
-
-/* ========================================
-   LOADING SCREEN - Premium Dragon Theme
-   ======================================== */
+/* src/components/Loading.css — Premium Loading Screen */
 
 .loading-screen {
     position: fixed;
@@ -10,8 +6,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    /* Deep premium dark background */
-    background: radial-gradient(circle at center, #2d2d44 0%, #1a1a2e 100%);
+    background: radial-gradient(circle at 40% 40%, #1a1a2e 0%, #080c18 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,18 +38,17 @@
 
 /* Text Styling */
 .loading-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
     color: #ffffff;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #d4a574, #c41e3a, #d4a574);
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, #fbbf24, #c41e3a, #fbbf24);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% auto;
-    animation: shimmerText 3s linear infinite;
+    animation: shimmerText 2.5s linear infinite;
 }
 
 /* Progress Bar Container */

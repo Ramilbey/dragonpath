@@ -6,6 +6,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import Loading from "./components/Loading"; // Dragon loading screen
 import ScrollProgress from "./components/UI/ScrollProgress";
+import Chatbot from "./components/Chatbot/Chatbot";
 import { useScrollReveal } from "./hooks/useScrollReveal";
 import "./App.css";
 
@@ -135,6 +136,9 @@ function App() {
                 <Testimonials />
                 <Footer scrollToSection={scrollToSection} />
               </Suspense>
+
+              {/* Chatbot */}
+              <Chatbot />
 
               {/* Scroll To Top Button */}
               <button

@@ -1,110 +1,112 @@
 # DragonPath Agency 🐉
 
-**Your Gateway to World-Class Education in China**
+**Cinematic Scroll-Driven Portal & Editorial Education Platform**
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bfe13063-8224-4ba1-b445-5f8cc597f53f/deploy-status)](https://app.netlify.com/sites/dragonpath/deploys)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-DragonPath is a premium web platform designed to help students from **Uzbekistan and Central Asia** explore and access educational opportunities in top Chinese universities. Built with a modern React architecture, it offers a seamless, multi-language experience with a high-end aesthetic.
+DragonPath is a premium, scroll-driven editorial platform designed to connect students from **Uzbekistan and Central Asia** with premier universities across China. Built with React and GSAP, it translates creative agency web design into an interactive storytelling experience.
 
-**Live Demo:** [dragonpath.netlify.app](https://dragonpath.netlify.app/)
+**Live Site:** [dragonpath.netlify.app](https://dragonpath.netlify.app/)
 
 ---
 
-## ✨ Key Features
+## ✨ Key Features & Architecture
 
-- **🌍 Multi-Language Support**: Fully localized in **English**, **Russian**, and **Uzbek** to serve a diverse student base.
-- **🌗 Dark Mode**: Exquisite dark theme support that respects system preferences and persists user choice via local storage.
-- **📱 Responsive Design**: A mobile-first approach ensuring a flawless experience across all devices, from desktops to smartphones.
-- **🎓 University Directory**: A comprehensive list of partner universities with detailed information on programs, rankings, and campus life.
-- **🚀 Performance Optimized**: Implements **lazy loading**, code splitting, and image optimization for lightning-fast load times.
-- **🎨 Premium UI/UX**: Custom "Dragon" design system with glassmorphism, smooth animations, and interactive elements.
-- **📊 Analytics Integrated**: Built-in Google Analytics hook for tracking user engagement and conversion goals.
+- **⛩️ GSAP "Portal" Hero**: 2.2vh scroll-bound stage where dual curtain panels open to reveal campus photography while the signature wordmark splits dynamically across screen edges.
+- **📜 Pinned Journey Services**: Scroll-pinned 6-step journey guiding students from initial university selection to arrival and dorm check-in.
+- **🃏 Throwable Card Deck Catalogue**: Physical interactive university card deck featuring pointer dragging, card throwing physics, keyboard controls (`ArrowLeft` / `ArrowRight`), and detailed admission modals.
+- **📊 Editorial Statistics & Statement**: High-contrast typography layout featuring giant index markers (`01`), floating scroll-linked photographs, and large-format metrics.
+- **🏛️ Partner Roster & Intake Schedule**: Hairline-ruled catalogue listing partner institutions and upcoming admission cycles.
+- **🌍 Trilingual Localization**: Instant switching between **English**, **Russian**, and **Uzbek** across all content and modal components.
+- **🌗 Editorial Dark/Light System**: Dark mode ground (`#080C18`), off-white typography (`#EDE7DC`), and restrained Crimson (`#C41E3A`) / Gold (`#F59E0B`) accents.
+
+---
 
 ## 🛠 Tech Stack
 
-- **Frontend Framework**: React.js (v18)
-- **Styling**: Vanilla CSS3 with CSS Variables (Theming support)
-- **State Management**: React Context API
-- **Navigation**: Single Page Application (SPA) with smooth scrolling
-- **Icons**: FontAwesome 6
-- **Deployment**: Netlify (CI/CD)
+- **Core**: React 19 / HTML5 / CSS3 (Custom CSS Variables Design System)
+- **Animation Engine**: GSAP 3.12.5 & ScrollTrigger
+- **Localization**: React Context API (`LanguageContext`)
+- **Theme Engine**: React Context API (`ThemeContext` with `localStorage` persistence)
+- **Typography**: Plus Jakarta Sans & Inter (Google Fonts)
+- **Deployment**: Netlify CI/CD
 
-## 🚀 Getting Started
+---
 
-To get a local copy up and running, follow these simple steps.
+## 🚀 Quick Start
 
 ### Prerequisites
 
-Ensure you have Node.js installed on your system.
-*   npm
-    ```sh
-    npm install npm@latest -g
-    ```
+- Node.js (v18+)
+- npm (v9+)
 
 ### Installation
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/Ramilbey/dragonpath.git
-    cd dragonpath
-    ```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Ramilbey/dragonpath.git
+   cd dragonpath
+   ```
 
-2.  **Install dependencies**
-    ```bash
-    npm install
-    ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3.  **Start the development server**
-    ```bash
-    npm start
-    ```
-    The application will open automatically at `http://localhost:3000`.
+3. **Run the development server**
+   ```bash
+   npm start
+   ```
+   Open `http://localhost:3000` to view the application in your browser.
+
+4. **Production Build**
+   ```bash
+   npm run build
+   ```
+
+---
 
 ## 📂 Project Structure
 
 ```
 dragonpath/
-├── public/              # Static assets (images, icons, manifest)
+├── public/                # Static assets, logos, university photos, index.html
 ├── src/
-│   ├── components/      # Reusable UI components
-│   │   ├── Header/      # Navigation, Language Switcher, Theme Toggle
-│   │   ├── Hero/        # Landing section with scrolling background
-│   │   ├── About/       # Company information and stats
-│   │   ├── Services/    # Service offerings grid
-│   │   ├── Universities/# Interactive university list/cards
-│   │   ├── Testimonials/# Student success stories
-│   │   ├── Footer/      # Site footer and links
-│   │   └── Loading.js   # Custom loading screen
-│   ├── context/         # React Context
-│   │   ├── LanguageContext.js # Multi-language logic
-│   │   └── ThemeContext.js    # Light/Dark mode logic
-│   ├── hooks/           # Custom Hooks (e.g., useAnalytics)
-│   ├── App.js           # Main application entry point
-│   ├── App.css          # App-wide styles and typography
-│   └── index.css        # Global variables and resets
-└── README.md            # Project documentation
+│   ├── animations/        # Custom GSAP scroll engine & fallback math logic
+│   ├── components/
+│   │   ├── Header/        # Editorial glass bar, theme & language switches
+│   │   ├── Hero/          # GSAP portal stage, splitting wordmark & curtain logic
+│   │   ├── Statement/     # Outlined index statement & floating photograph
+│   │   ├── Services/      # Pinned scroll-driven 6-step journey
+│   │   ├── Universities/  # Physical throwable card deck & detail modals
+│   │   ├── Roster/        # Partner catalogue & intake dates table
+│   │   ├── About/         # Story paragraph & enormous typography statistics
+│   │   ├── Testimonials/  # Vertical editorial student story sequence
+│   │   ├── Footer/        # Final close CTA, bottom-cropped wordmark & footer
+│   │   ├── Chatbot/       # Telegram integration widget
+│   │   └── UI/            # Scroll progress indicators
+│   ├── context/           # Language and Theme context providers
+│   ├── hooks/             # Custom React hooks (analytics, scroll triggers)
+│   ├── App.js             # Master layout assembly & section orchestration
+│   ├── index.css          # Editorial minimal design system & css variables
+│   └── App.css            # Base utilities & layout definitions
+└── README.md
 ```
 
-## 🤝 Contributing
+---
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
-
-## � License
+## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## 📞 Contact
-
-**Support Team** - [support@dragonpath.com](mailto:support@dragonpath.com)
-
-Project Link: [https://github.com/Ramilbey/dragonpath](https://github.com/Ramilbey/dragonpath)
-
 ---
+
+## 📞 Contact & Inquiries
+
+- **Official Telegram Bot:** [@china_connect_bot](https://t.me/china_connect_bot)
+- **Email:** [info@dragonpath.uz](mailto:info@dragonpath.uz)
+- **Phone:** +86 130 2595 5119 / +998 87 190 5119
+- **Office:** Tashkent, Mirobod District Business Center, Uzbekistan
+
 *Built with ❤️ for future scholars.*

@@ -390,8 +390,6 @@ const Universities = () => {
     }
   };
 
-  const activeUni = universities[activeDeckIndex];
-
   return (
     <section id="universities" className="catalogue-section">
       <div className="container catalogue-container">

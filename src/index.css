@@ -1,190 +1,196 @@
-/* ============================================================
-   DRAGONPATH — GLOBAL DESIGN SYSTEM
-   Premium dark-mode first, ultra-clean redesign
-   ============================================================ */
+/* src/index.css — Editorial Portal / Journey Design System */
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
 /* ============================================================
-   CSS CUSTOM PROPERTIES — LIGHT MODE (default)
+   DESIGN TOKENS & VARIABLES
    ============================================================ */
 :root {
-  /* Brand colors */
-  --primary:        #c41e3a;
-  --primary-dark:   #9a1830;
-  --primary-light:  #e63950;
-  --primary-glow:   rgba(196, 30, 58, 0.25);
+  /* Brand Palette */
+  --crimson: #C41E3A;
+  --crimson-deep: #9A1830;
+  --crimson-light: #E63950;
+  --gold: #F59E0B;
+  --gold-light: #FBBF24;
 
-  --accent:         #f59e0b;
-  --accent-light:   #fbbf24;
-  --accent-dark:    #d97706;
+  /* Editorial Dark Palette (Default) */
+  --ground: #080C18;
+  --ground-secondary: #0F172A;
+  --ground-card: #111827;
+  --ink-primary: #EDE7DC;
+  --ink-secondary: #A0A7AA;
+  --muted: #6C7378;
+  --hairline: rgba(237, 231, 220, 0.13);
+  --hairline-strong: rgba(237, 231, 220, 0.25);
 
-  /* Gradients */
-  --gradient-primary:  linear-gradient(135deg, #c41e3a 0%, #9a1830 100%);
-  --gradient-gold:     linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-  --gradient-dark:     linear-gradient(135deg, #1a1a2e 0%, #0f172a 100%);
-  --gradient-hero:     linear-gradient(135deg, rgba(196,30,58,0.92) 0%, rgba(26,26,46,0.97) 100%);
-  --gradient-card:     linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
-  --gradient-radial:   radial-gradient(ellipse at top, rgba(196,30,58,0.08) 0%, transparent 60%);
+  /* Accents */
+  --accent-primary: var(--crimson);
+  --accent-secondary: var(--gold);
 
-  /* Text */
-  --text-white:     #ffffff;
-  --dark:           #1a1a2e;
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Radius */
-  --radius-xs:  4px;
-  --radius-sm:  8px;
-  --radius-md:  12px;
-  --radius-lg:  20px;
-  --radius-xl:  32px;
-  --radius-full: 9999px;
+  /* Layout Spacing */
+  --container-max: 1280px;
+  --section-padding-y: clamp(100px, 12vh, 180px);
+  --hairline-border: 1px solid var(--hairline);
+}
 
-  /* Transitions */
-  --ease-smooth:  cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
-  --transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Light Mode Theme */
-  --bg-primary:    #f8f9fc;
-  --bg-secondary:  #eef2f7;
-  --bg-tertiary:   #e2e8f0;
-  --bg-card:       #ffffff;
-  --bg-light:      #f8f9fc;
-  --bg-white:      #ffffff;
-  --bg-cream:      #fff7ed;
-  --bg-glass:      rgba(255, 255, 255, 0.82);
-  --glass-border:  rgba(255,255,255,0.5);
-  --glass-shadow:  0 8px 40px rgba(0,0,0,0.08);
-
-  --text-primary:   #0f172a;
-  --text-secondary: #475569;
-  --text-muted:     #94a3b8;
-  --text-inverse:   #ffffff;
-  --text-light:     rgba(255,255,255,0.8);
-
-  --border-color:   rgba(0,0,0,0.08);
-  --border-strong:  rgba(0,0,0,0.15);
-
-  --shadow-xs:  0 1px 3px rgba(0,0,0,0.06);
-  --shadow-sm:  0 4px 12px rgba(0,0,0,0.06);
-  --shadow-md:  0 8px 24px rgba(0,0,0,0.1);
-  --shadow-lg:  0 20px 48px rgba(0,0,0,0.12);
-  --shadow-xl:  0 32px 64px rgba(0,0,0,0.16);
-  --shadow-glow: 0 0 40px rgba(196,30,58,0.2);
-
-  --header-bg:  rgba(248, 249, 252, 0.95);
-
-  /* Glass morphism for cards */
-  --glass-bg:  rgba(255,255,255,0.85);
+/* Light Mode Overrides */
+[data-theme='light'] {
+  --ground: #F8F9FC;
+  --ground-secondary: #EEF2F7;
+  --ground-card: #FFFFFF;
+  --ink-primary: #080C18;
+  --ink-secondary: #4B5563;
+  --muted: #9CA3AF;
+  --hairline: rgba(8, 12, 24, 0.12);
+  --hairline-strong: rgba(8, 12, 24, 0.22);
 }
 
 /* ============================================================
-   DARK MODE
-   ============================================================ */
-[data-theme='dark'] {
-  --bg-primary:    #080c18;
-  --bg-secondary:  #0f172a;
-  --bg-tertiary:   #1e293b;
-  --bg-card:       #111827;
-  --bg-light:      #080c18;
-  --bg-white:      #111827;
-  --bg-cream:      #111827;
-  --bg-glass:      rgba(8, 12, 24, 0.85);
-  --glass-border:  rgba(255,255,255,0.08);
-  --glass-shadow:  0 8px 40px rgba(0,0,0,0.4);
-
-  --text-primary:   #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted:     #64748b;
-  --text-inverse:   #0f172a;
-
-  --border-color:   rgba(255,255,255,0.07);
-  --border-strong:  rgba(255,255,255,0.14);
-
-  --shadow-xs:  0 1px 3px rgba(0,0,0,0.4);
-  --shadow-sm:  0 4px 12px rgba(0,0,0,0.4);
-  --shadow-md:  0 8px 24px rgba(0,0,0,0.5);
-  --shadow-lg:  0 20px 48px rgba(0,0,0,0.6);
-  --shadow-xl:  0 32px 64px rgba(0,0,0,0.7);
-  --shadow-glow: 0 0 60px rgba(196,30,58,0.15);
-
-  --header-bg:  rgba(8, 12, 24, 0.95);
-
-  --glass-bg:  rgba(17, 24, 39, 0.88);
-  --gradient-card: linear-gradient(145deg, rgba(17,24,39,0.9), rgba(15,23,42,0.8));
-}
-
-/* ============================================================
-   BASE RESET
+   GLOBAL RESET & BASICS
    ============================================================ */
 *, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
+  font-family: var(--font-body);
+  background-color: var(--ground);
+  color: var(--ink-primary);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.7;
+  background-color: var(--ground);
+  color: var(--ink-primary);
+  line-height: 1.6;
   overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  position: relative;
 }
 
-code {
-  font-family: 'Fira Code', 'Courier New', monospace;
-}
-
-/* ============================================================
-   TYPOGRAPHY
-   ============================================================ */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 800;
-  line-height: 1.25;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-
-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
-h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
-h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
-h4 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
-
-p {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.85;
-}
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-/* ============================================================
-   SELECTION & SCROLLBAR
-   ============================================================ */
+/* Custom Selection */
 ::selection {
-  background: rgba(196, 30, 58, 0.3);
-  color: white;
+  background-color: var(--crimson);
+  color: #FFFFFF;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-secondary); }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #c41e3a, #9a1830);
-  border-radius: 6px;
+/* Global Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 60px);
+  padding-right: clamp(20px, 5vw, 60px);
 }
-::-webkit-scrollbar-thumb:hover { background: #c41e3a; }
+
+/* ============================================================
+   EDITORIAL TYPOGRAPHY UTILITIES
+   ============================================================ */
+h1, h2, h3, h4, h5, h6, .display-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--ink-primary);
+  text-transform: uppercase;
+}
+
+.label-uppercase {
+  font-family: var(--font-body);
+  font-size: clamp(0.7rem, 0.9vw, 0.82rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-secondary);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-crimson {
+  color: var(--crimson);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.hairline-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--hairline);
+  margin: 0;
+}
+
+/* Outlined Index Numbers */
+.outlined-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--hairline-strong);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Buttons Reset & Editorial Buttons */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-primary);
+  background: transparent;
+  border: 1px solid var(--hairline-strong);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btn-editorial:hover {
+  background: var(--ink-primary);
+  color: var(--ground);
+  border-color: var(--ink-primary);
+}
+
+.btn-editorial-accent {
+  background: var(--crimson);
+  color: #FFFFFF;
+  border-color: var(--crimson);
+}
+
+.btn-editorial-accent:hover {
+  background: var(--crimson-deep);
+  color: #FFFFFF;
+  border-color: var(--crimson-deep);
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -6,98 +6,97 @@ import './About.css';
 const About = () => {
   const { language } = useLanguage();
 
-  // Translations
   const translations = {
     english: {
-      title: "About Us",
-      subtitle: "Your trusted partner in educational journey to China",
-      sectionTitle: "Bridging Cultures Through Education",
-      paragraph1: "DragonPath was founded with a mission to strengthen educational ties between China and Uzbekistan. Our team consists of education experts who have studied in China themselves and understand the challenges international students face.",
-      paragraph2: "With offices in Tashkent and Beijing, we provide localized support throughout your educational journey. We maintain strong relationships with top Chinese universities to ensure our students receive the best opportunities.",
-      paragraph3: "Our services don't stop at admission - we offer pre-departure orientation, accommodation assistance, and ongoing support throughout your studies in China.",
-      stats: {
-        students: "Students Helped",
-        universities: "Partner Universities",
-        successRate: "Success Rate",
-        experience: "Years Experience"
-      },
-      teamLabel: "DragonPath Team"
+      label: "ABOUT DRAGONPATH",
+      titleLine1: "WE DON'T JUST SEND STUDENTS.",
+      titleLine2: "WE HELP THEM ",
+      highlight: "FIND THEIR PATH.",
+      paragraph1: "DragonPath Agency was founded with a singular mission: to open direct, reliable, and transparent gateways for students from Uzbekistan and Central Asia into leading Chinese universities.",
+      paragraph2: "We manage every single milestone — from academic career orientation and scholarship application to visa issuance, campus dorm allocation, and ongoing local guidance in China.",
+      stats: [
+        { number: "100+", label: "STUDENTS PLACED IN CHINA" },
+        { number: "25+", label: "DIRECT PARTNER UNIVERSITIES" },
+        { number: "98%", label: "ADMISSION SUCCESS RATE" },
+        { number: "7+", label: "YEARS FIELD EXPERIENCE" }
+      ]
     },
     russian: {
-      title: "О нас",
-      subtitle: "Ваш надежный партнер в образовательном путешествии в Китай",
-      sectionTitle: "Объединяем культуры через образование",
-      paragraph1: "DragonPath была основана с миссией укрепления образовательных связей между Китаем и Узбекистаном. Наша команда состоит из экспертов в области образования, которые сами учились в Китае и понимают проблемы, с которыми сталкиваются иностранные студенты.",
-      paragraph2: "С офисами в Ташкенте и Пекине мы обеспечиваем локальную поддержку на протяжении всего вашего образовательного пути. Мы поддерживаем прочные отношения с ведущими китайскими университетами, чтобы наши студенты получали лучшие возможности.",
-      paragraph3: "Наши услуги не заканчиваются поступлением - мы предлагаем ориентацию перед отъездом, помощь с проживанием и постоянную поддержку на протяжении вашего обучения в Китае.",
-      stats: {
-        students: "Студентов",
-        universities: "Партнерских университетов",
-        successRate: "Успешность",
-        experience: "Лет опыта"
-      },
-      teamLabel: "Команда DragonPath"
+      label: "О DRAGONPATH",
+      titleLine1: "МЫ НЕ ПРОСТО ОТПРАВЛЯЕМ СТУДЕНТОВ.",
+      titleLine2: "МЫ ПОМОГАЕМ ИМ ",
+      highlight: "НАЙТИ СВОЙ ПУТЬ.",
+      paragraph1: "Агентство DragonPath было основано с единой целью: открыть надежные, прозрачные и прямые пути для студентов из Узбекистана и СНГ в ведущие университеты Китая.",
+      paragraph2: "Мы сопровождаем каждый этап — от профориентации и подачи документов на грант до получения визы, заселения в общежитие и непрерывной поддержки в Китае.",
+      stats: [
+        { number: "100+", label: "СТУДЕНТОВ ПОСТУПИЛО" },
+        { number: "25+", label: "ПРЯМЫХ ПАРТНЕРСКИХ ВУЗОВ" },
+        { number: "98%", label: "УСПЕШНЫХ ЗАЧИСЛЕНИЙ" },
+        { number: "7+", label: "ЛЕТ ОПЫТА В СФЕРЕ" }
+      ]
     },
     uzbek: {
-      title: "Biz haqimizda",
-      subtitle: "Xitoyga ta'lim safari uchun ishonchli hamkoringiz",
-      sectionTitle: "Ta'lim orqali madaniyatlarni birlashtirish",
-      paragraph1: "DragonPath Xitoy va O'zbekiston o'rtasidagi ta'lim aloqalarini mustahkamlash missiyasi bilan tashkil etilgan. Bizning jamoamiz Xitoyda o'qigan va xalqaro talabalar duch keladigan qiyinchiliklarni tushunadigan ta'lim mutaxassislaridan iborat.",
-      paragraph2: "Toshkent va Pekindagi ofislarimiz bilan biz sizning ta'lim safaringiz davomida mahalliy yordam ko'rsatamiz. Talabalarimiz eng yaxshi imkoniyatlarni olishini ta'minlash uchun biz yetakchi Xitoy universitetlari bilan mustahkam aloqalar o'rnatamiz.",
-      paragraph3: "Bizning xizmatlarimiz qabul bilan tugamaydi - biz jo'nashdan oldingi orientatsiya, turar joy yordami va Xitoydagi o'qishingiz davomida doimiy yordam taklif qilamiz.",
-      stats: {
-        students: "Talabalarga yordam",
-        universities: "Hamkor universitetlar",
-        successRate: "Muvaffaqiyat darajasi",
-        experience: "Yillik tajriba"
-      },
-      teamLabel: "DragonPath jamoasi"
+      label: "DRAGONPATH HAQIDA",
+      titleLine1: "BIZ SHUNCHAKI TALABALARNI YUBORMAYMIZ.",
+      titleLine2: "BIZ ULARGA ",
+      highlight: "O'Z YO'LINI TOPISHGA YORDAM BERAMIZ.",
+      paragraph1: "DragonPath agentligi yagona maqsad bilan tashkil etilgan: O'zbekiston va MDH talabalari uchun Xitoyning etakchi universitetlariga to'g'ridan-to'g'ri va shaffof yo'llarni ochish.",
+      paragraph2: "Biz har bir bosqichni boshqaramiz — kasbga yo'naltirish va grantga ariza topshirishdan tortib, viza olish, yotoqxonaga joylashish va Xitoyda doimiy qo'llab-quvvatlashgacha.",
+      stats: [
+        { number: "100+", label: "TALABA XITOYGA YUBORILGAN" },
+        { number: "25+", label: "TO'G'RIDAN-TO'G'RI HAMKOR OTM" },
+        { number: "98%", label: "QABUL MUVAFFAQIYATI" },
+        { number: "7+", label: "YILLIK TAJRIBA" }
+      ]
     }
   };
 
   const t = translations[language] || translations.english;
 
   return (
-    <section id="about" className="about">
-      <div className="container">
-        <div className="section-title">
-          <h2>{t.title}</h2>
-          <p>{t.subtitle}</p>
+    <section id="about" className="about-section">
+      <div className="container about-container">
+        {/* Editorial Top Headline */}
+        <div className="about-header">
+          <span className="label-uppercase text-crimson">{t.label}</span>
+          <h2 className="about-title">
+            {t.titleLine1}
+            <br />
+            {t.titleLine2}
+            <span className="text-crimson">{t.highlight}</span>
+          </h2>
         </div>
-        <div className="about-content">
-          <div className="about-text">
-            <h3>{t.sectionTitle}</h3>
-            <p>{t.paragraph1}</p>
-            <p>{t.paragraph2}</p>
-            <p>{t.paragraph3}</p>
 
-            <div className="stats-grid">
-              <div className="stat">
-                <h4>100+</h4>
-                <p>{t.stats.students}</p>
-              </div>
-              <div className="stat">
-                <h4>25+</h4>
-                <p>{t.stats.universities}</p>
-              </div>
-              <div className="stat">
-                <h4>98%</h4>
-                <p>{t.stats.successRate}</p>
-              </div>
-              <div className="stat">
-                <h4>5+</h4>
-                <p>{t.stats.experience}</p>
+        {/* 2-Part Composition */}
+        <div className="about-grid">
+          {/* Left Column: Text Story & Image Composition */}
+          <div className="about-story-col">
+            <p className="about-paragraph">{t.paragraph1}</p>
+            <p className="about-paragraph">{t.paragraph2}</p>
+
+            <div className="about-image-wrapper">
+              <div
+                className="about-image"
+                style={{ backgroundImage: `url(/images/univerpics/uni8.jpg)` }}
+              />
+              <div className="about-image-badge">
+                <span className="label-uppercase text-gold">CHINA ADMISSIONS DIRECT</span>
               </div>
             </div>
           </div>
-          <div className="about-image">
-            <div className="image-placeholder">
-              <i className="fas fa-users"></i>
-              <p>{t.teamLabel}</p>
-            </div>
+
+          {/* Right Column: Integrated Enormous Typography Stats */}
+          <div className="about-stats-col">
+            {t.stats.map((stat, idx) => (
+              <div key={idx} className="about-stat-row">
+                <span className="stat-big-num">{stat.number}</span>
+                <span className="label-uppercase stat-big-label">{stat.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+      <div className="hairline-divider" />
     </section>
   );
 };

@@ -1,114 +1,129 @@
 // src/components/Universities/Universities.js
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useLanguage } from '../../context/LanguageContext';
 import "./Universities.css";
 
 const Universities = () => {
+  const [activeDeckIndex, setActiveDeckIndex] = useState(0);
   const [selectedUni, setSelectedUni] = useState(null);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [isThrowing, setIsThrowing] = useState(false);
+  const dragStartRef = useRef({ x: 0, y: 0 });
+  const deckRef = useRef(null);
+
   const { language } = useLanguage();
 
-  // Translation object
   const translations = {
     english: {
-      title: "Partner Universities",
-      subtitle: "We have partnerships with top universities across China",
-      learnMore: "Learn More",
+      label: "UNIVERSITIES",
+      title: "THE CATALOGUE",
+      subtitle: "Explore premier partner institutions across China.",
+      dragHint: "DRAG OR USE ARROW KEYS TO EXPLORE",
+      detailsBtn: "VIEW UNIVERSITY DETAILS",
       modal: {
-        location: "Location:",
-        ranking: "Ranking:",
-        programs: "Programs:",
-        fees: "Fees",
-        documents: "Documents Required",
-        otherInfo: "Other Information",
+        location: "Location",
+        ranking: "Category",
+        programs: "Programs Offered",
+        fees: "Tuition & Fees Breakdown",
+        documents: "Required Documents",
+        otherInfo: "Admissions Information",
         ageLimit: "Age Limit:",
         deadline: "Application Deadline:",
-        intake: "Intake:",
+        intake: "Intake Period:",
         dormitory: "Dormitory:",
-        tuition: "Tuition:",
-        accommodation: "Accommodation:",
-        insurance: "Insurance:",
-        visa: "Visa:",
-        medicalCheckup: "Medical Check-up:",
+        tuition: "Tuition Fee:",
+        accommodation: "Accommodation Fee:",
+        insurance: "Insurance Fee:",
+        visa: "Visa Extension Fee:",
+        medicalCheckup: "Medical Checkup:",
         applicationFee: "Application Fee:",
-        books: "Books:",
-        deposit: "Deposit:",
-        note: "Note:",
-        scholarships: "Scholarships:",
-        feesAfterScholarship: "Fees After Scholarship:"
+        books: "Textbooks:",
+        deposit: "Housing Deposit:",
+        note: "Admissions Note:",
+        scholarships: "Available Scholarships:",
+        feesAfterScholarship: "Total Fee After Scholarship:",
+        cta: "APPLY VIA TELEGRAM BOT"
       }
     },
     russian: {
-      title: "Партнерские Университеты",
-      subtitle: "У нас есть партнерские отношения с ведущими университетами Китая",
-      learnMore: "Узнать больше",
+      label: "УНИВЕРСИТЕТЫ",
+      title: "КАТАЛОГ ВУЗОВ",
+      subtitle: "Исследуйте ведущие партнерские университеты Китая.",
+      dragHint: "ПЕРЕТАЩИТЕ ИЛИ ИСПОЛЬЗУЙТЕ СТРЕЛКИ",
+      detailsBtn: "ПОДРОБНЕЕ ОБ УНИВЕРСИТЕТЕ",
       modal: {
-        location: "Местоположение:",
-        ranking: "Рейтинг:",
-        programs: "Программы:",
-        fees: "Стоимость",
+        location: "Локация",
+        ranking: "Категория",
+        programs: "Доступные программы",
+        fees: "Стоимость обучения и проживания",
         documents: "Необходимые документы",
-        otherInfo: "Другая информация",
-        ageLimit: "Возрастное ограничение:",
-        deadline: "Крайний срок подачи заявок:",
-        intake: "Набор:",
+        otherInfo: "Информация о поступлении",
+        ageLimit: "Возраст:",
+        deadline: "Крайний срок:",
+        intake: "Период набора:",
         dormitory: "Общежитие:",
         tuition: "Обучение:",
         accommodation: "Проживание:",
         insurance: "Страховка:",
         visa: "Виза:",
-        medicalCheckup: "Медицинский осмотр:",
-        applicationFee: "Регистрационный взнос:",
-        books: "Книги:",
+        medicalCheckup: "Медосмотр:",
+        applicationFee: "Рег. взнос:",
+        books: "Учебники:",
         deposit: "Депозит:",
         note: "Примечание:",
-        scholarships: "Стипендии:",
-        feesAfterScholarship: "Стоимость после стипендии:"
+        scholarships: "Доступные стипендии:",
+        feesAfterScholarship: "Стоимость со стипендией:",
+        cta: "ПОДАТЬ ЗАЯВКУ В TELEGRAM"
       }
     },
     uzbek: {
-      title: "Hamkor Universitetlar",
-      subtitle: "Biz Xitoyning eng yaxshi universitetlari bilan hamkorlik qilamiz",
-      learnMore: "Batafsil",
+      label: "UNIVERSITETLAR",
+      title: "OTM KATALOGI",
+      subtitle: "Xitoy bo'ylab etakchi hamkor OTMlarni kashf eting.",
+      dragHint: "SURING YOKI TUGMALARDAN FOYDALANING",
+      detailsBtn: "BATAFSIL MA'LUMOT",
       modal: {
-        location: "Manzil:",
-        ranking: "Reyting:",
-        programs: "Dasturlar:",
-        fees: "Xarajatlar",
-        documents: "Talab qilinadigan hujjatlar",
-        otherInfo: "Boshqa ma'lumotlar",
+        location: "Manzil",
+        ranking: "Kategoriya",
+        programs: "Mavjud dasturlar",
+        fees: "Ta'lim va yashash xarajatlari",
+        documents: "Zarur hujjatlar",
+        otherInfo: "Qabul ma'lumotlari",
         ageLimit: "Yosh chegarasi:",
-        deadline: "Ariza topshirish muddati:",
-        intake: "Qabul:",
+        deadline: "Oxirgi muddat:",
+        intake: "Qabul davri:",
         dormitory: "Yotoqxona:",
-        tuition: "Ta'lim:",
-        accommodation: "Yashash joyi:",
+        tuition: "Ta'lim to'lovi:",
+        accommodation: "Yashash to'lovi:",
         insurance: "Sug'urta:",
-        visa: "Viza:",
+        visa: "Viza to'lovi:",
         medicalCheckup: "Tibbiy ko'rik:",
         applicationFee: "Ariza to'lovi:",
-        books: "Kitoblar:",
+        books: "Darsliklar:",
         deposit: "Depozit:",
         note: "Eslatma:",
-        scholarships: "Stypendiyalar:",
-        feesAfterScholarship: "Stypendiyadan keyingi xarajatlar:"
+        scholarships: "Mavjud grantlar:",
+        feesAfterScholarship: "Grantdan keyingi xarajat:",
+        cta: "TELEGRAM BOTDA ARIZA TOPSHIRISH"
       }
     }
   };
 
   const t = translations[language] || translations.english;
 
-  // Universities with color themes based on their logos
   const universities = [
     {
+      id: "uni-1",
       name: "Jiangsu Normal University",
       location: "Xuzhou, Jiangsu",
       ranking: "Partner University",
       programs: "One Year Preparatory Program",
       logo: "/images/logo/Jiangsu_Normal_University_Logo.png",
-      colorTheme: "crimson", // Red university logo
+      image: "/images/univerpics/uni1.jpg",
       details: {
-        tuition: "15000 CNY/Year",
-        accommodation: "1500 CNY/Year (Quad) | 3000 CNY/Year (Double) | 6000 CNY/Year (Single)",
+        tuition: "15,000 CNY/Year",
+        accommodation: "1,500 CNY/Year (Quad) | 3,000 CNY/Year (Double) | 6,000 CNY/Year (Single)",
         insurance: "800 CNY/Year",
         visa: "800 CNY/Year",
         medicalCheckup: "400-600 CNY",
@@ -120,197 +135,166 @@ const Universities = () => {
           language === 'english' ? "Medical Check up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
           language === 'english' ? "English Proficiency Certificate" : language === 'russian' ? "Сертификат знания английского" : "Ingliz tili sertifikati",
           language === 'english' ? "Non-Criminal Record" : language === 'russian' ? "Справка о несудимости" : "Jinoiy yozuv yo'qligi to'g'risida guvohnoma",
-          language === 'english' ? "Resume" : language === 'russian' ? "Резюме" : "Rezyume",
-          language === 'english' ? "Bank statement" : language === 'russian' ? "Выписка из банка" : "Bank hisob varag'asi"
+          language === 'english' ? "Resume & Bank Statement" : language === 'russian' ? "Резюме и выписка из банка" : "Rezyume va bank hisob varag'asi"
         ],
         ageLimit: "18–30 years old",
         deadline: "August 10, 2025",
         intake: "September 2025",
-        note: "University will arrange an interview."
+        note: "University will arrange an admission interview."
       }
     },
     {
+      id: "uni-2",
       name: "Hainan Medical University",
       location: "Haikou City, Hainan Province",
       ranking: "Medical University",
-      programs: "Clinical Medicine, Traditional Chinese Medicine, Nursing, Social Medicine and Health Administration (Taught in English)",
+      programs: "Clinical Medicine, Traditional Chinese Medicine, Nursing (Taught in English)",
       logo: "/images/logo/hainan.jpg",
-      colorTheme: "ocean", // Medical blue/teal
+      image: "/images/univerpics/uni2.jpg",
       details: {
-        tuition: "20500 CNY/Year",
-        accommodation: "2100 CNY/Year (4 beds) | 2800 CNY/Year (3 beds)",
+        tuition: "20,500 CNY/Year",
+        accommodation: "2,100 CNY/Year (4 beds) | 2,800 CNY/Year (3 beds)",
         insurance: "800 CNY/Year",
         visa: "400 CNY/Year",
         medicalCheckup: "400 CNY",
         applicationFee: "400 CNY",
         documents: [
-          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
-          language === 'english' ? "Photo" : language === 'russian' ? "Фото" : "Rasm",
-          language === 'english' ? "Highest diploma Certificate and Transcript" : language === 'russian' ? "Диплом и академическая справка" : "Diplom va akademik ma'lumot",
+          language === 'english' ? "Passport & Photo" : language === 'russian' ? "Паспорт и Фото" : "Pasport va Rasm",
+          language === 'english' ? "Diploma & Transcript" : language === 'russian' ? "Диплом и академическая справка" : "Diplom va ma'lumot",
           language === 'english' ? "English Proficiency Certificate" : language === 'russian' ? "Сертификат знания английского" : "Ingliz tili sertifikati",
-          language === 'english' ? "Health Check Up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
-          language === 'english' ? "Non Criminal Record" : language === 'russian' ? "Справка о несудимости" : "Jinoiy yozuv yo'qligi to'g'risida guvohnoma",
-          language === 'english' ? "Bank Statement (at least 5000$)" : language === 'russian' ? "Выписка из банка (минимум 5000$)" : "Bank hisobi (kamida 5000$)",
-          language === 'english' ? "Application Form" : language === 'russian' ? "Форма заявления" : "Ariza formasi"
+          language === 'english' ? "Health Check Up & Non Criminal Record" : language === 'russian' ? "Медицинский осмотр и справка о несудимости" : "Tibbiy ko'rik va spravka",
+          language === 'english' ? "Bank Statement (at least $5000)" : language === 'russian' ? "Выписка из банка (мин. $5000)" : "Bank hisobi (kamida $5000)"
         ],
         ageLimit: "17–35 years old",
-        deadline: "August 15, 2025 (Depends on seats)",
+        deadline: "August 15, 2025",
         intake: "September 2025",
-        note: "Students must pass HSK-3 before finishing the first year."
+        note: "Students must pass HSK-3 before finishing the first academic year."
       }
     },
     {
+      id: "uni-3",
       name: "Hubei University",
       location: "Wuhan City, Hubei Province",
       ranking: "University",
-      programs: "Foundation Program",
+      programs: "Foundation Program & Degree Pathways",
       logo: "/images/logo/Hubei_University_logo.png",
-      colorTheme: "navy", // Navy blue logo
+      image: "/images/univerpics/uni3.jpg",
       details: {
-        tuition: "10000 CNY/Year (Includes Tuition & Accommodation)",
+        tuition: "10,000 CNY/Year (Includes Tuition & Accommodation)",
         insurance: "800 CNY/Year",
         visa: "800 CNY/Year",
-        medicalCheckup: "300 CNY (1st Year only)",
+        medicalCheckup: "300 CNY",
         applicationFee: "400 CNY",
         documents: [
-          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
-          language === 'english' ? "Photo" : language === 'russian' ? "Фото" : "Rasm",
-          language === 'english' ? "Higher Secondary School Certificate & Transcript" : language === 'russian' ? "Аттестат о среднем образовании и справка" : "O'rta maktab attestati va ma'lumoti",
-          language === 'english' ? "English Proficiency Certificate (e.g., IELTS 6.0)" : language === 'russian' ? "Сертификат знания английского (например, IELTS 6.0)" : "Ingliz tili sertifikati (masalan, IELTS 6.0)",
-          language === 'english' ? "Physical Examination Form for Foreigners" : language === 'russian' ? "Медицинская форма для иностранцев" : "Chet elliklar uchun tibbiy ko'rik formasi",
-          language === 'english' ? "Non Criminal Record" : language === 'russian' ? "Справка о несудимости" : "Jinoiy yozuv yo'qligi to'g'risida guvohnoma",
-          language === 'english' ? "Bank Statement (balance > 5000$)" : language === 'russian' ? "Выписка из банка (баланс > 5000$)" : "Bank hisobi (balans > 5000$)",
-          language === 'english' ? "Application Form or CV" : language === 'russian' ? "Форма заявления или резюме" : "Ariza formasi yoki CV",
+          language === 'english' ? "Passport & Photo" : language === 'russian' ? "Паспорт и фото" : "Pasport va rasm",
+          language === 'english' ? "School Certificate & Transcript" : language === 'russian' ? "Аттестат и справка" : "Attestat va ma'lumot",
+          language === 'english' ? "English Certificate (IELTS 6.0)" : language === 'russian' ? "Сертификат английского (IELTS 6.0)" : "Ingliz tili sertifikati",
+          language === 'english' ? "Physical Exam & Non Criminal Record" : language === 'russian' ? "Медосмотр и справка о несудимости" : "Tibbiy ko'rik va spravka",
           language === 'english' ? "Study Plan (1000 words)" : language === 'russian' ? "План обучения (1000 слов)" : "O'qish rejasi (1000 so'z)"
         ],
         ageLimit: "17–25 years old",
-        deadline: "August 14, 2025 (Depends on seats)",
+        deadline: "August 14, 2025",
         intake: "October 2025",
-        note: "Only those who pass the interview can be admitted. Must abide by Chinese laws."
+        note: "Admission requires passing the online interview."
       }
     },
     {
+      id: "uni-4",
       name: "Hezhou University",
       location: "Hezhou City, Guangxi Province",
       ranking: "University",
-      programs: "International Economics and Trade, Cross-border E-commerce, Business English, Software Engineering, Communication Engineering, Artificial Intelligence (Bachelor's, English Taught)",
+      programs: "Software Engineering, AI, E-commerce, Business English (English Taught)",
       logo: "/images/logo/hezhou-university.png",
-      colorTheme: "emerald", // Green logo
+      image: "/images/univerpics/uni4.jpg",
       details: {
-        tuition: "11000 CNY/Year (Liberal Arts) | 13000 CNY/Year (Science/Engineering)",
-        accommodation: "2000-3000 CNY/Month (4-6 students)",
+        tuition: "11,000 CNY/Year (Arts) | 13,000 CNY/Year (Science & Eng)",
+        accommodation: "2,000-3,000 CNY/Year",
         insurance: "800 CNY/Year",
         visa: "400 CNY/Year",
         medicalCheckup: "400-600 CNY",
         documents: [
-          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
-          language === 'english' ? "Picture" : language === 'russian' ? "Фото" : "Rasm",
-          language === 'english' ? "Highest degree Certificate and Transcript" : language === 'russian' ? "Диплом и академическая справка" : "Oliy daraja sertifikati va ma'lumoti",
-          language === 'english' ? "Health Check Up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
-          language === 'english' ? "English Proficiency Certificate" : language === 'russian' ? "Сертификат знания английского" : "Ingliz tili sertifikati",
-          language === 'english' ? "Non Criminal Record / Police Clearance" : language === 'russian' ? "Справка о несудимости / Полицейская справка" : "Jinoiy yozuv yo'qligi / Politsiya spravkasi",
-          language === 'english' ? "Bank Statement" : language === 'russian' ? "Выписка из банка" : "Bank hisobi",
-          language === 'english' ? "Application Form" : language === 'russian' ? "Форма заявления" : "Ariza formasi"
+          language === 'english' ? "Passport & Photo" : language === 'russian' ? "Паспорт и фото" : "Pasport va rasm",
+          language === 'english' ? "Highest Degree Certificate & Transcript" : language === 'russian' ? "Диплом и транскрипт" : "Diplom va transkript",
+          language === 'english' ? "Police Clearance & Health Check" : language === 'russian' ? "Справка о несудимости и медосмотр" : "Spravka va tibbiy ko'rik"
         ],
         ageLimit: "18–25 years old",
         deadline: "September 15, 2025",
         intake: "October 2025",
-        note: "Not open to students from Bangladesh or non-stable countries.",
         scholarships: {
-          firstYear: "1000 CNY (Freshmen Scholarship)",
-          subsequentYears: "First-prize: 6000 CNY (10%) | Second-prize: 3000 CNY (20%) | Third-prize: 2000 CNY (50%)"
+          firstYear: "1,000 CNY Freshmen Scholarship",
+          subsequentYears: "First-prize: 6000 CNY | Second-prize: 3000 CNY | Third-prize: 2000 CNY"
         }
       }
     },
     {
+      id: "uni-5",
       name: "Jiangsu Food & Pharmaceutical Science College",
       location: "Huaian City, Jiangsu Province",
       ranking: "College",
-      programs: "Pharmacy, Food Smart Processing Technology, E-commerce, Culinery Art and Nutrition (3-Year Diploma, English Taught)",
+      programs: "Pharmacy, Food Smart Processing, E-commerce, Culinary Art (3-Yr Diploma)",
       logo: "/images/logo/jiangsu.jpg",
-      colorTheme: "violet", // Purple/violet
+      image: "/images/univerpics/uni5.jpg",
       details: {
-        tuition: "Scholarship: FREE | Original: 4700-6200 CNY/Year",
-        accommodation: "1200 CNY/Year (2 beds room)",
+        tuition: "Scholarship: FREE | Original: 4,700-6,200 CNY/Year",
+        accommodation: "1,200 CNY/Year (Double room)",
         insurance: "600 CNY/Year",
         books: "800 CNY/Year",
         visa: "400 CNY/Year",
         medicalCheckup: "450 CNY",
-        deposit: "2000 CNY (After pre-admission)",
         documents: [
-          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
-          language === 'english' ? "Picture" : language === 'russian' ? "Фото" : "Rasm",
-          language === 'english' ? "Higher Secondary School / Grade 12th / A Level / High School Certificate and Transcript" : language === 'russian' ? "Аттестат о среднем образовании / 12 класс / A Level и академическая справка" : "O'rta maktab / 12-sinf / A Level attestati va ma'lumoti",
-          language === 'english' ? "Health Check Up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
-          language === 'english' ? "English Proficiency Certificate" : language === 'russian' ? "Сертификат знания английского" : "Ingliz tili sertifikati",
-          language === 'english' ? "Non Criminal Record / Police Clearance" : language === 'russian' ? "Справка о несудимости / Полицейская справка" : "Jinoiy yozuv yo'qligi / Politsiya spravkasi",
-          language === 'english' ? "Bank Statement" : language === 'russian' ? "Выписка из банка" : "Bank hisobi",
-          language === 'english' ? "Video of self Introduction" : language === 'russian' ? "Видео самопрезентации" : "O'zi haqida video",
-          language === 'english' ? "Application Form" : language === 'russian' ? "Форма заявления" : "Ariza formasi"
+          language === 'english' ? "Passport & Photo" : language === 'russian' ? "Паспорт и фото" : "Pasport va rasm",
+          language === 'english' ? "High School Transcript" : language === 'russian' ? "Школьный транскрипт" : "Maktab ma'lumotnomasi",
+          language === 'english' ? "Self Introduction Video" : language === 'russian' ? "Видео самопрезентации" : "O'zi haqida video"
         ],
         ageLimit: "17–25 years old",
         deadline: "August 10, 2025",
         intake: "September 2025",
-        note: "School will arrange an interview after initial review.",
         scholarships: {
-          jiangsuGov: "10000 CNY (Excellent Scholarship)",
-          presidential: "2350-3100 CNY/Year (100% of students, covers half of tuition)",
-          academic: "Excellent: 5000 CNY (10%) | First Class: 3000 CNY (40%) | Second Class: 2000 CNY (40%)"
+          jiangsuGov: "10,000 CNY (Government Scholarship)",
+          presidential: "100% of admitted international students receive tuition waiver coverage."
         }
       }
     },
     {
-      name: "Hezhou University - Chinese Language Program",
+      id: "uni-6",
+      name: "Hezhou University - Language Program",
       location: "Hezhou City, Guangxi Province",
-      ranking: "University",
-      programs: "Chinese Language Program (One Semester/One Year)",
+      ranking: "Language Center",
+      programs: "Chinese Language Intensive (One Semester / One Year)",
       logo: "/images/logo/hezhou.jpg",
-      colorTheme: "amber", // Gold/amber
+      image: "/images/univerpics/uni6.jpg",
       details: {
-        tuition: "5000 CNY/Semester | 10000 CNY/Year",
-        accommodation: "2000-3000 CNY/Month (4-6 students)",
+        tuition: "5,000 CNY/Semester | 10,000 CNY/Year",
+        accommodation: "2,000-3,000 CNY/Year",
         insurance: "800 CNY/Year",
         visa: "400 CNY/Year",
         medicalCheckup: "400-600 CNY",
         documents: [
-          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
-          language === 'english' ? "Picture" : language === 'russian' ? "Фото" : "Rasm",
-          language === 'english' ? "Highest degree Certificate and Transcript" : language === 'russian' ? "Диплом и академическая справка" : "Oliy daraja sertifikati va ma'lumoti",
-          language === 'english' ? "Health Check Up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
-          language === 'english' ? "English Proficiency Certificate" : language === 'russian' ? "Сертификат знания английского" : "Ingliz tili sertifikati",
-          language === 'english' ? "Non Criminal Record / Police Clearance" : language === 'russian' ? "Справка о несудимости / Полицейская справка" : "Jinoiy yozuv yo'qligi / Politsiya spravkasi",
-          language === 'english' ? "Bank Statement" : language === 'russian' ? "Выписка из банка" : "Bank hisobi",
-          language === 'english' ? "Application Form" : language === 'russian' ? "Форма заявления" : "Ariza formasi"
+          language === 'english' ? "Passport & Photo" : language === 'russian' ? "Паспорт и фото" : "Pasport va rasm",
+          language === 'english' ? "High School Certificate" : language === 'russian' ? "Аттестат" : "Attestat"
         ],
         ageLimit: "17–35 years old",
         deadline: "September 15, 2025",
-        intake: "October 2025",
-        note: "Not open to students from Bangladesh or non-stable countries."
+        intake: "October 2025"
       }
     },
     {
+      id: "uni-7",
       name: "Guangzhou International Economics College",
       location: "Guangzhou, Guangdong",
       ranking: "College",
-      programs: "One Year Chinese Language Program",
+      programs: "One Year Chinese Language & Cultural Immersion",
       logo: "/images/logo/guangzhou int.jpg",
-      colorTheme: "rose", // Pink/rose
+      image: "/images/univerpics/uni7.jpg",
       details: {
-        tuition: "13800 CNY/Year",
-        accommodation: "5000 CNY/Year (Double Room)",
+        tuition: "13,800 CNY/Year",
+        accommodation: "5,000 CNY/Year (Double Room)",
         insurance: "800 CNY/Year",
         visa: "800 CNY/Year",
         medicalCheckup: "400-600 CNY",
-        applicationFee: "500 CNY",
         documents: [
-          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
-          language === 'english' ? "Photo" : language === 'russian' ? "Фото" : "Rasm",
-          language === 'english' ? "Highest Educational Transcript and Certificate" : language === 'russian' ? "Академическая справка и диплом" : "Oliy ma'lumot to'g'risidagi hujjat va attestat",
-          language === 'english' ? "Medical Check up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
-          language === 'english' ? "English Proficiency Certificate" : language === 'russian' ? "Сертификат знания английского" : "Ingliz tili sertifikati",
-          language === 'english' ? "Non-Criminal Record" : language === 'russian' ? "Справка о несудимости" : "Jinoiy yozuv yo'qligi to'g'risida guvohnoma",
-          language === 'english' ? "Resume" : language === 'russian' ? "Резюме" : "Rezyume",
-          language === 'english' ? "Bank statement" : language === 'russian' ? "Выписка из банка" : "Bank hisob varag'asi"
+          language === 'english' ? "Passport & Photo" : language === 'russian' ? "Паспорт и фото" : "Pasport va rasm",
+          language === 'english' ? "High School Certificate" : language === 'russian' ? "Аттестат" : "Attestat"
         ],
         ageLimit: "18–30 years old",
         deadline: "August 20, 2025",
@@ -318,50 +302,43 @@ const Universities = () => {
       }
     },
     {
+      id: "uni-8",
       name: "Sichuan Tourism University",
       location: "Chengdu City, Sichuan Province",
       ranking: "University",
-      programs: "Software Engineering, Trade and Economics (Bachelor's, English Taught)",
+      programs: "Software Engineering, Trade & Economics (English Taught)",
       logo: "/images/logo/sichuan.webp",
-      colorTheme: "indigo", // Deep indigo
+      image: "/images/univerpics/uni8.jpg",
       details: {
-        feesAfterScholarship: "6200 CNY/Year (Tuition & Accommodation)",
+        feesAfterScholarship: "6,200 CNY/Year (Covers Tuition & Accommodation)",
         insurance: "800 CNY/Year",
         visa: "400 CNY/Year",
-        medicalCheckup: "500 CNY (1st Year only)",
+        medicalCheckup: "500 CNY",
         documents: [
-          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
-          language === 'english' ? "Picture" : language === 'russian' ? "Фото" : "Rasm",
-          language === 'english' ? "Higher Secondary School / Grade 12th / A Level / High School Certificate and Transcript" : language === 'russian' ? "Аттестат о среднем образовании / 12 класс / A Level и академическая справка" : "O'rta maktab / 12-sinf / A Level attestati va ma'lumoti",
-          language === 'english' ? "Health Check Up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
-          language === 'english' ? "Non Criminal Record / Police Clearance" : language === 'russian' ? "Справка о несудимости / Полицейская справка" : "Jinoiy yozuv yo'qligi / Politsiya spravkasi",
-          language === 'english' ? "Application Form" : language === 'russian' ? "Форма заявления" : "Ariza formasi"
+          language === 'english' ? "Passport & Photo" : language === 'russian' ? "Паспорт и фото" : "Pasport va rasm",
+          language === 'english' ? "Secondary School Transcript" : language === 'russian' ? "Академический транскрипт" : "Transkript"
         ],
         deadline: "Depends on Seats",
         intake: "September 2025"
       }
     },
     {
+      id: "uni-9",
       name: "Guilin University of Electronic Technology",
       location: "Guilin City, Guangxi Province",
       ranking: "University",
-      programs: "Chinese Language Program",
+      programs: "Chinese Language & Preparatory Science",
       logo: "/images/logo/Guilin-University-of-Electronic-Technology.png",
-      colorTheme: "crimson",
+      image: "/images/univerpics/uni9.jpg",
       details: {
-        tuition: "7800 CNY/Year",
-        accommodation: "2000 CNY/Year",
+        tuition: "7,800 CNY/Year",
+        accommodation: "2,000 CNY/Year",
         insurance: "800 CNY/Year",
         visa: "400 CNY/Year",
         medicalCheckup: "400 CNY",
         documents: [
-          language === 'english' ? "Passport" : language === 'russian' ? "Паспорт" : "Pasport",
-          language === 'english' ? "Photo" : language === 'russian' ? "Фото" : "Rasm",
-          language === 'english' ? "Highest Educational Transcript and Certificate" : language === 'russian' ? "Академическая справка и диплом" : "Oliy ma'lumot to'g'risidagi hujjat va attestat",
-          language === 'english' ? "Medical Check up" : language === 'russian' ? "Медицинский осмотр" : "Tibbiy ko'rik",
-          language === 'english' ? "English Proficiency Certificate" : language === 'russian' ? "Сертификат знания английского" : "Ingliz tili sertifikati",
-          language === 'english' ? "Non-Criminal Record" : language === 'russian' ? "Справка о несудимости" : "Jinoiy yozuv yo'qligi to'g'risida guvohnoma",
-          language === 'english' ? "Application Form" : language === 'russian' ? "Форма заявления" : "Ariza formasi"
+          language === 'english' ? "Passport & Photo" : language === 'russian' ? "Паспорт и фото" : "Pasport va rasm",
+          language === 'english' ? "High School Transcript" : language === 'russian' ? "Транскрипт" : "Transkript"
         ],
         ageLimit: "18–30 years old",
         deadline: "August 20, 2025",
@@ -370,171 +347,281 @@ const Universities = () => {
     }
   ];
 
+  const throwNext = (direction = 1) => {
+    if (isThrowing) return;
+    setIsThrowing(true);
+    setTimeout(() => {
+      setActiveDeckIndex((prev) => (prev + direction + universities.length) % universities.length);
+      setDragOffset({ x: 0, y: 0 });
+      setIsThrowing(false);
+    }, 280);
+  };
+
+  // Pointer drag handlers
+  const handlePointerDown = (e) => {
+    setIsDragging(true);
+    dragStartRef.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDragging || isThrowing) return;
+    const deltaX = e.clientX - dragStartRef.current.x;
+    const deltaY = e.clientY - dragStartRef.current.y;
+    setDragOffset({ x: deltaX, y: deltaY });
+  };
+
+  const handlePointerUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const threshold = 70; // 70px drag threshold to throw card
+    if (Math.abs(dragOffset.x) > threshold) {
+      throwNext(dragOffset.x > 0 ? 1 : -1);
+    } else {
+      setDragOffset({ x: 0, y: 0 }); // reset position
+    }
+  };
+
+  // Keyboard accessibility
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowRight') {
+      throwNext(1);
+    } else if (e.key === 'ArrowLeft') {
+      throwNext(-1);
+    }
+  };
+
+  const activeUni = universities[activeDeckIndex];
+
   return (
-    <section id="universities" className="universities">
-      <div className="container">
-        <div className="section-title">
-          <h2>{t.title}</h2>
-          <p>{t.subtitle}</p>
+    <section id="universities" className="catalogue-section">
+      <div className="container catalogue-container">
+        {/* Section Header */}
+        <div className="catalogue-header">
+          <div>
+            <span className="label-uppercase text-crimson">{t.label}</span>
+            <h2 className="catalogue-title">{t.title}</h2>
+          </div>
+          <p className="catalogue-subtitle">{t.subtitle}</p>
         </div>
-        <div className="universities-grid">
-          {universities.map((uni, index) => (
-            <div
-              key={index}
-              className={`university-card uni-${uni.colorTheme}`}
-              onClick={() => setSelectedUni(uni)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault(); // Prevent scrolling for Space
-                  setSelectedUni(uni);
-                }
-              }}
-            >
-              <div className="uni-card-header">
-                <div className="uni-logo-container">
-                  <img
-                    src={uni.logo}
-                    alt={`${uni.name} logo`}
-                    loading="lazy"
-                    width={100}
-                    height={100}
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
-                  <div className="logo-fallback" style={{ display: 'none' }}>
-                    {uni.name.charAt(0)}
-                  </div>
-                </div>
-                <span className="uni-ranking-badge">{uni.ranking}</span>
-              </div>
-              <div className="uni-card-body">
-                <h3 className="uni-name">{uni.name}</h3>
-                <div className="uni-location">
-                  <i className="fas fa-map-marker-alt"></i>
-                  <span>{uni.location}</span>
-                </div>
-                <div className="uni-divider"></div>
-                <p className="uni-programs-preview">{uni.programs}</p>
-                <button
-                  className="uni-btn-more"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedUni(uni);
+
+        {/* Physical Throwable Card Deck Stage */}
+        <div
+          ref={deckRef}
+          className="deck-stage"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          aria-label="University physical card deck catalogue"
+        >
+          <div className="deck-stack">
+            {/* Render 3 Stacked Cards (Top card + 2 background cards) */}
+            {[2, 1, 0].map((stackOffset) => {
+              const uniIndex = (activeDeckIndex + stackOffset) % universities.length;
+              const uni = universities[uniIndex];
+              const isTop = stackOffset === 0;
+
+              // Stack styling
+              const baseRotate = stackOffset === 0 ? 0 : stackOffset === 1 ? -3 : 4;
+              const baseTranslateY = stackOffset * 16;
+              const baseScale = 1 - stackOffset * 0.04;
+
+              const dragX = isTop ? dragOffset.x : 0;
+              const dragY = isTop ? dragOffset.y : 0;
+              const dragRotate = isTop ? dragX * 0.06 : 0;
+              const dragScale = isTop && isDragging ? 1.02 : baseScale;
+
+              const transformStr = isTop && isThrowing
+                ? `translate3d(${dragX * 3}px, ${dragY}px, 0) rotate(${dragRotate * 2}deg) scale(0.9)`
+                : `translate3d(${dragX}px, ${baseTranslateY + dragY}px, 0) rotate(${baseRotate + dragRotate}deg) scale(${dragScale})`;
+
+              return (
+                <div
+                  key={uni.id}
+                  className={`deck-card ${isTop ? 'top-card' : 'background-card'}`}
+                  style={{
+                    transform: transformStr,
+                    zIndex: 10 - stackOffset,
+                    opacity: isTop && isThrowing ? 0.2 : 1 - stackOffset * 0.15,
+                    transition: isDragging ? 'none' : 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s'
+                  }}
+                  onClick={() => {
+                    if (isTop && !isDragging && Math.abs(dragOffset.x) < 5) {
+                      setSelectedUni(uni);
+                    }
                   }}
                 >
-                  {t.learnMore} <i className="fas fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          ))}
+                  {/* Card Campus Image */}
+                  <div
+                    className="deck-card-image"
+                    style={{ backgroundImage: `url(${uni.image})` }}
+                  >
+                    <div className="deck-card-veil" />
+                    <div className="deck-card-badge">{uni.ranking}</div>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="deck-card-body">
+                    <div className="deck-card-top-row">
+                      <img
+                        src={uni.logo}
+                        alt={`${uni.name} logo`}
+                        className="deck-uni-logo"
+                        onError={(e) => { e.target.style.display = 'none'; }}
+                      />
+                      <span className="label-uppercase uni-loc-tag">
+                        <i className="fas fa-map-marker-alt" /> {uni.location}
+                      </span>
+                    </div>
+
+                    <h3 className="deck-uni-name">{uni.name}</h3>
+                    <p className="deck-uni-programs">{uni.programs}</p>
+
+                    <button className="btn-editorial btn-deck-details">
+                      {t.detailsBtn} <i className="fas fa-arrow-right" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Deck Controls & Drag Hint */}
+        <div className="deck-controls">
+          <span className="label-uppercase deck-hint-text">{t.dragHint}</span>
+
+          <div className="deck-dots">
+            {universities.map((_, idx) => (
+              <button
+                key={idx}
+                className={`deck-dot ${idx === activeDeckIndex ? 'active' : ''}`}
+                onClick={() => setActiveDeckIndex(idx)}
+                aria-label={`Go to university ${idx + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Editorial University Detail Modal */}
       {selectedUni && (
-        <div className="uni-modal" onClick={() => setSelectedUni(null)}>
-          <div className="uni-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="editorial-modal-backdrop" onClick={() => setSelectedUni(null)}>
+          <div className="editorial-modal-panel" onClick={(e) => e.stopPropagation()}>
+            {/* Close Button */}
             <button
-              className="uni-modal-close"
+              className="editorial-modal-close"
               onClick={() => setSelectedUni(null)}
-              type="button"
               aria-label="Close modal"
             >
               &times;
             </button>
-            <h2>{selectedUni.name}</h2>
-            <p>
-              <strong>{t.modal.location}</strong> {selectedUni.location}
-            </p>
-            <p>
-              <strong>{t.modal.ranking}</strong> {selectedUni.ranking}
-            </p>
-            <p>
-              <strong>{t.modal.programs}</strong> {selectedUni.programs}
-            </p>
 
-            {selectedUni.details && (
-              <div className="uni-details">
-                <h3>{t.modal.fees}</h3>
-                <ul>
-                  {selectedUni.details.tuition && (
-                    <li><strong>{t.modal.tuition}</strong> {selectedUni.details.tuition}</li>
-                  )}
-                  {selectedUni.details.accommodation && (
-                    <li><strong>{t.modal.accommodation}</strong> {selectedUni.details.accommodation}</li>
-                  )}
-                  {selectedUni.details.insurance && (
-                    <li><strong>{t.modal.insurance}</strong> {selectedUni.details.insurance}</li>
-                  )}
-                  {selectedUni.details.visa && (
-                    <li><strong>{t.modal.visa}</strong> {selectedUni.details.visa}</li>
-                  )}
-                  {selectedUni.details.medicalCheckup && (
-                    <li><strong>{t.modal.medicalCheckup}</strong> {selectedUni.details.medicalCheckup}</li>
-                  )}
-                  {selectedUni.details.applicationFee && (
-                    <li><strong>{t.modal.applicationFee}</strong> {selectedUni.details.applicationFee}</li>
-                  )}
-                  {selectedUni.details.books && (
-                    <li><strong>{t.modal.books}</strong> {selectedUni.details.books}</li>
-                  )}
-                  {selectedUni.details.deposit && (
-                    <li><strong>{t.modal.deposit}</strong> {selectedUni.details.deposit}</li>
-                  )}
-                  {selectedUni.details.feesAfterScholarship && (
-                    <li><strong>{t.modal.feesAfterScholarship}</strong> {selectedUni.details.feesAfterScholarship}</li>
-                  )}
-                </ul>
-
-                <h3>{t.modal.documents}</h3>
-                <ul>
-                  {selectedUni.details.documents.map((doc, i) => (
-                    <li key={i}>{doc}</li>
-                  ))}
-                </ul>
-
-                <h3>{t.modal.otherInfo}</h3>
-                {selectedUni.details.ageLimit && (
-                  <p><strong>{t.modal.ageLimit}</strong> {selectedUni.details.ageLimit}</p>
-                )}
-                {selectedUni.details.deadline && (
-                  <p><strong>{t.modal.deadline}</strong> {selectedUni.details.deadline}</p>
-                )}
-                {selectedUni.details.intake && (
-                  <p><strong>{t.modal.intake}</strong> {selectedUni.details.intake}</p>
-                )}
-                {selectedUni.details.note && (
-                  <p><strong>{t.modal.note}</strong> {selectedUni.details.note}</p>
-                )}
-                {selectedUni.details.scholarships && (
-                  <>
-                    <p><strong>{t.modal.scholarships}</strong></p>
-                    {selectedUni.details.scholarships.firstYear && (
-                      <p>• {selectedUni.details.scholarships.firstYear}</p>
-                    )}
-                    {selectedUni.details.scholarships.subsequentYears && (
-                      <p>• {selectedUni.details.scholarships.subsequentYears}</p>
-                    )}
-                    {selectedUni.details.scholarships.jiangsuGov && (
-                      <p>• {selectedUni.details.scholarships.jiangsuGov}</p>
-                    )}
-                    {selectedUni.details.scholarships.presidential && (
-                      <p>• {selectedUni.details.scholarships.presidential}</p>
-                    )}
-                    {selectedUni.details.scholarships.academic && (
-                      <p>• {selectedUni.details.scholarships.academic}</p>
-                    )}
-                  </>
-                )}
+            {/* Banner Image */}
+            <div
+              className="modal-banner-image"
+              style={{ backgroundImage: `url(${selectedUni.image})` }}
+            >
+              <div className="modal-banner-overlay" />
+              <div className="modal-banner-content">
+                <span className="label-uppercase text-crimson">{selectedUni.ranking}</span>
+                <h2 className="modal-uni-title">{selectedUni.name}</h2>
+                <p className="modal-uni-loc"><i className="fas fa-map-marker-alt" /> {selectedUni.location}</p>
               </div>
-            )}
+            </div>
+
+            {/* Modal Body */}
+            <div className="modal-body-content">
+              {/* Programs */}
+              <div className="modal-section">
+                <h3 className="label-uppercase modal-section-title">{t.modal.programs}</h3>
+                <p className="modal-programs-text">{selectedUni.programs}</p>
+              </div>
+
+              {/* Fee Breakdown Grid */}
+              {selectedUni.details && (
+                <div className="modal-section">
+                  <h3 className="label-uppercase modal-section-title">{t.modal.fees}</h3>
+                  <div className="modal-fees-grid">
+                    {selectedUni.details.tuition && (
+                      <div className="fee-item">
+                        <span className="fee-label">{t.modal.tuition}</span>
+                        <span className="fee-value">{selectedUni.details.tuition}</span>
+                      </div>
+                    )}
+                    {selectedUni.details.accommodation && (
+                      <div className="fee-item">
+                        <span className="fee-label">{t.modal.accommodation}</span>
+                        <span className="fee-value">{selectedUni.details.accommodation}</span>
+                      </div>
+                    )}
+                    {selectedUni.details.insurance && (
+                      <div className="fee-item">
+                        <span className="fee-label">{t.modal.insurance}</span>
+                        <span className="fee-value">{selectedUni.details.insurance}</span>
+                      </div>
+                    )}
+                    {selectedUni.details.visa && (
+                      <div className="fee-item">
+                        <span className="fee-label">{t.modal.visa}</span>
+                        <span className="fee-value">{selectedUni.details.visa}</span>
+                      </div>
+                    )}
+                    {selectedUni.details.medicalCheckup && (
+                      <div className="fee-item">
+                        <span className="fee-label">{t.modal.medicalCheckup}</span>
+                        <span className="fee-value">{selectedUni.details.medicalCheckup}</span>
+                      </div>
+                    )}
+                    {selectedUni.details.feesAfterScholarship && (
+                      <div className="fee-item fee-item-highlight">
+                        <span className="fee-label">{t.modal.feesAfterScholarship}</span>
+                        <span className="fee-value text-crimson">{selectedUni.details.feesAfterScholarship}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Required Documents Checklist */}
+              {selectedUni.details?.documents && (
+                <div className="modal-section">
+                  <h3 className="label-uppercase modal-section-title">{t.modal.documents}</h3>
+                  <ul className="modal-docs-list">
+                    {selectedUni.details.documents.map((doc, idx) => (
+                      <li key={idx}><i className="fas fa-check text-crimson" /> {doc}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Admissions Info & CTA */}
+              <div className="modal-section modal-footer-actions">
+                <div className="modal-meta-info">
+                  {selectedUni.details?.deadline && (
+                    <span><strong>{t.modal.deadline}</strong> {selectedUni.details.deadline}</span>
+                  )}
+                  {selectedUni.details?.intake && (
+                    <span><strong>{t.modal.intake}</strong> {selectedUni.details.intake}</span>
+                  )}
+                </div>
+
+                <a
+                  href="https://t.me/china_connect_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-editorial btn-editorial-accent modal-cta-btn"
+                >
+                  <i className="fab fa-telegram" /> {t.modal.cta}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}
+      <div className="hairline-divider" />
     </section>
   );
 };

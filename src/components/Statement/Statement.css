@@ -1,0 +1,83 @@
+/* src/components/Statement/Statement.css — Editorial Statement Section */
+
+.statement-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--section-padding-y) 0;
+  background-color: var(--ground);
+  overflow: hidden;
+}
+
+.statement-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 500px;
+}
+
+.statement-index {
+  position: absolute;
+  top: 50%;
+  left: -2vw;
+  transform: translateY(-50%);
+  font-size: clamp(14rem, 28vw, 32rem);
+  line-height: 0.8;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.statement-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+}
+
+.statement-label {
+  display: block;
+  margin-bottom: 28px;
+  color: var(--crimson);
+}
+
+.statement-quote {
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: var(--ink-primary);
+  text-transform: uppercase;
+}
+
+.statement-float-wrapper {
+  position: absolute;
+  right: -4vw;
+  top: 15%;
+  width: clamp(220px, 24vw, 360px);
+  height: clamp(280px, 30vw, 440px);
+  border-radius: 180px 180px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--hairline-strong);
+  z-index: 3;
+  will-change: transform, opacity;
+  pointer-events: none;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.statement-float-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 960px) {
+  .statement-float-wrapper {
+    display: none; /* Hide floating image on small screens to keep layout clean */
+  }
+
+  .statement-quote {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+  }
+}

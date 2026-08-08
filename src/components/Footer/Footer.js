@@ -8,55 +8,33 @@ const Footer = ({ scrollToSection }) => {
   const { trackEvent } = useAnalytics();
   const { language } = useLanguage();
 
-  // Translations
   const translations = {
     english: {
-      description: "Your trusted partner for studying in China. We provide comprehensive support services to help students from Uzbekistan achieve their academic dreams.",
-      quickLinks: "Quick Links",
-      home: "Home",
-      services: "Services",
-      universities: "Universities",
-      aboutUs: "About Us",
-      servicesTitle: "Services",
-      universitySelection: "University Selection",
-      applicationAssistance: "Application Assistance",
-      visaSupport: "Visa Support",
-      scholarshipGuidance: "Scholarship Guidance",
-      accommodationAssistance: "Accommodation Assistance",
-      contactUs: "Contact Us",
-      copyright: "© 2025 DragonPath Education. All rights reserved."
+      closeHeading: "YOUR PATH\nSTARTS HERE.",
+      closeSubtitle: "Universities. Opportunities. A future beyond borders.",
+      ctaPrimary: "START YOUR JOURNEY",
+      ctaSecondary: "CONTACT DRAGONPATH",
+      description: "Your trusted partner for studying in China. Complete guidance from application to arrival.",
+      address: "Tashkent, Mirobod District Business Center",
+      copyright: "© 2025 DRAGONPATH EDUCATION AGENCY. ALL RIGHTS RESERVED."
     },
     russian: {
-      description: "Ваш надежный партнер для обучения в Китае. Мы предоставляем комплексные услуги поддержки, чтобы помочь студентам из Узбекистана осуществить свои академические мечты.",
-      quickLinks: "Быстрые ссылки",
-      home: "Главная",
-      services: "Услуги",
-      universities: "Университеты",
-      aboutUs: "О нас",
-      servicesTitle: "Услуги",
-      universitySelection: "Выбор университета",
-      applicationAssistance: "Помощь с заявлением",
-      visaSupport: "Виза поддержка",
-      scholarshipGuidance: "Консультации по стипендиям",
-      accommodationAssistance: "Помощь с жильем",
-      contactUs: "Контакты",
-      copyright: "© 2025 DragonPath Education. Все права защищены."
+      closeHeading: "ТВОЙ ПУТЬ\nНАЧИНАЕТСЯ ЗДЕСЬ.",
+      closeSubtitle: "Университеты. Возможности. Будущее без границ.",
+      ctaPrimary: "НАЧАТЬ ПУТЬ В TELEGRAM",
+      ctaSecondary: "СВЯЗАТЬСЯ С DRAGONPATH",
+      description: "Ваш надежный партнер для обучения в Китае. Сопровождение от заявки до приезда.",
+      address: "г. Ташкент, Мирабадский район, Бизнес-центр",
+      copyright: "© 2025 DRAGONPATH EDUCATION AGENCY. ВСЕ ПРАВА ЗАЩИЩЕНЫ."
     },
     uzbek: {
-      description: "Xitoyda o'qish uchun ishonchli hamkoringiz. Biz O'zbekistonlik talabalarga akademik orzularini amalga oshirishda yordam berish uchun keng qamrovli qo'llab-quvvatlash xizmatlarini taqdim etamiz.",
-      quickLinks: "Tezkor havolalar",
-      home: "Bosh sahifa",
-      services: "Xizmatlar",
-      universities: "Universitetlar",
-      aboutUs: "Biz haqimizda",
-      servicesTitle: "Xizmatlar",
-      universitySelection: "Universitet tanlash",
-      applicationAssistance: "Ariza yordami",
-      visaSupport: "Viza yordami",
-      scholarshipGuidance: "Stipendiya maslahat",
-      accommodationAssistance: "Turar joy yordami",
-      contactUs: "Bog'lanish",
-      copyright: "© 2025 DragonPath Education. Barcha huquqlar himoyalangan."
+      closeHeading: "SIZNING YO'LINGIZ\nSHU YERDAN BOSHLANADI.",
+      closeSubtitle: "Universitetlar. Imkoniyatlar. Chegaralarsiz kelajak.",
+      ctaPrimary: "TELEGRAM BOTDA BOSHLASH",
+      ctaSecondary: "DRAGONPATH BILAN BOG'LANISH",
+      description: "Xitoyda ta'lim olish uchun ishonchli hamkoringiz. Arizadan tortib yetib borishgacha to'liq yordam.",
+      address: "Toshkent shahri, Mirobod tumani, Biznes markazi",
+      copyright: "© 2025 DRAGONPATH EDUCATION AGENCY. BARCHA HUQUQLAR HIMOYALANGAN."
     }
   };
 
@@ -66,43 +44,79 @@ const Footer = ({ scrollToSection }) => {
     trackEvent("social_media_click", "Engagement", `Clicked ${platform} link`);
   };
 
-  const handleFooterLinkClick = (linkName) => {
-    trackEvent(
-      "footer_link_click",
-      "Navigation",
-      `Clicked footer link: ${linkName}`
-    );
-  };
-
-  const handleScrollToSection = (sectionId, sectionName) => {
-    trackEvent(
-      "footer_navigation",
-      "Navigation",
-      `Navigated to: ${sectionName}`
-    );
-    scrollToSection(sectionId);
-  };
-
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-grid">
-          {/* Logo and Social Links */}
-          <div className="footer-column footer-brand">
-            <div className="logo">
-              <img src="/images/logo/dragon.jpg" alt="DragonPath logo" className="footer-logo-img" />
-              <h3>DragonPath</h3>
-            </div>
-            <p>{t.description}</p>
-            <div className="social-links">
+    <footer className="footer-editorial">
+      {/* Final Close Section */}
+      <div className="final-close-section">
+        <div className="container final-close-container">
+          <span className="label-uppercase text-crimson">THE GATEWAY</span>
+          <h2 className="final-close-title">
+            {t.closeHeading.split('\n').map((line, idx) => (
+              <span key={idx}>
+                {line}
+                {idx < t.closeHeading.split('\n').length - 1 && <br />}
+              </span>
+            ))}
+          </h2>
+          <p className="final-close-subtitle">{t.closeSubtitle}</p>
+
+          <div className="final-close-actions">
+            <a
+              href="https://t.me/china_connect_bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-editorial btn-editorial-accent"
+              onClick={() => handleSocialLinkClick("Telegram CTA")}
+            >
+              <i className="fab fa-telegram" /> {t.ctaPrimary}
+            </a>
+            <a
+              href="tel:+8613025955119"
+              className="btn-editorial"
+            >
+              <i className="fas fa-phone-alt" /> {t.ctaSecondary}
+            </a>
+          </div>
+        </div>
+
+        {/* Giant Cropped Wordmark Running Across Bottom Edge */}
+        <div className="bottom-wordmark-wrapper">
+          <span className="bottom-giant-wordmark">DRAGONPATH</span>
+        </div>
+      </div>
+
+      <div className="hairline-divider" />
+
+      {/* Editorial Minimal Footer */}
+      <div className="minimal-footer">
+        <div className="container footer-bottom-container">
+          {/* Brand Info & Address */}
+          <div className="footer-col brand-col">
+            <span className="brand-wordmark">DRAGONPATH<span className="brand-dot">.</span></span>
+            <p className="footer-desc-text">{t.description}</p>
+            <p className="footer-addr-text"><i className="fas fa-map-marker-alt" /> {t.address}</p>
+          </div>
+
+          {/* Contact Details */}
+          <div className="footer-col contact-col">
+            <span className="label-uppercase text-muted">CONTACT</span>
+            <a href="mailto:info@dragonpath.uz" className="footer-contact-link">info@dragonpath.uz</a>
+            <a href="tel:+8613025955119" className="footer-contact-link">+86 130 2595 5119</a>
+            <a href="tel:+998871905119" className="footer-contact-link">+998 87 190 5119</a>
+          </div>
+
+          {/* Social Links */}
+          <div className="footer-col social-col">
+            <span className="label-uppercase text-muted">CONNECT</span>
+            <div className="footer-social-icons">
               <a
-                href="https://www.facebook.com/ramil.qutlimuratov"
+                href="https://t.me/dragon_path_uz"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => handleSocialLinkClick("Facebook")}
-                aria-label="Facebook"
+                onClick={() => handleSocialLinkClick("Telegram Channel")}
+                aria-label="Telegram"
               >
-                <i className="fab fa-facebook-f"></i>
+                <i className="fab fa-telegram" />
               </a>
               <a
                 href="https://www.instagram.com/dragon.path/?hl=en"
@@ -111,16 +125,7 @@ const Footer = ({ scrollToSection }) => {
                 onClick={() => handleSocialLinkClick("Instagram")}
                 aria-label="Instagram"
               >
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a
-                href="https://t.me/dragon_path_uz"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => handleSocialLinkClick("Telegram")}
-                aria-label="Telegram"
-              >
-                <i className="fab fa-telegram"></i>
+                <i className="fab fa-instagram" />
               </a>
               <a
                 href="https://wa.me/60105071503"
@@ -129,7 +134,16 @@ const Footer = ({ scrollToSection }) => {
                 onClick={() => handleSocialLinkClick("WhatsApp")}
                 aria-label="WhatsApp"
               >
-                <i className="fab fa-whatsapp"></i>
+                <i className="fab fa-whatsapp" />
+              </a>
+              <a
+                href="https://www.facebook.com/ramil.qutlimuratov"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => handleSocialLinkClick("Facebook")}
+                aria-label="Facebook"
+              >
+                <i className="fab fa-facebook-f" />
               </a>
               <a
                 href="#!"
@@ -139,138 +153,19 @@ const Footer = ({ scrollToSection }) => {
                   alert("WeChat ID copied: qutlimuratov5119");
                   handleSocialLinkClick("WeChat");
                 }}
-                role="button"
                 aria-label="WeChat"
               >
-                <i className="fab fa-weixin"></i>
+                <i className="fab fa-weixin" />
               </a>
             </div>
           </div>
-
-          {/* Quick Links */}
-          <div className="footer-column">
-            <h3>{t.quickLinks}</h3>
-            <ul className="footer-links">
-              <li>
-                <a
-                  href="#home"
-                  onClick={() => handleScrollToSection("home", "Home")}
-                >
-                  {t.home}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  onClick={() => handleScrollToSection("services", "Services")}
-                >
-                  {t.services}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#universities"
-                  onClick={() =>
-                    handleScrollToSection("universities", "Universities")
-                  }
-                >
-                  {t.universities}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#about"
-                  onClick={() => handleScrollToSection("about", "About Us")}
-                >
-                  {t.aboutUs}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services Links */}
-          <div className="footer-column">
-            <h3>{t.servicesTitle}</h3>
-            <ul className="footer-links">
-              <li>
-                <a
-                  href="#services"
-                  onClick={() => handleFooterLinkClick("University Selection")}
-                >
-                  {t.universitySelection}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  onClick={() =>
-                    handleFooterLinkClick("Application Assistance")
-                  }
-                >
-                  {t.applicationAssistance}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  onClick={() => handleFooterLinkClick("Visa Support")}
-                >
-                  {t.visaSupport}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  onClick={() => handleFooterLinkClick("Scholarship Guidance")}
-                >
-                  {t.scholarshipGuidance}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  onClick={() =>
-                    handleFooterLinkClick("Accommodation Assistance")
-                  }
-                >
-                  {t.accommodationAssistance}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Information */}
-          <div className="footer-column">
-            <h3>{t.contactUs}</h3>
-            <ul className="footer-contact">
-              <li>
-                <i className="fas fa-envelope"></i>
-                <a
-                  href="mailto:info@dragonpath.uz"
-                  onClick={() => handleFooterLinkClick("Email Contact")}
-                >
-                  info@dragonpath.uz
-                </a>
-              </li>
-              <li>
-                <i className="fas fa-phone"></i>
-                <a
-                  href="tel:+89130225955119"
-                  onClick={() => handleFooterLinkClick("Phone Contact")}
-                >
-                  +8613025955119 & +998871905119
-                </a>
-              </li>
-              <li>
-                <i className="fas fa-map-marker-alt"></i>
-                <span>Toshkent shaxri Mirobod tumani biznes markazi</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        <div className="copyright">
-          <p>{t.copyright}</p>
+        {/* Copyright Bar */}
+        <div className="copyright-bar">
+          <div className="container copyright-container">
+            <span className="label-uppercase copyright-text">{t.copyright}</span>
+          </div>
         </div>
       </div>
     </footer>

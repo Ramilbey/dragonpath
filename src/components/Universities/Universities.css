@@ -1,522 +1,360 @@
-/* src/components/Universities/Universities.css — Premium Redesign */
+/* src/components/Universities/Universities.css — Physical Catalogue Deck */
 
-/* ============================================================
-   UNIVERSITIES SECTION
-   ============================================================ */
-.universities {
-  padding: 130px 0;
-  background-color: var(--bg-primary);
+.catalogue-section {
   position: relative;
+  padding: var(--section-padding-y) 0;
+  background-color: var(--ground);
   overflow: hidden;
-  transition: background-color 0.4s ease;
 }
 
-/* Subtle ambient glow */
-.universities::before {
-  content: '';
-  position: absolute;
-  top: 5%;
-  right: -10%;
-  width: 460px;
-  height: 460px;
-  background: radial-gradient(circle, rgba(196,30,58,0.05) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
+.catalogue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: clamp(40px, 6vw, 70px);
+  flex-wrap: wrap;
+  gap: 24px;
 }
 
-[data-theme='dark'] .universities::before {
-  background: radial-gradient(circle, rgba(196,30,58,0.1) 0%, transparent 70%);
+.catalogue-title {
+  font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+  font-weight: 900;
+  color: var(--ink-primary);
+  margin-top: 12px;
 }
 
-.universities .container {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.universities .section-title {
-  text-align: center;
-  margin-bottom: 56px;
-}
-
-.universities .section-title h2 {
-  font-size: clamp(1.9rem, 3.5vw, 2.75rem);
-  font-weight: 800;
-  color: var(--text-primary);
-  margin-bottom: 14px;
-  letter-spacing: -0.03em;
-}
-
-.universities .section-title p {
+.catalogue-subtitle {
+  font-family: var(--font-body);
   font-size: 1rem;
-  color: var(--text-secondary);
-  max-width: 560px;
-  margin: 0 auto;
-  line-height: 1.8;
+  color: var(--ink-secondary);
+  max-width: 420px;
 }
 
-/* ============================================================
-   UNIVERSITY CARD (Horizontal)
-   ============================================================ */
-.universities-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.university-card {
-  display: flex;
-  flex-direction: row;
-  background: var(--bg-card);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border: 1px solid var(--border-color);
-  height: 200px;
+/* Deck Stage & Stack */
+.deck-stage {
   position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: clamp(500px, 55vw, 620px);
+  margin: 0 auto 50px;
+  touch-action: pan-y;
+  outline: none;
+  cursor: grab;
 }
 
-.university-card:hover {
-  transform: translateY(-4px) scale(1.005);
-  box-shadow: var(--shadow-lg);
-  z-index: 10;
-  border-color: rgba(255, 255, 255, 0.05);
-  /* Subtle border change in dark mode */
+.deck-stage:active {
+  cursor: grabbing;
 }
 
-/* CARD HEADER (Left Side Color Block) */
-.uni-card-header {
-  width: 240px;
-  height: auto;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.deck-stack {
   position: relative;
-  /* Gradients moved to theme classes below */
-}
-
-/* Theme Gradients */
-.uni-crimson .uni-card-header {
-  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-  border-right: 4px solid #dc2626;
-}
-
-.uni-ocean .uni-card-header {
-  background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
-  border-right: 4px solid #0891b2;
-}
-
-.uni-navy .uni-card-header {
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  border-right: 4px solid #1e40af;
-}
-
-.uni-emerald .uni-card-header {
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border-right: 4px solid #059669;
-}
-
-.uni-violet .uni-card-header {
-  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
-  border-right: 4px solid #7c3aed;
-}
-
-.uni-amber .uni-card-header {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  border-right: 4px solid #d97706;
-}
-
-.uni-rose .uni-card-header {
-  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-  border-right: 4px solid #e11d48;
-}
-
-.uni-indigo .uni-card-header {
-  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
-  border-right: 4px solid #4f46e5;
-}
-
-/* In Dark Mode, darken the header backgrounds slightly to avoid eye strain */
-[data-theme='dark'] .uni-crimson .uni-card-header {
-  background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
-}
-
-[data-theme='dark'] .uni-ocean .uni-card-header {
-  background: linear-gradient(135deg, #083344 0%, #164e63 100%);
-}
-
-[data-theme='dark'] .uni-navy .uni-card-header {
-  background: linear-gradient(135deg, #172554 0%, #1e3a8a 100%);
-}
-
-[data-theme='dark'] .uni-emerald .uni-card-header {
-  background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
-}
-
-[data-theme='dark'] .uni-violet .uni-card-header {
-  background: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
-}
-
-[data-theme='dark'] .uni-amber .uni-card-header {
-  background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
-}
-
-[data-theme='dark'] .uni-rose .uni-card-header {
-  background: linear-gradient(135deg, #4c0519 0%, #881337 100%);
-}
-
-[data-theme='dark'] .uni-indigo .uni-card-header {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-}
-
-/* Logo Container */
-.uni-logo-container {
-  width: 100px;
-  height: 100px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  padding: 10px;
-  transition: transform 0.4s ease;
-}
-
-[data-theme='dark'] .uni-logo-container {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-.university-card:hover .uni-logo-container {
-  transform: scale(1.05) rotate(2deg);
-}
-
-.uni-logo-container img {
   width: 100%;
   height: 100%;
+}
+
+.deck-card {
+  position: absolute;
+  inset: 0;
+  background: var(--ground-secondary);
+  border: 1px solid var(--hairline-strong);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  will-change: transform, opacity;
+}
+
+.deck-card-image {
+  position: relative;
+  width: 100%;
+  height: 60%;
+  background-size: cover;
+  background-position: center;
+}
+
+.deck-card-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--ground-secondary), transparent);
+}
+
+.deck-card-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(8,12,24,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--hairline);
+  padding: 6px 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink-primary);
+  text-transform: uppercase;
+}
+
+.deck-card-body {
+  padding: 24px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.deck-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.deck-uni-logo {
+  height: 36px;
+  width: auto;
   object-fit: contain;
 }
 
-/* BADGE */
-.uni-ranking-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  color: #334155;
-  z-index: 5;
+.uni-loc-tag {
+  color: var(--crimson);
+  font-size: 0.72rem;
 }
 
-[data-theme='dark'] .uni-ranking-badge {
-  background: rgba(30, 41, 59, 0.95);
-  color: #cbd5e1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* CARD BODY (Right Side Content) */
-.uni-card-body {
-  flex: 1;
-  padding: 24px 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-}
-
-.uni-name {
-  font-size: 1.4rem;
+.deck-uni-name {
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
   font-weight: 800;
-  color: var(--text-primary);
-  margin: 0 0 6px 0;
-  line-height: 1.2;
+  color: var(--ink-primary);
+  margin-bottom: 8px;
 }
 
-.uni-location {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 16px;
-  font-weight: 500;
-}
-
-.uni-divider {
-  display: none;
-}
-
-.uni-programs-preview {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 0;
-  max-width: 85%;
+.deck-uni-programs {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink-secondary);
+  margin-bottom: 24px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* ACTION BUTTON */
-.uni-btn-more {
+.btn-deck-details {
   margin-top: auto;
-  background: transparent;
-  border: none;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  display: inline-flex;
+  align-self: flex-start;
+  font-size: 0.72rem;
+}
+
+/* Controls & Hints */
+.deck-controls {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 16px;
+}
+
+.deck-hint-text {
+  color: var(--muted);
+  letter-spacing: 0.25em;
+}
+
+.deck-dots {
+  display: flex;
   gap: 8px;
-  padding: 8px 0;
-  transition: all 0.2s ease;
-  position: absolute;
-  bottom: 24px;
-  right: 32px;
-  color: var(--text-secondary);
 }
 
-.university-card:hover .uni-btn-more {
-  text-decoration: none;
+.deck-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--hairline-strong);
+  transition: all 0.3s ease;
 }
 
-[data-theme='dark'] .university-card:hover .uni-btn-more {
-  color: var(--text-primary);
+.deck-dot.active {
+  background-color: var(--crimson);
+  transform: scale(1.4);
 }
 
-/* Theme colors for button hover/icon */
-.uni-crimson .uni-btn-more i {
-  color: #dc2626;
-}
-
-.uni-ocean .uni-btn-more i {
-  color: #0891b2;
-}
-
-.uni-navy .uni-btn-more i {
-  color: #1e40af;
-}
-
-.uni-emerald .uni-btn-more i {
-  color: #059669;
-}
-
-.uni-violet .uni-btn-more i {
-  color: #7c3aed;
-}
-
-.uni-amber .uni-btn-more i {
-  color: #d97706;
-}
-
-.uni-rose .uni-btn-more i {
-  color: #e11d48;
-}
-
-.uni-indigo .uni-btn-more i {
-  color: #4f46e5;
-}
-
-/* In dark mode, lighten these accents slightly for visibility */
-[data-theme='dark'] .uni-crimson .uni-btn-more i {
-  color: #f87171;
-}
-
-[data-theme='dark'] .uni-ocean .uni-btn-more i {
-  color: #22d3ee;
-}
-
-[data-theme='dark'] .uni-navy .uni-btn-more i {
-  color: #60a5fa;
-}
-
-[data-theme='dark'] .uni-emerald .uni-btn-more i {
-  color: #34d399;
-}
-
-[data-theme='dark'] .uni-violet .uni-btn-more i {
-  color: #a78bfa;
-}
-
-[data-theme='dark'] .uni-amber .uni-btn-more i {
-  color: #fbbf24;
-}
-
-[data-theme='dark'] .uni-rose .uni-btn-more i {
-  color: #fb7185;
-}
-
-[data-theme='dark'] .uni-indigo .uni-btn-more i {
-  color: #818cf8;
-}
-
-.uni-btn-more:hover {
-  transform: translateX(-4px);
-}
-
-/* ========================================
-   MODAL
-   ======================================== */
-.uni-modal {
+/* Editorial Modal */
+.editorial-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
-  z-index: 10000;
+  background: rgba(8, 12, 24, 0.88);
+  backdrop-filter: blur(16px);
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
 }
 
-[data-theme='dark'] .uni-modal {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.uni-modal-content {
-  background: var(--bg-card);
-  width: 100%;
-  max-width: 600px;
-  max-height: 85vh;
-  border-radius: 12px;
-  padding: 32px;
-  overflow-y: auto;
+.editorial-modal-panel {
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-  color: var(--text-primary);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  background: var(--ground-secondary);
+  border: 1px solid var(--hairline-strong);
+  overflow-y: auto;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
 }
 
-.uni-modal-content h2 {
-  color: var(--text-primary);
-}
-
-.uni-modal-content p,
-.uni-modal-content li {
-  color: var(--text-secondary);
-}
-
-.uni-modal-content strong {
-  color: var(--text-primary);
-}
-
-.uni-details li {
-  background: var(--bg-tertiary);
-  color: var(--text-secondary);
-}
-
-[data-theme='dark'] .uni-details li {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.uni-modal-close {
+.editorial-modal-close {
   position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  background: var(--bg-tertiary);
+  z-index: 10;
+  color: var(--ink-primary);
+  font-size: 2rem;
+  line-height: 1;
+  background: rgba(8,12,24,0.6);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
-  transition: all 0.2s;
+  border: 1px solid var(--hairline);
+  transition: background 0.3s;
 }
 
-.uni-modal-close:hover {
-  background: var(--primary);
-  color: white;
+.editorial-modal-close:hover {
+  background: var(--crimson);
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
+.modal-banner-image {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+}
+
+.modal-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--ground-secondary), transparent 70%);
+}
+
+.modal-banner-content {
+  position: absolute;
+  bottom: 24px;
+  left: 32px;
+  right: 32px;
+}
+
+.modal-uni-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 900;
+  color: var(--ink-primary);
+  margin: 6px 0;
+}
+
+.modal-uni-loc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-secondary);
+}
+
+.modal-body-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.modal-section-title {
+  color: var(--crimson);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.modal-programs-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink-primary);
+  line-height: 1.6;
+}
+
+.modal-fees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.fee-item {
+  padding: 16px;
+  background: var(--ground);
+  border: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fee-item-highlight {
+  border-color: var(--crimson);
+}
+
+.fee-label {
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.fee-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink-primary);
+}
+
+.modal-docs-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.modal-docs-list li {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 24px;
+  flex-wrap: wrap;
+}
+
+.modal-meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: var(--ink-secondary);
+}
+
+.modal-cta-btn {
+  font-size: 0.78rem;
+}
 
 @media (max-width: 768px) {
-  .university-card {
-    flex-direction: column;
-    height: auto;
+  .deck-stage {
+    height: 480px;
   }
 
-  .uni-card-header {
-    width: 100%;
-    height: 120px;
-    border-right: none;
-    border-bottom: 4px solid transparent;
+  .deck-card-body {
+    padding: 20px;
   }
 
-  /* Keep border bottom colors consistent in dark mode */
-  .uni-crimson .uni-card-header {
-    border-bottom-color: #dc2626;
-  }
-
-  .uni-ocean .uni-card-header {
-    border-bottom-color: #0891b2;
-  }
-
-  .uni-navy .uni-card-header {
-    border-bottom-color: #1e40af;
-  }
-
-  .uni-emerald .uni-card-header {
-    border-bottom-color: #059669;
-  }
-
-  .uni-violet .uni-card-header {
-    border-bottom-color: #7c3aed;
-  }
-
-  .uni-amber .uni-card-header {
-    border-bottom-color: #d97706;
-  }
-
-  .uni-rose .uni-card-header {
-    border-bottom-color: #e11d48;
-  }
-
-  .uni-indigo .uni-card-header {
-    border-bottom-color: #4f46e5;
-  }
-
-  [data-theme='dark'] .uni-crimson .uni-card-header {
-    border-bottom-color: #7f1d1d;
-  }
-
-  [data-theme='dark'] .uni-ocean .uni-card-header {
-    border-bottom-color: #164e63;
-  }
-
-  /* ... add others if strict color matching needed, but primary works fine */
-
-  .uni-logo-container {
-    width: 80px;
-    height: 80px;
-    transform: translateY(10px);
-  }
-
-  .uni-card-body {
-    padding: 24px 20px;
-  }
-
-  .uni-ranking-badge {
-    top: 12px;
-    left: auto;
-    right: 12px;
-  }
-
-  .uni-btn-more {
-    position: static;
-    margin-top: 20px;
+  .modal-body-content {
+    padding: 20px;
   }
 }

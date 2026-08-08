@@ -1,250 +1,193 @@
-/* src/components/Services/Services.css — Premium Redesign */
+/* src/components/Services/Services.css — Pinned Journey Section */
 
-/* ============================================================
-   SERVICES SECTION
-   ============================================================ */
-.services {
-  padding: 130px 0;
-  background: var(--bg-primary);
+.journey-section {
   position: relative;
-  overflow: hidden;
+  height: 300vh; /* Pinned scroll length */
+  background-color: var(--ground-secondary);
 }
 
-/* Ambient background glow */
-.services::before {
-  content: '';
-  position: absolute;
-  top: -10%;
-  right: -8%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(196,30,58,0.07) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: floatBubble 10s ease-in-out infinite;
-}
-
-[data-theme='dark'] .services::before {
-  background: radial-gradient(circle, rgba(196,30,58,0.14) 0%, transparent 70%);
-}
-
-.services::after {
-  content: '';
-  position: absolute;
-  bottom: 5%;
-  left: -6%;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: floatBubble 12s ease-in-out infinite reverse;
-}
-
-@keyframes floatBubble {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  50%       { transform: translate(20px,-30px) scale(1.08); }
-}
-
-/* ============================================================
-   GRID
-   ============================================================ */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  position: relative;
-  z-index: 1;
-}
-
-/* ============================================================
-   SERVICE CARD — Redesigned
-   ============================================================ */
-.service-card {
-  background: var(--bg-card);
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  text-align: center;
-  position: relative;
-  opacity: 0;
-  transform: translateY(48px);
-  animation: fadeSlideUp 0.7s ease forwards;
-  transition:
-    transform 0.45s cubic-bezier(0.34,1.56,0.64,1),
-    box-shadow 0.4s ease,
-    border-color 0.3s ease;
-  box-shadow: var(--shadow-sm);
-}
-
-.service-card:nth-child(1) { animation-delay: 0.05s; }
-.service-card:nth-child(2) { animation-delay: 0.12s; }
-.service-card:nth-child(3) { animation-delay: 0.19s; }
-.service-card:nth-child(4) { animation-delay: 0.26s; }
-.service-card:nth-child(5) { animation-delay: 0.33s; }
-.service-card:nth-child(6) { animation-delay: 0.40s; }
-
-@keyframes fadeSlideUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Top accent line */
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #c41e3a, #f59e0b, #c41e3a);
-  background-size: 200% auto;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
-}
-
-.service-card:hover {
-  transform: translateY(-14px) scale(1.015);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.13);
-  border-color: rgba(196,30,58,0.18);
-}
-
-.service-card:hover::before {
-  transform: scaleX(1);
-  animation: shimmerGradient 1.5s linear infinite;
-}
-
-@keyframes shimmerGradient {
-  0%   { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-
-/* ============================================================
-   SERVICE ICON BLOCK
-   ============================================================ */
-.service-img {
-  height: 130px;
-  background: linear-gradient(135deg, #c41e3a 0%, #9a1830 100%);
+.journey-pinned-stage {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 3rem;
-  position: relative;
   overflow: hidden;
 }
 
-[data-theme='dark'] .service-img {
-  background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
+.journey-container {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+  width: 100%;
 }
 
-/* Glare shimmer on hover */
-.service-img::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%; width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-  transition: left 0.6s ease;
+/* Left Column */
+.journey-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.service-card:hover .service-img::after { left: 100%; }
-
-/* Gold glow circle */
-.service-img::before {
-  content: '';
-  position: absolute;
-  width: 90px; height: 90px;
-  background: radial-gradient(circle, rgba(245,158,11,0.4) 0%, transparent 70%);
-  border-radius: 50%;
-  opacity: 0;
-  transform: scale(0);
-  transition: all 0.5s ease;
+.journey-title {
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 900;
+  margin: 16px 0 20px;
+  color: var(--ink-primary);
+  line-height: 1.05;
 }
 
-.service-card:hover .service-img::before {
-  opacity: 1;
-  transform: scale(1.6);
+.journey-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink-secondary);
+  line-height: 1.7;
+  max-width: 440px;
+  margin-bottom: 40px;
 }
 
-.service-img i {
-  position: relative;
-  z-index: 1;
-  transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+.journey-step-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-display);
+  margin-bottom: 24px;
 }
 
-.service-card:hover .service-img i {
-  transform: scale(1.2) rotate(6deg);
+.current-num {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--crimson);
+  line-height: 1;
 }
 
-/* ============================================================
-   SERVICE CONTENT
-   ============================================================ */
-.service-content {
-  padding: 28px 24px 32px;
+.counter-slash {
+  font-size: 1.8rem;
+  color: var(--muted);
 }
 
-.service-content h3 {
-  color: var(--text-primary);
-  margin-bottom: 12px;
-  font-size: 1.2rem;
+.total-num {
+  font-size: 1.5rem;
   font-weight: 700;
+  color: var(--ink-secondary);
+}
+
+.journey-step-dots {
+  display: flex;
+  gap: 12px;
+}
+
+.journey-dot {
+  width: 32px;
+  height: 3px;
+  background-color: var(--hairline-strong);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.journey-dot.active {
+  background-color: var(--crimson);
+  width: 48px;
+}
+
+/* Right Column */
+.journey-right {
+  position: relative;
+  width: 100%;
+}
+
+.journey-card-display {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  background: var(--ground);
+  border: 1px solid var(--hairline-strong);
+  padding: 32px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+
+.journey-image-frame {
+  position: relative;
+  width: 100%;
+  height: clamp(240px, 28vw, 360px);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+}
+
+.journey-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journey-photo.active {
+  opacity: 1;
+  transform: scale(1.0);
+}
+
+.journey-image-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,12,24,0.8), transparent);
+}
+
+.journey-badge-num {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--ink-primary);
+  opacity: 0.7;
+}
+
+.journey-info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.journey-step-name {
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  color: var(--ink-primary);
+  margin-bottom: 12px;
   letter-spacing: -0.02em;
-  transition: color 0.25s ease;
 }
 
-.service-card:hover .service-content h3 { color: var(--primary); }
-
-.service-content p {
-  color: var(--text-secondary);
-  line-height: 1.75;
-  font-size: 0.9rem;
-  transition: color 0.25s ease;
+.journey-step-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  line-height: 1.7;
+  margin-bottom: 28px;
 }
 
-.service-card:hover .service-content p { color: var(--text-primary); }
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width: 1200px) { .services-grid { gap: 22px; } }
-
-@media (max-width: 1024px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
+.journey-step-actions button,
+.journey-step-actions a {
+  font-size: 0.76rem;
 }
 
-@media (max-width: 768px) {
-  .services { padding: 90px 0; }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
-    gap: 18px;
-  }
-
-  .service-card {
-    display: flex;
-    flex-direction: row;
-    text-align: left;
-    border-radius: 18px;
-  }
-
-  .service-img {
-    width: 110px;
+@media (max-width: 960px) {
+  .journey-section {
     height: auto;
-    min-height: 120px;
-    flex-shrink: 0;
-    font-size: 2.2rem;
   }
 
-  .service-content { padding: 20px 20px; }
-  .service-content h3 { font-size: 1.05rem; margin-bottom: 8px; }
-  .service-content p { font-size: 0.875rem; }
-}
+  .journey-pinned-stage {
+    position: relative;
+    height: auto;
+    padding: 80px 0;
+  }
 
-@media (max-width: 480px) {
-  .services { padding: 70px 0; }
-
-  .service-card { flex-direction: column; text-align: center; }
-  .service-img { width: 100%; height: 100px; }
-  .service-content { padding: 20px 16px 24px; }
+  .journey-container {
+    grid-template-columns: 1fr;
+  }
 }

@@ -2,17 +2,13 @@ import React from "react";
 import "./Loading.css";
 
 export default function Loading() {
-  // Audio removed to prevent autoplay errors
-
   return (
     <div className="loading-screen">
       <div className="loading-content">
-        <img
-          src="/assets/loadindragon.gif"
-          alt="DragonPath Loading..."
-          className="loading-gif"
-        />
-        <div className="loading-text">DragonPath</div>
+        <div className="loading-wordmark">
+          DRAGON<span className="text-crimson">PATH</span>
+        </div>
+        <div className="loading-tagline">YOUR PATH STARTS HERE</div>
         <div className="loading-bar-container">
           <div className="loading-bar"></div>
         </div>
